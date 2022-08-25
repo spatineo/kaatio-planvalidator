@@ -1,28 +1,24 @@
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-  xmlns:gml="http://www.opengis.net/gml/3.2"
-  xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr"
-  xmlns:lsp="http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0"
-  xmlns:lud-core="http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2" elementFormDefault="qualified" targetNamespace="http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2" version="1.2.1">
-  <import namespace="http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0" schemaLocation="./localization-1.0.xsd"/>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:lsp="http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0" xmlns:lud-core="http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2" elementFormDefault="qualified" targetNamespace="http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2" version="1.2.1">
+  <import namespace="http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0" schemaLocation="https://tietomallit.ymparisto.fi/kehitys/kaatio/xml/localization-1.0.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
   <!-- XML Schema document created by ShapeChange - http://shapechange.net/ -->
-  <!--  Edited and translated by Ilkka Rinne / Spatineo 2022  -->
+  <!--  Edited and translated by Ilkka Rinne/ Spatineo 2022  -->
   <!--  
-    Change history
-    ==============
-    1.2.1:
-          * fixed substitutionGroup of LandUseFeatureCollection from gml:AbstractGML to gml:AbstractFeature (as required by GML 3.2 Standard)
-          * now uses absolute URL for importing localization schema
-    1.2.0:
-          * Added new LandUseFeatureCollection container type and element.
-
-    1.1.1:
-          * Fixed the schemaLocation path of http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0 from localization.xsd -> localization-1.0.xsd
-          * Added LandUseFeatureCollection as a generic container
-
-    
-   -->
+      Change history
+      ==============
+      1.2.1:
+            * fixed substitutionGroup of LandUseFeatureCollection from gml:AbstractGML to gml:AbstractFeature (as required by GML 3.2 Standard)
+            * now uses absolute URL for importing localization schema
+      1.2.0:
+            * Added new LandUseFeatureCollection container type and element.
+  
+      1.1.1:
+            * Fixed the schemaLocation path of http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0 from localization.xsd -> localization-1.0.xsd
+            * Added LandUseFeatureCollection as a generic container
+  
+      
+     -->
   <element name="LandUseFeatureCollection" type="lud-core:LandUseFeatureCollectionType" substitutionGroup="gml:AbstractFeature">
     <annotation>
       <documentation> A generic FeatureCollection to be used as a container for related Land Use features </documentation>
@@ -52,17 +48,17 @@
     <annotation>
       <documentation>AbstraktiVersioituKohde</documentation>
       <documentation>
-The following attributes are mapped to GML identifiers: * localIdentifier -> gml:id attribute * referenceIdentifier + namespace -> gml:identifier (use the codeSpace attribute for the namespace) See XML Schema source for an example. See Kaavatietomalli / Elinkaarisäännöt (https://tietomallit.ymparisto.fi/kaavatiedot/v1.1/looginenmalli/elinkaarisaannot.html#tunnukset-ja-niiden-hallinta) for more information about the use if various identifiers (in Finnish).
-                                <!-- 
-        Example:
-        
-        <SpatialPlan gml:id="id-640bff6b-c16a-4947-af8d-d86f89106be1.b05cf48d46d8c905c54522f44b0a12daff11604e">
-          <gml:identifier codeSpace="http://uri.suomi.fi/object/rytj/kaava">SpatialPlan/id-640bff6b-c16a-4947-af8d-d86f89106be1.b05cf48d46d8c905c54522f44b0a12daff11604e</gml:identifier>
-          <splan:objectIdenfier>id-640bff6b-c16a-4947-af8d-d86f89106be1</splan:objectIdentifier>
-          <splan:producerSpecificIdentifier>oma-asemakaava123345</splan:producerSpecificIdentifier>
-           ...
-        </SpatialPlan>
-         -->
+        The following attributes are mapped to GML identifiers: * localIdentifier -> gml:id attribute * referenceIdentifier + namespace -> gml:identifier (use the codeSpace attribute for the namespace) See XML Schema source for an example. See Kaavatietomalli/ Elinkaarisäännöt (https://tietomallit.ymparisto.fi/kaavatiedot/v1.1/looginenmalli/elinkaarisaannot.html#tunnukset-ja-niiden-hallinta) for more information about the use if various identifiers (in Finnish).
+        <!-- 
+          Example:
+          
+          <SpatialPlan gml:id="id-640bff6b-c16a-4947-af8d-d86f89106be1.b05cf48d46d8c905c54522f44b0a12daff11604e">
+            <gml:identifier codeSpace="http://uri.suomi.fi/object/rytj/kaava">SpatialPlan/id-640bff6b-c16a-4947-af8d-d86f89106be1.b05cf48d46d8c905c54522f44b0a12daff11604e</gml:identifier>
+            <splan:objectIdenfier>id-640bff6b-c16a-4947-af8d-d86f89106be1</splan:objectIdentifier>
+            <splan:producerSpecificIdentifier>oma-asemakaava123345</splan:producerSpecificIdentifier>
+             ...
+          </SpatialPlan>
+           -->
       </documentation>
     </annotation>
   </element>

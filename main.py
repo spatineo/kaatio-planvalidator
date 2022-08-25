@@ -28,8 +28,23 @@ def validateXML():
 
 
 def validateSchema():
-    # my_schema = xmlschema.XMLSchema('schemas/localization-1.0.xsd')
-    my_schema = xmlschema.XMLSchema('schemas/spatialplan-1.2.xsd')
+    my_schema = xmlschema.XMLSchema('spatialplan-1.2.xsd', 
+        base_url='schema/', 
+        namespace='http://tietomallit.ymparisto.fi/kaavatiedot/xml/1.2',
+        locations=[
+            ('http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0', 'localization-1.0.xsd'),
+            ('http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2', 'land-use-decision-core-1.2.xsd'),
+            ('http://www.w3.org/1999/xlink', 'xlink.xsd'),
+            ('http://www.opengis.net/gml/3.3/exr', 'extdEncRule.xsd'),
+            ('http://www.opengis.net/gml/3.2', 'gml/gml.xsd'),
+            ('http://www.isotc211.org/2005/gmd', 'gmd/gmd.xsd'), 
+            ('http://www.isotc211.org/2005/gss', 'gss/gss.xsd'),
+            ('http://www.isotc211.org/2005/gco', 'gco/gco.xsd'),
+            ('http://www.isotc211.org/2005/gts', 'gts/gts.xsd'),
+            ('http://www.isotc211.org/2005/gsr', 'gsr/gsr.xsd')
+        ],
+        build=True)
+    
     my_schema.validate('virallinenKaatio.xml')
 
     is_valid = my_schema.is_valid('virallinenKaatio.xml')

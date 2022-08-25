@@ -1,44 +1,39 @@
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-  xmlns:gml="http://www.opengis.net/gml/3.2"
-  xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr"
-  xmlns:lsp="http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0"
-  xmlns:lud-core="http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2"
-  xmlns:splan="http://tietomallit.ymparisto.fi/kaavatiedot/xml/1.2" elementFormDefault="qualified" targetNamespace="http://tietomallit.ymparisto.fi/kaavatiedot/xml/1.2" version="1.2.1">
-  <import namespace="http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2" schemaLocation="./land-use-decision-core-1.2.xsd"/>
-  <import namespace="http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0" schemaLocation="./localization-1.0.xsd"/>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr" xmlns:lsp="http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0" xmlns:lud-core="http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2" xmlns:splan="http://tietomallit.ymparisto.fi/kaavatiedot/xml/1.2" elementFormDefault="qualified" targetNamespace="http://tietomallit.ymparisto.fi/kaavatiedot/xml/1.2" version="1.2.1">
+  <import namespace="http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2" schemaLocation="https://tietomallit.ymparisto.fi/kehitys/kaatio/xml/land-use-decision-core-1.2.xsd"/>
+  <import namespace="http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0" schemaLocation="https://tietomallit.ymparisto.fi/kehitys/kaatio/xml/localization-1.0.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.3/exr" schemaLocation="http://schemas.opengis.net/gml/3.3/extdEncRule.xsd"/>
   <!-- XML Schema document created by ShapeChange - http://shapechange.net/ -->
   <!--  
-    Change history
-    ==============
-    1.2.1:
-          * Removed PlanObject.type element, does not have any defined codelist in the model, so cannot be used in practice.
-          * now uses absolute URL for importing localization and lud-core schemas
-          
-    1.2.0:
-          * Updated lud-core to version 1.2
-          
-          * Removed the optional elements PlanObjectType.order and PlanObjectType.recommendation to break the problematic bidirectional associations 
-              between PlanObjects and PlanOrder/PlanRecommendations. Bidirectional linking of PlanObjects and PlanOrders / PlanRecommendations would 
-              be a problem in practice: It would only be possible to link PlanOrderGroups in one direction (by the PlanOrderGroup.target attribute), so
-              PlanObjects would only contain links to the directly linked PlanOrders.
-              
-              Instead design the APIs to enable fetching PlanOrders, PlanOrderGroups and PlanRecommendations by their "target" attibute value
-              (first fetch PlanObjects, then fetch orders & recommandations on demand using the received PlanObject IDs) or altenatively return
-              orders, groups and recommandations preemptively in the same LandUseFeatureCollection as the PlanObjects they are linked to.
-              
-          * Removed the optional element SpatialPlan.planObject with the same justification as removing the PlanObjectType.order and 
-              PlanObjectType.recommendation: the bidirectional links between SpatialPlan and its PlanObjects are not necessary, the PlanObjects always 
-              have the mandatory link to their SpatialPlan which is enough for fetching the PlanObjects included in a particial SpatialPlan. This also
-              allows for linking any future concrete realizations of AbstractPlanObject to a SpatialPlan.
-          
-    1.1.1 / 2.8.2022
-          * Fixed the schemaLocation path of http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0 from localization.xsd -> localization-1.0.xsd
-          
-          * Fixed the schemaLocation path of http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.1 from land-use-decision-core.xsd land-use-decision-core-1.1.xsd
-    
-   -->
+      Change history
+      ==============
+      1.2.1:
+            * Removed PlanObject.type element, does not have any defined codelist in the model, so cannot be used in practice.
+            * now uses absolute URL for importing localization and lud-core schemas
+            
+      1.2.0:
+            * Updated lud-core to version 1.2
+            
+            * Removed the optional elements PlanObjectType.order and PlanObjectType.recommendation to break the problematic bidirectional associations 
+                between PlanObjects and PlanOrder/PlanRecommendations. Bidirectional linking of PlanObjects and PlanOrders/ PlanRecommendations would 
+                be a problem in practice: It would only be possible to link PlanOrderGroups in one direction (by the PlanOrderGroup.target attribute), so
+                PlanObjects would only contain links to the directly linked PlanOrders.
+                
+                Instead design the APIs to enable fetching PlanOrders, PlanOrderGroups and PlanRecommendations by their "target" attibute value
+                (first fetch PlanObjects, then fetch orders & recommandations on demand using the received PlanObject IDs) or altenatively return
+                orders, groups and recommandations preemptively in the same LandUseFeatureCollection as the PlanObjects they are linked to.
+                
+            * Removed the optional element SpatialPlan.planObject with the same justification as removing the PlanObjectType.order and 
+                PlanObjectType.recommendation: the bidirectional links between SpatialPlan and its PlanObjects are not necessary, the PlanObjects always 
+                have the mandatory link to their SpatialPlan which is enough for fetching the PlanObjects included in a particial SpatialPlan. This also
+                allows for linking any future concrete realizations of AbstractPlanObject to a SpatialPlan.
+            
+      1.1.1/ 2.8.2022
+            * Fixed the schemaLocation path of http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0 from localization.xsd -> localization-1.0.xsd
+            
+            * Fixed the schemaLocation path of http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.1 from land-use-decision-core.xsd land-use-decision-core-1.1.xsd
+      
+     -->
   <element name="SpatialPlan" substitutionGroup="lud-core:AbstractLandUseMatter" type="splan:SpatialPlanType">
     <!--  ===================================================================================================  -->
     <annotation>
@@ -99,19 +94,19 @@
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="planner" type="splan:PlannerPropertyType"/>
           <!--  
-          <element maxOccurs="unbounded" minOccurs="0" name="planObject">
-            <complexType>
-              <complexContent>
-                <extension base="gml:AbstractFeatureMemberType">
-                  <sequence minOccurs="0">
-                    <element ref="splan:PlanObject"/>
-                  </sequence>
-                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
-                </extension>
-              </complexContent>
-            </complexType>
-          </element>
-            -->
+            <element maxOccurs="unbounded" minOccurs="0" name="planObject">
+              <complexType>
+                <complexContent>
+                  <extension base="gml:AbstractFeatureMemberType">
+                    <sequence minOccurs="0">
+                      <element ref="splan:PlanObject"/>
+                    </sequence>
+                    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                  </extension>
+                </complexContent>
+              </complexType>
+            </element>
+              -->
           <element maxOccurs="unbounded" minOccurs="0" name="generalRecommendation">
             <complexType>
               <complexContent>
@@ -210,14 +205,14 @@
       <extension base="splan:AbstractPlanObjectType">
         <sequence>
           <!-- 
-          <element minOccurs="0" name="type" type="gml:ReferenceType">
-            <annotation>
-              <appinfo>
-                <targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">AbstraktiKaavakohdeLaji</targetCodeList>
-              </appinfo>
-            </annotation>
-          </element>
-           -->
+            <element minOccurs="0" name="type" type="gml:ReferenceType">
+              <annotation>
+                <appinfo>
+                  <targetCodeList xmlns="http://www.opengis.net/gml/3.3/exr">AbstraktiKaavakohdeLaji</targetCodeList>
+                </appinfo>
+              </annotation>
+            </element>
+             -->
           <element minOccurs="0" name="bindingnessOfLocation" type="gml:ReferenceType">
             <annotation>
               <appinfo>
@@ -240,18 +235,18 @@
               </appinfo>
             </annotation>
           </element>
-          <!--  Bidirectional linking of PlanObjects and PlanOrders / PlanRecommendations would be a problem in practice:
-              It would only be possible to link PlanOrderGroups in one direction (by the PlanOrderGroup.target attribute), so
-              PlanObjects would only contain links to the directly linked PlanOrders.
-              
-              Instead design the APIs to enable fetching PlanOrders, PlanOrderGroups and PlanRecommendations by their "target" attibute value
-              (first fetch PlanObjects, then fetch orders & recommandations on demand using the received PlanObject IDs) or altenatively return
-              orders, groups and recommandations preemptively in the same LandUseFeatureCollection as the PlanObjects they are linked to.
-           -->
+          <!--  Bidirectional linking of PlanObjects and PlanOrders/ PlanRecommendations would be a problem in practice:
+                It would only be possible to link PlanOrderGroups in one direction (by the PlanOrderGroup.target attribute), so
+                PlanObjects would only contain links to the directly linked PlanOrders.
+                
+                Instead design the APIs to enable fetching PlanOrders, PlanOrderGroups and PlanRecommendations by their "target" attibute value
+                (first fetch PlanObjects, then fetch orders & recommandations on demand using the received PlanObject IDs) or altenatively return
+                orders, groups and recommandations preemptively in the same LandUseFeatureCollection as the PlanObjects they are linked to.
+             -->
           <!-- 
-          <element maxOccurs="unbounded" minOccurs="0" name="order" type="splan:PlanOrderPropertyType"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="recommendation" type="splan:PlanRecommendationPropertyType"/>
-           -->
+            <element maxOccurs="unbounded" minOccurs="0" name="order" type="splan:PlanOrderPropertyType"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="recommendation" type="splan:PlanRecommendationPropertyType"/>
+             -->
         </sequence>
       </extension>
     </complexContent>
