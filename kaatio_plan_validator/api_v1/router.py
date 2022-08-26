@@ -11,15 +11,18 @@ async def validate(file: UploadFile):
 
     try:
         # Parse incoming xml
-        land_use_feature_collection = models.LandUseFeatureCollection.parse_xml(
+        feature_collection = models.LandUseFeatureCollection.parse_xml(
             source=file.file,
         )
 
-        land_use_feature_collection.validate_feature_members()
-
+        spatial_plans = [
+            models.SpatialPlan.from_orm(feature_member)
+            for feature_member in feature_collection.get_feature_members_by_tag("SpatialPlan")
+        ]
+        print(spatial_plans)
         # All good - return xml
         return Response(
-            content=land_use_feature_collection.to_string(),
+            content=feature_collection.to_string(),
             status_code=status.HTTP_200_OK,
         )
 

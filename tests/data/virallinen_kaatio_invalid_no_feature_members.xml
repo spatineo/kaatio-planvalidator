@@ -1,0 +1,8 @@
+<lud-core:LandUseFeatureCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr"
+  xmlns:lsp="http://tietomallit.ymparisto.fi/ry-yhteiset/kielituki/xml/1.0"
+  xmlns:lud-core="http://tietomallit.ymparisto.fi/mkp-ydin/xml/1.2"
+  xmlns:splan="http://tietomallit.ymparisto.fi/kaavatiedot/xml/1.2" xsi:schemaLocation="http://tietomallit.ymparisto.fi/kaavatiedot/xml/1.2 https://tietomallit.ymparisto.fi/kehitys/kaatio/xml/spatialplan-1.2.xsd" gml:id="KAAVA-kaava-sipoo-nevasgard-upload">
+</lud-core:LandUseFeatureCollection>
