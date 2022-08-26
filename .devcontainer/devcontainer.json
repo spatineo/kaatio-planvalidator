@@ -1,0 +1,43 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+	"name": "Python samples",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".."
+	},
+	// A set of name-value pairs that sets or overrides environment variables for the container.
+	"containerEnv": {
+		// Enforce Poetry to use project folder when creating virtual environment.
+		"POETRY_VIRTUALENVS_IN_PROJECT": "true"
+	},
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"ms-python.python",
+		"ms-python.vscode-pylance"
+	],
+	// An object of dev container features and related options to be added into your primary container.
+	"features": {
+		"aws-cli": "latest",
+		"docker-from-docker": "latest",
+		"github-cli": "latest"
+	},
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"aws.samcli.enableCodeLenses": false,
+		"aws.telemetry": false,
+		"remote.containers.copyGitConfig": true,
+		"terminal.integrated.defaultProfile.linux": "bash"
+	},
+	// Comment out to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
+	// Docker CLI arguments that should be used when running the container.
+	"runArgs": [
+		// Turn off user namespace within the container (SELINUX)
+		"--security-opt",
+		"label:disable"
+	],
+	// Overrides the default local mount point for the workspace when the container is created.
+	"workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind,consistency=cached",
+	// Sets the default workspace path.
+	"workspaceFolder": "${localWorkspaceFolder}"
+}
