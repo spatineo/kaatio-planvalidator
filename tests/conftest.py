@@ -30,6 +30,6 @@ def valid_xml():
 @pytest.fixture
 def land_use_feature_collection(valid_xml: Path):
     return models.LandUseFeatureCollection.parse_xml(
-        skip_xml_must_validate_against_xsd=True,
+        skip={"no_xsd_validation": True},
         source=valid_xml,
     )
