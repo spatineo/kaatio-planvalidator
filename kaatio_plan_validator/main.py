@@ -1,12 +1,28 @@
-import uvicorn
-from api_v1.router import router as api_v1_router
 from fastapi import FastAPI
 
-app = FastAPI()
-app.include_router(
-    prefix="/v1",
-    router=api_v1_router,
+from .api_v1 import exception_handlers
+from .api_v1.router import router
+
+app = FastAPI(
+    exception_handlers={
+        exception_handlers.exceptions.ParserException: exception_handlers.parser_exception_handler,
+        exception_handlers.exceptions.SchemaException: exception_handlers.schema_exception_handler,
+        exception_handlers.RequestValidationError: exception_handlers.request_validation_exception_handler,
+    },
+    responses={
+        200: {},
+        422: {
+            "content": {
+                "application/json": {},
+            },
+            "description": "Validation Error",
+            "model": exception_handlers.ErrorResponse,
+        },
+    },
 )
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
+app.include_router(
+    prefix="/v1",
+    router=router,
+)

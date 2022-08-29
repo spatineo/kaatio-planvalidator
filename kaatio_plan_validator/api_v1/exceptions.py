@@ -1,10 +1,16 @@
 class ParserException(Exception):
-    """Represents base exception for parsers."""
+    def __init__(self, message: str, reason: str):
+        self.message = message
+        self.reason = reason
 
 
-class VerifyException(Exception):
-    """Represents base exception for transformers."""
+class SchemaException(Exception):
+    def __init__(self, message: str, reason: str):
+        self.message = message
+        self.reason = reason
 
 
-class ValidatorException(Exception):
-    """Represents base exception for validators."""
+class ValidateException(Exception):
+    def __init__(self, message: str, reason: str):
+        self.message = message
+        self.reason = reason

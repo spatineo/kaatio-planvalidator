@@ -25,11 +25,14 @@ class LandUseFeatureCollection(common.XmlModel):
                 xml=ET.parse(source),
                 **kwargs,
             )
-        except ET.ParseError as err:
-            raise exceptions.ParserException(str(err))
+        except ET.ParseError as exc:
+            raise exceptions.ParserException(
+                message="Failed to parse XML!",
+                reason=str(exc),
+            )
 
     @validator("xml")
-    def xml_must_validate_against_xsd(cls, xml: ET._ElementTree, values: dict[str, Any]):
+    def xml_must_be_xsd_valid(cls, xml: ET._ElementTree, values: dict[str, Any]):
         """XML document must validate against XSD."""
 
         try:
@@ -45,16 +48,16 @@ class LandUseFeatureCollection(common.XmlModel):
                 xsd.validate(xml)
             return xml
         except xmlschema.XMLSchemaException as err:
-            raise exceptions.ValidatorException(str(err))
+            raise exceptions.SchemaException(
+                message="Failed to validate against XSD!",
+                reason=str(err),
+            )
 
     @validator("xml")
     def xml_has_feature_members(cls, xml: ET._ElementTree):
         """XML document must have feature members."""
-        try:
-            assert list(xml.getroot())
-            return xml
-        except AssertionError as err:
-            raise exceptions.ValidatorException(str(err))
+        assert list(xml.getroot()), "Failed to locate feature members from XML!"
+        return xml
 
     def find_feature_members_by_tag(self, tag: str) -> list[ET._Element]:
         return [
