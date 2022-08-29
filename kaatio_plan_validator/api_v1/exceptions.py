@@ -1,16 +1,22 @@
 class ParserException(Exception):
-    def __init__(self, message: str, reason: str):
-        self.message = message
+    message = "Failed to parse XML!"
+    type = "parser_error"
+
+    def __init__(self, reason: str):
         self.reason = reason
 
 
 class SchemaException(Exception):
+    message = "Failed to validate against XSD!"
+    type = "schema_error"
+
     def __init__(self, message: str, reason: str):
-        self.message = message
         self.reason = reason
 
 
-class ValidateException(Exception):
-    def __init__(self, message: str, reason: str):
-        self.message = message
+class VerifyException(Exception):
+    message = "Failed to verify XML!"
+    type = "verify_error"
+
+    def __init__(self, reason: str):
         self.reason = reason

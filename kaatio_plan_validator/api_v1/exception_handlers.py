@@ -10,6 +10,7 @@ from . import exceptions
 class Error(BaseModel):
     message: str
     reason: list[str]
+    type: str
 
 
 class ErrorResponse(BaseModel):
@@ -22,12 +23,14 @@ def parser_exception_handler(request: Request, exc: exceptions.ParserException):
             Error(
                 message=exc.message,
                 reason=[exc.reason],
+                type=exc.type,
             )
         ]
     )
     return JSONResponse(
         content=jsonable_encoder(error_res.detail[0]),
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+        type=exc.type,
     )
 
 
@@ -37,6 +40,7 @@ async def schema_exception_handler(request: Request, exc: exceptions.SchemaExcep
             Error(
                 message=exc.message,
                 reason=[exc.reason],
+                type=exc.type,
             )
         ]
     )
@@ -46,16 +50,16 @@ async def schema_exception_handler(request: Request, exc: exceptions.SchemaExcep
     )
 
 
-async def validate_exception_handler(request: Request, exc: exceptions.ValidateException):
+async def verify_exception_handler(request: Request, exc: exceptions.VerifyException):
     error_res = ErrorResponse(
         detail=[
             Error(
                 message=exc.message,
-                reason=[],
+                reason=[exc.reason],
+                type=exc.type,
             )
         ]
     )
-    print("ERRR", error_res)
     return JSONResponse(
         content=jsonable_encoder(error_res.detail[0]),
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -63,17 +67,17 @@ async def validate_exception_handler(request: Request, exc: exceptions.ValidateE
 
 
 async def request_validation_exception_handler(request: Request, exc: RequestValidationError):
-    errors = {
-        "detail": [
+    errors = ErrorResponse(
+        detail=[
             {
                 "message": err["msg"],
-                "reason": [err["type"]],
+                "reason": [str(err)],
+                "type": err["type"],
             }
+            for err in exc.errors()
         ]
-        for err in exc.errors()
-    }
-    error_res = ErrorResponse(**errors)
+    )
     return JSONResponse(
-        content=jsonable_encoder(error_res.detail[0]),
+        content=jsonable_encoder(errors.detail[0]),
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
     )

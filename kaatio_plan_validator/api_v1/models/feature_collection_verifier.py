@@ -24,8 +24,7 @@ class FeatureCollectionVerifier(BaseModel):
         for plan_object in self.plan_objects:
             # Check spatialPlan
             if plan_object.spatial_plan and plan_object.spatial_plan.removeprefix("#") not in spatial_plan_gml_ids:
-                raise exceptions.ValidateException(
-                    message="Failed to validate content.",
+                raise exceptions.VerifyException(
                     reason=f"{plan_object.gml_id} has unknown spatialPlan: {plan_object.spatial_plan}!",
                 )
 
@@ -34,8 +33,7 @@ class FeatureCollectionVerifier(BaseModel):
         for plan_order in self.plan_orders:
             # Check spatialPlan
             if plan_order.spatial_plan and plan_order.spatial_plan.removeprefix("#") not in spatial_plan_gml_ids:
-                raise exceptions.ValidateException(
-                    message="Failed to validate content.",
+                raise exceptions.VerifyException(
                     reason=f"{plan_order.gml_id} has unknown spatialPlan: {plan_order.spatial_plan}!",
                 )
 
@@ -50,14 +48,12 @@ class FeatureCollectionVerifier(BaseModel):
         for spatial_plan in self.spatial_plans:
             # Check generalOrder
             if spatial_plan.general_order and spatial_plan.general_order.removeprefix("#") not in plan_order_gml_ids:
-                raise exceptions.ValidateException(
-                    message="Failed to validate content.",
+                raise exceptions.VerifyException(
                     reason=f"{spatial_plan.gml_id} has unknown generalOrder: {spatial_plan.general_order}!",
                 )
             # Check planner
             if spatial_plan.planner and spatial_plan.planner.removeprefix("#") not in planner_gml_ids:
-                raise exceptions.ValidateException(
-                    message="Failed to validate content.",
+                raise exceptions.VerifyException(
                     reason=f"{spatial_plan.gml_id} has unknown planner: {spatial_plan.planner}!",
                 )
             # Check participationAndEvalutionPlan
@@ -66,8 +62,7 @@ class FeatureCollectionVerifier(BaseModel):
                 and spatial_plan.participation_and_evalution_plan.removeprefix("#")
                 not in participation_and_evaluation_plan_gml_ids
             ):
-                raise exceptions.ValidateException(
-                    message="Failed to validate content.",
+                raise exceptions.VerifyException(
                     reason=f"{spatial_plan.gml_id} has unknown participationAndEvalutionPlan: {spatial_plan.participation_and_evalution_plan}!",
                 )
 

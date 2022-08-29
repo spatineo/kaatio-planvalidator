@@ -27,7 +27,6 @@ class LandUseFeatureCollection(common.XmlModel):
             )
         except ET.ParseError as exc:
             raise exceptions.ParserException(
-                message="Failed to parse XML!",
                 reason=str(exc),
             )
 
@@ -49,7 +48,6 @@ class LandUseFeatureCollection(common.XmlModel):
             return xml
         except xmlschema.XMLSchemaException as err:
             raise exceptions.SchemaException(
-                message="Failed to validate against XSD!",
                 reason=str(err),
             )
 
