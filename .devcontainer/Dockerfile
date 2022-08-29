@@ -22,6 +22,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     apt-transport-https \
     ca-certificates \
     curl \
+    gdal-bin \
     fzf \
     software-properties-common \
     tar \
