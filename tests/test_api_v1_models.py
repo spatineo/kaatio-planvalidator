@@ -58,10 +58,23 @@ def test_model_land_use_feature_collection_with_invalid_xml_no_feature_members(i
         )
 
 
-def test_model_land_use_feature_collection_with_valid_xml(valid_xml: Path):
+def test_model_land_use_feature_collection_with_valid_xml_1(valid_xml_1: Path):
 
     model = models.LandUseFeatureCollection.parse_xml(
-        source=valid_xml,
+        source=valid_xml_1,
+    )
+    assert model
+    assert len(model.find_feature_members_by_tag("ParticipationAndEvaluationPlan")) == 1
+    assert len(model.find_feature_members_by_tag("PlanObject")) == 1
+    assert len(model.find_feature_members_by_tag("PlanOrder")) == 2
+    assert len(model.find_feature_members_by_tag("Planner")) == 1
+    assert len(model.find_feature_members_by_tag("SpatialPlan")) == 1
+
+
+def test_model_land_use_feature_collection_with_valid_xml_2(valid_xml_2: Path):
+
+    model = models.LandUseFeatureCollection.parse_xml(
+        source=valid_xml_2,
     )
     assert model
     assert len(model.find_feature_members_by_tag("ParticipationAndEvaluationPlan")) == 1

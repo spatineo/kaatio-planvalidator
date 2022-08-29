@@ -71,6 +71,9 @@ class FeatureCollectionVerifier(BaseModel):
                     reason=f"{spatial_plan.gml_id} has unknown participationAndEvalutionPlan: {spatial_plan.participation_and_evalution_plan}!",
                 )
 
+    def has_spatial_plans_with_boundary_contains_plan_object_geometry():
+        pass
+
     def verify(self) -> bool:
         self.has_participation_and_evaluation_plans_with_known_feature_member_references()
         self.has_plan_objects_with_known_feature_member_references()
