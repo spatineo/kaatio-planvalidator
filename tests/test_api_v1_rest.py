@@ -20,6 +20,10 @@ def test_route_validate_with_broken_xml(broken_xml: Path):
         }
         response = client.post(URL_VALIDATE, files=files)
         assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+        assert response.json() == {
+            "message": "Failed to parse XML!",
+            "reason": ["error parsing attribute name, line 10, column 7 (<string>, line 10)"],
+        }
 
 
 def test_route_validate_with_invalid_xml(invalid_xml: Path):
@@ -34,6 +38,7 @@ def test_route_validate_with_invalid_xml(invalid_xml: Path):
         }
         response = client.post(URL_VALIDATE, files=files)
         assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+        assert response.json()["message"] == "Failed to validate against XSD!"
 
 
 def test_route_validate_with_invalid_xml_no_feature_members(invalid_xml_no_feature_members: Path):
@@ -48,6 +53,10 @@ def test_route_validate_with_invalid_xml_no_feature_members(invalid_xml_no_featu
         }
         response = client.post(URL_VALIDATE, files=files)
         assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+        assert response.json() == {
+            "message": "Failed to locate feature members from XML!",
+            "reason": ["assertion_error"],
+        }
 
 
 def test_route_validate_with_valid_xml(valid_xml: Path):
@@ -62,3 +71,4 @@ def test_route_validate_with_valid_xml(valid_xml: Path):
         }
         response = client.post(URL_VALIDATE, files=files)
         assert response.status_code == status.HTTP_200_OK
+        assert response.headers["content-type"] == "application/xml"
