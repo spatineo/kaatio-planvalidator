@@ -31,7 +31,7 @@ def parser_exception_handler(request: Request, exc: exceptions.ParserException):
     )
 
 
-def schema_exception_handler(request: Request, exc: exceptions.SchemaException):
+async def schema_exception_handler(request: Request, exc: exceptions.SchemaException):
     error_res = ErrorResponse(
         detail=[
             Error(
@@ -46,22 +46,23 @@ def schema_exception_handler(request: Request, exc: exceptions.SchemaException):
     )
 
 
-def validate_exception_handler(request: Request, exc: exceptions.ValidateException):
+async def validate_exception_handler(request: Request, exc: exceptions.ValidateException):
     error_res = ErrorResponse(
         detail=[
             Error(
                 message=exc.message,
-                reason=[exc.reason],
+                reason=[],
             )
         ]
     )
+    print("ERRR", error_res)
     return JSONResponse(
         content=jsonable_encoder(error_res.detail[0]),
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
     )
 
 
-def request_validation_exception_handler(request: Request, exc: RequestValidationError):
+async def request_validation_exception_handler(request: Request, exc: RequestValidationError):
     errors = {
         "detail": [
             {
