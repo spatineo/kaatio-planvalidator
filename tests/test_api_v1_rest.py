@@ -71,19 +71,30 @@ def test_route_invalid_xml_plan_object_unknown_spatialplan(invalid_xml_plan_obje
         }
         response = client.post(URL_VALIDATE, files=files)
         assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
-        assert response.json() == {
-            "message": "Failed to locate feature members from XML!",
-            "reason": ["assertion_error"],
-        }
 
 
-def test_route_validate_with_valid_xml(valid_xml: Path):
+def test_route_validate_with_valid_xml_1(valid_xml_1: Path):
 
     with TestClient(app) as client:
         files = {
             "file": (
-                valid_xml.name,
-                valid_xml.open(mode="rb").read(),
+                valid_xml_1.name,
+                valid_xml_1.open(mode="rb").read(),
+                "application/xml",
+            )
+        }
+        response = client.post(URL_VALIDATE, files=files)
+        assert response.status_code == status.HTTP_200_OK
+        assert response.headers["content-type"] == "application/xml"
+
+
+def test_route_validate_with_valid_xml_2(valid_xml_2: Path):
+
+    with TestClient(app) as client:
+        files = {
+            "file": (
+                valid_xml_2.name,
+                valid_xml_2.open(mode="rb").read(),
                 "application/xml",
             )
         }
