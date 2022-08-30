@@ -143,3 +143,6 @@ class KaatioPlanValidatorStack(Stack):
             "MemoryScaling",
             target_utilization_percent=50,
         )
+        fargate.target_group.configure_health_check(
+            path="/docs",
+        )
