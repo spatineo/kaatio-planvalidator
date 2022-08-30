@@ -12,5 +12,5 @@ class PlanObject(common.XmlOrmModel):
 
     @validator("geometry")
     def geometry_is_valid(cls, geometry: BaseGeometry):
-        assert geometry.is_valid, "Plan object has invalid geometry!"
+        assert geometry.is_valid, "invalid geometry"
         return geometry

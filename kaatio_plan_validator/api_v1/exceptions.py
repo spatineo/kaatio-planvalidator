@@ -7,10 +7,10 @@ class ParserException(Exception):
 
 
 class SchemaException(Exception):
-    message = "Failed to validate against XSD!"
+    message = "Failed to validate XML against schema!"
     type = "schema_error"
 
-    def __init__(self, message: str, reason: str):
+    def __init__(self, reason: str):
         self.reason = reason
 
 

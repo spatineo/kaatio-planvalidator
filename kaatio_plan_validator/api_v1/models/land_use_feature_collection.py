@@ -51,12 +51,6 @@ class LandUseFeatureCollection(common.XmlModel):
                 reason=str(err),
             )
 
-    @validator("xml")
-    def xml_has_feature_members(cls, xml: ET._ElementTree):
-        """XML document must have feature members."""
-        assert list(xml.getroot()), "Failed to locate feature members from XML!"
-        return xml
-
     def find_feature_members_by_tag(self, tag: str) -> list[ET._Element]:
         return [
             fm

@@ -30,7 +30,6 @@ def parser_exception_handler(request: Request, exc: exceptions.ParserException):
     return JSONResponse(
         content=jsonable_encoder(error_res.detail[0]),
         status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
-        type=exc.type,
     )
 
 
@@ -70,8 +69,8 @@ async def request_validation_exception_handler(request: Request, exc: RequestVal
     errors = ErrorResponse(
         detail=[
             {
-                "message": err["msg"],
-                "reason": [str(err)],
+                "message": str(exc.body),
+                "reason": ["{loc}: {msg}!".format(loc=err["loc"][0], msg=err["msg"])],
                 "type": err["type"],
             }
             for err in exc.errors()

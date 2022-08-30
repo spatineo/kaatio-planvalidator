@@ -15,5 +15,5 @@ class SpatialPlan(common.XmlOrmModel):
 
     @validator("boundary")
     def boundary_is_valid(cls, boundary: BaseGeometry):
-        assert boundary.is_valid, "Spatial plan has invalid boundary!"
+        assert boundary.is_valid, "invalid boundary"
         return boundary
