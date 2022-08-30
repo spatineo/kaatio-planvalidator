@@ -10,16 +10,6 @@ app = FastAPI(
         exception_handlers.exceptions.VerifyException: exception_handlers.verify_exception_handler,
         exception_handlers.RequestValidationError: exception_handlers.request_validation_exception_handler,
     },
-    responses={
-        200: {},
-        422: {
-            "content": {
-                "application/json": {},
-            },
-            "description": "Validation Error",
-            "model": exception_handlers.ErrorResponse,
-        },
-    },
 )
 
 

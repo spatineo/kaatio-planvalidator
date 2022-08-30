@@ -2,7 +2,7 @@ from fastapi import APIRouter, UploadFile, status
 from fastapi.exceptions import RequestValidationError
 from pydantic import ValidationError
 
-from . import models, responses
+from . import exception_handlers, models, responses
 
 router = APIRouter()
 
@@ -10,6 +10,20 @@ router = APIRouter()
 @router.post(
     path="/validate",
     response_class=responses.XMLResponse,
+    responses={
+        422: {
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "$ref": "#/components/schemas/ErrorResponse",
+                    }
+                }
+            },
+            "default_response_class": exception_handlers.JSONResponse,
+            "description": "Validation Error",
+            "model": exception_handlers.ErrorResponse,
+        },
+    },
 )
 async def validate(file: UploadFile):
     """Route to validate xml file."""
@@ -45,8 +59,8 @@ async def validate(file: UploadFile):
 
         verifier.verify()
 
-    except ValidationError as err:
-        raise RequestValidationError(errors=err.raw_errors, body=str(err.errors()))
+    except ValidationError as err:  # pragma: no cover
+        raise RequestValidationError(errors=err.raw_errors, body=err.model.__name__)
 
     # All good - return xml
     return responses.XMLResponse(
