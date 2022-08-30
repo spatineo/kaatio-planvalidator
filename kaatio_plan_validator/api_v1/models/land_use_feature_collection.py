@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import warnings
 from typing import Any
 
 import lxml.etree as ET
@@ -8,6 +9,8 @@ from pydantic import validator
 
 from .. import constants, exceptions
 from . import common
+
+warnings.simplefilter(action="ignore", category=xmlschema.XMLSchemaImportWarning)
 
 
 class LandUseFeatureCollection(common.XmlModel):
