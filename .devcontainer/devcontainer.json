@@ -18,7 +18,7 @@
 	// An object of dev container features and related options to be added into your primary container.
 	"features": {
 		"aws-cli": "latest",
-		"docker-from-docker": "latest",
+		"docker-in-docker": "latest",
 		"github-cli": "latest"
 	},
 	// Set *default* container specific settings.json values on container create.
