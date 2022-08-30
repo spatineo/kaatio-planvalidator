@@ -39,9 +39,11 @@ ENV LOCAL_BIN=/home/vscode/.local/bin
 ENV PATH=$LOCAL_BIN:$PATH
 
 # Local binaries.
+# TODO: figure out why docker works with sudo on builds but not without sudo!
 RUN mkdir -p $LOCAL_BIN \
     && echo "npx --yes aws-cdk@1.x \$@" > $LOCAL_BIN/cdk1 \
     && echo "npx --yes aws-cdk@2.x \$@" > $LOCAL_BIN/cdk2 \
+    && echo "sudo docker $@" > $LOCAL_BIN/docker \ 
     && chmod +x $LOCAL_BIN/*
 
 # Modify PROMPT_DIRTRIM in .bashrc
