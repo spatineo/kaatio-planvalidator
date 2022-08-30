@@ -23,6 +23,7 @@ def test_route_validate_with_broken_xml(broken_xml: Path):
         assert response.json() == {
             "message": "Failed to parse XML!",
             "reason": ["error parsing attribute name, line 10, column 7 (<string>, line 10)"],
+            "type": "parser_error",
         }
 
 
@@ -38,39 +39,8 @@ def test_route_validate_with_invalid_xml(invalid_xml: Path):
         }
         response = client.post(URL_VALIDATE, files=files)
         assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
-        assert response.json()["message"] == "Failed to validate against XSD!"
-
-
-def test_route_validate_with_invalid_xml_no_feature_members(invalid_xml_no_feature_members: Path):
-
-    with TestClient(app) as client:
-        files = {
-            "file": (
-                invalid_xml_no_feature_members.name,
-                invalid_xml_no_feature_members.open(mode="rb").read(),
-                "application/xml",
-            )
-        }
-        response = client.post(URL_VALIDATE, files=files)
-        assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
-        assert response.json() == {
-            "message": "Failed to locate feature members from XML!",
-            "reason": ["assertion_error"],
-        }
-
-
-def test_route_invalid_xml_plan_object_unknown_spatialplan(invalid_xml_plan_object_unknown_spatialplan: Path):
-
-    with TestClient(app) as client:
-        files = {
-            "file": (
-                invalid_xml_plan_object_unknown_spatialplan.name,
-                invalid_xml_plan_object_unknown_spatialplan.open(mode="rb").read(),
-                "application/xml",
-            )
-        }
-        response = client.post(URL_VALIDATE, files=files)
-        assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+        assert response.json()["message"] == "Failed to validate XML against schema!"
+        assert response.json()["type"] == "schema_error"
 
 
 def test_route_validate_with_valid_xml_1(valid_xml_1: Path):
