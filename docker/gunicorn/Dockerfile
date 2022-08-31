@@ -22,8 +22,8 @@ RUN pip install poetry
 ENV POETRY_VIRTUALENVS_CREATE=False
 COPY . ${APP_HOME}/
 RUN poetry install
-RUN pytest \
-    && poetry build --format wheel
+RUN pytest
+RUN poetry build --format wheel
 
 FROM release_base AS release_dist
 COPY --from=release_build ${APP_HOME}/dist/*.whl ${APP_HOME}/
