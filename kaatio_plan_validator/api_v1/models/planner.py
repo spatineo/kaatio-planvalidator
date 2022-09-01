@@ -1,5 +1,5 @@
-from . import common
+from .feature_member import FeatureMember
 
 
-class Planner(common.XmlOrmModel):
-    """Represents model definition for Planner class."""
+class Planner(FeatureMember):
+    """Represents model definition of Planner."""

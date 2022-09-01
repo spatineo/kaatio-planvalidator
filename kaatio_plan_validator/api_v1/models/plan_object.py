@@ -1,16 +1,15 @@
-from pydantic import validator
+from pydantic import Field, validator
 from shapely.ops import BaseGeometry
 
-from . import common
+from .feature_member import FeatureMember
 
 
-class PlanObject(common.XmlOrmModel):
-    """Represents model definition for PlanObject class."""
+class PlanObject(FeatureMember):
+    """Represents model definition of PlanObject."""
 
-    geometry: BaseGeometry
-    spatial_plan: str
+    geometry: BaseGeometry = Field(alias="splan:PlanObject/splan:geometry")
 
     @validator("geometry")
     def geometry_is_valid(cls, geometry: BaseGeometry):
-        assert geometry.is_valid, "invalid geometry"
+        assert geometry.is_valid, "geometry is not valid"
         return geometry

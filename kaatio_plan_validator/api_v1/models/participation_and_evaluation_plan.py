@@ -1,5 +1,5 @@
-from . import common
+from .feature_member import FeatureMember
 
 
-class ParticipationAndEvaluationPlan(common.XmlOrmModel):
-    """Represents model definition for ParticipationAndEvaluationPlan class."""
+class ParticipationAndEvaluationPlan(FeatureMember):
+    """Represents model definition of ParticipationAndEvaluationPlan."""

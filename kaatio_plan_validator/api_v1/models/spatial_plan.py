@@ -1,19 +1,18 @@
-from pydantic import validator
+from typing import Optional
+
+from pydantic import Field, validator
 from shapely.ops import BaseGeometry
 
-from . import common
+from .feature_member import FeatureMember
 
 
-class SpatialPlan(common.XmlOrmModel):
-    """Represents model definition for SpatialPlan class."""
+class SpatialPlan(FeatureMember):
+    """Represents model definition of SpatialPlan."""
 
-    boundary: BaseGeometry
-    general_order: str
-    participation_and_evalution_plan: str
-    plan_identifier: str
-    planner: str
+    plan_identifier: str = Field(alias="splan:SpatialPlan/splan:planIdentifier")
+    boundary: Optional[BaseGeometry] = Field(alias="splan:SpatialPlan/lud-core:boundary")
 
     @validator("boundary")
     def boundary_is_valid(cls, boundary: BaseGeometry):
-        assert boundary.is_valid, "invalid boundary"
+        assert boundary.is_valid, "boundary is not valid"
         return boundary

@@ -1,143 +1,83 @@
 from pathlib import Path
 
-import lxml.etree as ET
 import pytest
-from pydantic import ValidationError
 
 from kaatio_plan_validator.api_v1 import exceptions, models
 
 
-def test_feature_collection_verifier(
-    land_use_feature_collection: models.LandUseFeatureCollection,
-):
-
-    verifier = models.FeatureCollectionVerifier(
-        participation_and_evaluation_plans=[
-            models.ParticipationAndEvaluationPlan.from_orm(element)
-            for element in land_use_feature_collection.find_feature_members_by_tag("ParticipationAndEvaluationPlan")
-        ],
-        plan_objects=[
-            models.PlanObject.from_orm(element)
-            for element in land_use_feature_collection.find_feature_members_by_tag("PlanObject")
-        ],
-        plan_orders=[
-            models.PlanOrder.from_orm(element)
-            for element in land_use_feature_collection.find_feature_members_by_tag("PlanOrder")
-        ],
-        planners=[
-            models.Planner.from_orm(element)
-            for element in land_use_feature_collection.find_feature_members_by_tag("Planner")
-        ],
-        spatial_plans=[
-            models.SpatialPlan.from_orm(element)
-            for element in land_use_feature_collection.find_feature_members_by_tag("SpatialPlan")
-        ],
-    )
-    assert verifier.verify()
-
-
-def test_model_land_use_feature_collection_with_broken_xml(broken_xml: Path):
+def test_model_land_use_feature_collection_from_xml_source_with_broken_xml(broken_xml: Path):
 
     with pytest.raises(exceptions.ParserException):
-        models.LandUseFeatureCollection.parse_xml(
+        models.LandUseFeatureCollection.from_xml_source(
             source=broken_xml,
         )
 
 
-def test_model_land_use_feature_collection_with_invalid_xml(invalid_xml: Path):
+def test_model_land_use_feature_collection_from_xml_source_with_invalid_xml(invalid_xml: Path):
 
     with pytest.raises(exceptions.SchemaException):
-        models.LandUseFeatureCollection.parse_xml(
+        models.LandUseFeatureCollection.from_xml_source(
             source=invalid_xml,
         )
 
 
-def test_model_land_use_feature_collection_with_valid_xml_1(valid_xml_1: Path):
+def test_model_land_use_feature_collection_from_xml_source_with_valid_xml_1(valid_xml_1: Path, valid_xml_1_gen: Path):
 
-    model = models.LandUseFeatureCollection.parse_xml(
+    model = models.LandUseFeatureCollection.from_xml_source(
         source=valid_xml_1,
+        skip_schema_validation=True,
     )
     assert model
-    assert len(model.find_feature_members_by_tag("ParticipationAndEvaluationPlan")) == 1
-    assert len(model.find_feature_members_by_tag("PlanObject")) == 1
-    assert len(model.find_feature_members_by_tag("PlanOrder")) == 2
-    assert len(model.find_feature_members_by_tag("Planner")) == 1
-    assert len(model.find_feature_members_by_tag("SpatialPlan")) == 1
+    model.update_ids_and_refs()
+
+    with open(valid_xml_1_gen, "w") as output:
+        output.write(model.to_string())
 
 
-def test_model_land_use_feature_collection_with_valid_xml_2(valid_xml_2: Path):
-
-    model = models.LandUseFeatureCollection.parse_xml(
-        source=valid_xml_2,
-    )
-    assert model
-    assert len(model.find_feature_members_by_tag("ParticipationAndEvaluationPlan")) == 1
-    assert len(model.find_feature_members_by_tag("PlanObject")) == 1
-    assert len(model.find_feature_members_by_tag("PlanOrder")) == 2
-    assert len(model.find_feature_members_by_tag("Planner")) == 1
-    assert len(model.find_feature_members_by_tag("SpatialPlan")) == 1
-
-
-def test_model_participation_and_evaluation_plan(land_use_feature_collection: models.LandUseFeatureCollection):
-
-    for participation_and_evaluation_plan in land_use_feature_collection.find_feature_members_by_tag(
-        "ParticipationAndEvaluationPlan"
-    ):
-        model = models.ParticipationAndEvaluationPlan.from_orm(participation_and_evaluation_plan)
-        assert model
-
-
-def test_model_plan_object(land_use_feature_collection: models.LandUseFeatureCollection):
-
-    for plan_object in land_use_feature_collection.find_feature_members_by_tag("PlanObject"):
-        model = models.PlanObject.from_orm(plan_object)
-        assert model
-
-
-def test_model_plan_object_invalid_element_without_spatialplan(
-    plan_object_invalid_element_without_spatialplan: ET._Element,
+@pytest.mark.skip(reason="Debug stuff")
+def test_model_land_use_feature_collection_from_xml_source_with_valid_xml_1_gen(
+    valid_xml_1_gen: Path,
+    valid_xml_1_gen_result: Path,
 ):
 
-    with pytest.raises(ValidationError):
-        models.PlanObject.from_orm(plan_object_invalid_element_without_spatialplan)
+    if valid_xml_1_gen.exists():
 
-
-def test_model_plan_object_valid_element(plan_object_valid_element: ET._Element):
-
-    assert models.PlanObject.from_orm(plan_object_valid_element)
-
-
-def test_model_plan_object_valid_element_no_reference(plan_object_valid_element: ET._Element):
-
-    assert models.PlanObject.from_orm(plan_object_valid_element)
-
-    with pytest.raises(exceptions.VerifyException):
-        verifier = models.FeatureCollectionVerifier(
-            participation_and_evaluation_plans=[],
-            plan_objects=[models.PlanObject.from_orm(plan_object_valid_element)],
-            plan_orders=[],
-            planners=[],
-            spatial_plans=[],
+        model = models.LandUseFeatureCollection.from_xml_source(
+            source=valid_xml_1_gen,
         )
-        verifier.verify()
-
-
-def test_model_plan_order(land_use_feature_collection: models.LandUseFeatureCollection):
-
-    for plan_order in land_use_feature_collection.find_feature_members_by_tag("PlanOrder"):
-        model = models.PlanOrder.from_orm(plan_order)
         assert model
+        model.update_ids_and_refs()
+
+    with open(valid_xml_1_gen_result, "w") as output:
+        output.write(model.to_string())
 
 
-def test_model_planner(land_use_feature_collection: models.LandUseFeatureCollection):
+def test_model_land_use_feature_collection_from_xml_source_with_valid_xml_2(valid_xml_2: Path, valid_xml_2_gen: Path):
 
-    for planner in land_use_feature_collection.find_feature_members_by_tag("Planner"):
-        model = models.Planner.from_orm(planner)
+    model = models.LandUseFeatureCollection.from_xml_source(
+        source=valid_xml_2,
+        skip_schema_validation=True,
+    )
+    assert model
+    model.update_ids_and_refs()
+
+    with open(valid_xml_2_gen, "w") as output:
+        output.write(model.to_string())
+
+
+@pytest.mark.skip(reason="Debug stuff")
+def test_model_land_use_feature_collection_from_xml_source_with_valid_xml_2_gen(
+    valid_xml_2_gen: Path,
+    valid_xml_2_gen_result: Path,
+):
+
+    if valid_xml_2_gen.exists():
+
+        model = models.LandUseFeatureCollection.from_xml_source(
+            source=valid_xml_2_gen,
+        )
         assert model
+        model.update_ids_and_refs()
 
-
-def test_model_spatial_plan(land_use_feature_collection: models.LandUseFeatureCollection):
-
-    for spatial_plan in land_use_feature_collection.find_feature_members_by_tag("SpatialPlan"):
-        model = models.SpatialPlan.from_orm(spatial_plan)
-        assert model
+    with open(valid_xml_2_gen_result, "w") as output:
+        output.write(model.to_string())

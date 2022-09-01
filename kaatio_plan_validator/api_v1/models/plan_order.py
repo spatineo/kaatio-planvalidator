@@ -1,10 +1,5 @@
-from typing import Optional
-
-from . import common
+from .feature_member import FeatureMember
 
 
-class PlanOrder(common.XmlOrmModel):
-    """Represents model definition for PlanOrder class."""
-
-    spatial_plan: str
-    target: Optional[str]
+class PlanOrder(FeatureMember):
+    """Represents model definition of PlanOrder."""
