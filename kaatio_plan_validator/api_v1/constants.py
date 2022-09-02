@@ -15,9 +15,9 @@ SCHEMA_DIR = Path(__file__).parent / "schemas"
 SCHEMA_FILES = list(SCHEMA_DIR.glob("**/*.xsd"))
 
 XPATH_XLINK_HREF = "xlink:href"
-XPATH_BOUNDARY = "lud-core:boundary/*[1]"  # Pick first
+XPATH_BOUNDARY = "lud-core:boundary"
 XPATH_GENERAL_ORDER = "splan:generalOrder"
-XPATH_GEOMETRY = "splan:geometry/*[1]"  # Pick first
+XPATH_GEOMETRY = "splan:geometry"
 XPATH_GML_ID = "./@gml:id"
 XPATH_IDENTIFIER = "gml:identifier"
 XPATH_LATEST_CHANGE = "lud-core:latestChange/gml:TimeInstant/gml:timePosition"

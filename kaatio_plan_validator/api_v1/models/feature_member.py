@@ -21,11 +21,11 @@ class XMLGetterDict(GetterDict):
 
         try:
             if key == "boundary":
-                element = self._obj.xpath(constants.XPATH_BOUNDARY, **constants.NAMESPACES)[0]
+                element = list(self._obj.xpath(constants.XPATH_BOUNDARY, **constants.NAMESPACES)[0])[0]
                 geometry = pygml.parse(element)
                 return shape(geometry)
             if key == "geometry":
-                element = self._obj.xpath(constants.XPATH_GEOMETRY, **constants.NAMESPACES)[0]
+                element = list(self._obj.xpath(constants.XPATH_GEOMETRY, **constants.NAMESPACES)[0])[0]
                 geometry = pygml.parse(element)
                 return shape(geometry)
             if key == "plan_identifier":
