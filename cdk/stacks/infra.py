@@ -1,12 +1,13 @@
 from pathlib import Path
 
 from aws_cdk import (
+    Duration,
     RemovalPolicy,
     Stack,
+    aws_certificatemanager,
     aws_ec2,
     aws_ecr_assets,
     aws_ecs,
-    aws_ecs_patterns,
     aws_elasticloadbalancingv2,
     aws_logs,
 )
@@ -41,9 +42,23 @@ class KaatioPlanValidatorStack(Stack):
             is_default=True,
         )
 
+        domain = "kaatio.spatineo-devops.com"
+        certificate = aws_certificatemanager.Certificate(
+            self,
+            "Certificate",
+            domain_name=domain,
+            validation=aws_certificatemanager.CertificateValidation.from_email(),
+        )
+
+        cluster = aws_ecs.Cluster(
+            self,
+            "Cluster",
+            vpc=vpc,
+        )
+
         log_group = aws_logs.LogGroup(
             self,
-            id="LogGroup",
+            "LogGroup",
             log_group_name="/kaatio_plan_validator",
             removal_policy=RemovalPolicy.DESTROY,
             retention=aws_logs.RetentionDays.ONE_MONTH,
@@ -103,9 +118,16 @@ class KaatioPlanValidatorStack(Stack):
 
         task_definition.default_container = container_nginx
 
-        fargate = aws_ecs_patterns.ApplicationLoadBalancedFargateService(
+        load_balancer = aws_elasticloadbalancingv2.ApplicationLoadBalancer(
             self,
-            "ApplicationLoadBalancedFargateService",
+            "ApplicationLoadBalancer",
+            internet_facing=True,
+            vpc=vpc,
+        )
+
+        fargate = aws_ecs.FargateService(
+            self,
+            "FargateService",
             assign_public_ip=True,
             capacity_provider_strategies=[
                 aws_ecs.CapacityProviderStrategy(
@@ -114,24 +136,61 @@ class KaatioPlanValidatorStack(Stack):
                     weight=1,
                 )
             ],
-            # protocol=aws_elasticloadbalancingv2.ApplicationProtocol.HTTPS,
-            public_load_balancer=True,
-            # redirect_http=True,
+            cluster=cluster,
+            desired_count=1,
             security_groups=[
                 aws_ec2.SecurityGroup(
                     self,
-                    "SecurityGroup",
+                    "SecurityGroup/FargateService",
                     vpc=vpc,
-                    allow_all_outbound=True,
                 )
             ],
             task_definition=task_definition,
-            task_subnets=aws_ec2.SubnetSelection(
+            vpc_subnets=aws_ec2.SubnetSelection(
                 subnet_type=aws_ec2.SubnetType.PUBLIC,
             ),
-            vpc=vpc,
         )
-        scalable_target = fargate.service.auto_scale_task_count(
+
+        load_balancer.add_listener(
+            "HTTP",
+            port=80,
+            default_action=aws_elasticloadbalancingv2.ListenerAction.redirect(
+                permanent=True,
+                port="443",
+                protocol="HTTPS",
+            ),
+        )
+        listener = load_balancer.add_listener(
+            "HTTPS",
+            certificates=[certificate],
+            default_action=aws_elasticloadbalancingv2.ListenerAction.fixed_response(404),
+            port=443,
+            protocol=aws_elasticloadbalancingv2.ApplicationProtocol.HTTPS,
+            ssl_policy=aws_elasticloadbalancingv2.SslPolicy.TLS12,
+        )
+        listener.add_targets(
+            "TargetGroup/Application",
+            conditions=[
+                aws_elasticloadbalancingv2.ListenerCondition.path_patterns(
+                    values=["/", "/*"],
+                )
+            ],
+            deregistration_delay=Duration.seconds(30),
+            health_check=aws_elasticloadbalancingv2.HealthCheck(
+                enabled=True,
+                healthy_http_codes="200",
+                path="/docs",
+                port="80",
+                protocol=aws_elasticloadbalancingv2.Protocol.HTTP,
+            ),
+            load_balancing_algorithm_type=aws_elasticloadbalancingv2.TargetGroupLoadBalancingAlgorithmType.LEAST_OUTSTANDING_REQUESTS,
+            port=80,
+            priority=1,
+            protocol=aws_elasticloadbalancingv2.ApplicationProtocol.HTTP,
+            targets=[fargate],
+        )
+
+        scalable_target = fargate.auto_scale_task_count(
             max_capacity=2,
             min_capacity=1,
         )
@@ -142,7 +201,4 @@ class KaatioPlanValidatorStack(Stack):
         scalable_target.scale_on_memory_utilization(
             "MemoryScaling",
             target_utilization_percent=50,
-        )
-        fargate.target_group.configure_health_check(
-            path="/docs",
         )
