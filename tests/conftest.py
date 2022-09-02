@@ -1,6 +1,9 @@
 from pathlib import Path
 
+import lxml.etree as ET
 import pytest
+
+from kaatio_plan_validator.api_v1 import constants
 
 TEST_DATA_DIR = Path(__file__).parent / "data"
 
@@ -43,3 +46,13 @@ def valid_xml_2_gen():
 @pytest.fixture
 def valid_xml_2_gen_result():
     return TEST_DATA_DIR / "generated-virallinen_kaatio_valid_2_result.xml"
+
+
+@pytest.fixture
+def xml(valid_xml_1: Path):
+    return ET.parse(valid_xml_1)
+
+
+@pytest.fixture
+def xml_spatial_plan(xml: ET._ElementTree):
+    return xml.xpath("lud-core:featureMember/splan:SpatialPlan", **constants.NAMESPACES)[0]
