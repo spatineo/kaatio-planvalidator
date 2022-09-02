@@ -54,5 +54,10 @@ def xml(valid_xml_1: Path):
 
 
 @pytest.fixture
+def xml_plan_object(xml: ET._ElementTree):
+    return xml.xpath("lud-core:featureMember/splan:PlanObject", **constants.NAMESPACES)[0]
+
+
+@pytest.fixture
 def xml_spatial_plan(xml: ET._ElementTree):
     return xml.xpath("lud-core:featureMember/splan:SpatialPlan", **constants.NAMESPACES)[0]

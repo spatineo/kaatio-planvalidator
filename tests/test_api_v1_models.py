@@ -119,3 +119,29 @@ def test_model_spatial_plan_raises_error_when_plan_identifier_element_text_is_no
             "type": "value_error.missing",
         }
     ]
+
+
+def test_model_plan_object_raises_error_when_geometry_is_not_valid(xml_plan_object: ET._Element):
+
+    geometry = """
+    <gml:Polygon srsName="urn:ogc:def:crs:EPSG::4326" gml:id="AK_SIPOO_5_lainvoimainen_kaava_sipoo_nevasgard.geom.2" xmlns:gml="http://www.opengis.net/gml/3.2">
+	    <gml:exterior>
+		    <gml:LinearRing>
+			    <gml:posList>60.2866853 25.4095811 60.2866968 25.4092981 60.286163 25.409723 60.285766 25.409760 60.285861 25.409401</gml:posList>
+		    </gml:LinearRing>
+	    </gml:exterior>
+    </gml:Polygon>
+    """
+    geometry_element: ET._Element = xml_plan_object.xpath(constants.XPATH_GEOMETRY, **constants.NAMESPACES)[0]
+    new_element = ET.fromstring(geometry)
+    old_element = list(geometry_element)[0]
+    geometry_element.replace(old_element, new_element)
+    with pytest.raises(ValidationError) as err:
+        models.PlanObject.from_orm(xml_plan_object)
+    assert err.value.errors() == [
+        {
+            "loc": ("splan:PlanObject/splan:geometry",),
+            "msg": "geometry is not valid",
+            "type": "assertion_error",
+        }
+    ]
