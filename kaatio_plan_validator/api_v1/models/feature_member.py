@@ -54,49 +54,65 @@ class FeatureMember(BaseModel):
         orm_mode = True
 
     def update_or_create_elements_with_id(self) -> tuple[str]:
+        """Update or create elements to feature member"""
 
         # Update gml:id attribute
         id_old: str = self.xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+        # Id should always start with 'id-' prefix.
         if not id_old.startswith("id-"):
+            # Id did not start with the expected prefix - create id from scratch.
             id_new = f"id-{uuid.uuid4()}.{uuid.uuid4()}"
         else:
+            # Pick first part of the id.
             gml_id_uuid, *_ = id_old.removeprefix("id-").split(".")
             try:
+                # Check if first is valid uuid.
                 uuid.UUID(gml_id_uuid)
+                # Generate second part of id.
                 id_new = f"id-{gml_id_uuid}.{uuid.uuid4()}"
             except ValueError:
+                # First part was not valid uuid - create id from scratch.
                 id_new = f"id-{uuid.uuid4()}.{uuid.uuid4()}"
 
+        # Find key for attribute
         attrib = utils.ns_key_to_clark_notation(constants.XPATH_GML_ID.removeprefix("./@"))
+        # Update attribute with key and new id
         self.xml.attrib[attrib] = id_new
 
         # Add or update gml:idenfifier attribute
         try:
+            # Look for element
             identifier_element = self.xml.xpath(constants.XPATH_IDENTIFIER, **constants.NAMESPACES)[0]
         except IndexError:
+            # Element not found - lets create it.
             identifier_element: ET._Element = ET.Element(
                 utils.ns_key_to_clark_notation(constants.XPATH_IDENTIFIER),
                 codeSpace="http://uri.suomi.fi/object/rytj/kaava",
             )
             self.xml.insert(
-                index=0,
+                index=0,  # always the first child element.
                 element=identifier_element,
             )
+        # Update element value.
         identifier_element.text = f"{self.xml.xpath(constants.XPATH_LOCAL_NAME)}/{id_new}"
 
         # Add or update lud-core:objectIdentifier
         try:
+            # Look for element
             object_identifier_element = self.xml.xpath(constants.XPATH_OBJECT_IDENTIFIER, **constants.NAMESPACES)[0]
         except IndexError:
+            # Element not found - lets create it.
             object_identifier_element: ET._Element = ET.Element(
                 utils.ns_key_to_clark_notation(constants.XPATH_OBJECT_IDENTIFIER),
             )
             self.xml.insert(
-                index=self.xml.index(identifier_element) + 1,
+                index=self.xml.index(identifier_element) + 1,  # always after gml:identifier
                 element=object_identifier_element,
             )
+        # Update element value.
         object_identifier_element.text = id_new.split(".")[0]
 
+        # Return old and new id.
         return (id_old, id_new)
 
     def update_or_create_storage_time(self):

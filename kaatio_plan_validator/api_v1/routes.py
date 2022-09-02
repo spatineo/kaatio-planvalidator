@@ -8,10 +8,10 @@ router = APIRouter()
 
 
 @router.post(
-    path="/validate",
+    path="/store",
     response_class=responses.XMLResponse,
 )
-async def validate(file: UploadFile):
+async def store(file: UploadFile):
     """Route to validate xml file."""
 
     try:
@@ -41,4 +41,9 @@ async def validate(file: UploadFile):
         raise RequestValidationError(
             errors=err.raw_errors,
             body=err.model.__name__,
+        )
+    except Exception:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="INTERNAL SERVER ERROR",
         )

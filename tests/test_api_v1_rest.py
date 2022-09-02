@@ -6,7 +6,7 @@ from fastapi.testclient import TestClient
 
 from kaatio_plan_validator.main import app
 
-URL_VALIDATE = "/v1/validate"
+URL_VALIDATE = "/v1/store"
 
 
 def test_route_validate_with_broken_xml(broken_xml: Path):

@@ -124,6 +124,7 @@ class LandUseFeatureCollection(BaseModel):
     def update_ids_and_refs(self):
 
         spatial_plan_refs = [self.spatial_plan.update_or_create_elements_with_id()]
+
         pe_plan_refs = [element.update_or_create_elements_with_id() for element in self.pe_plans]
         plan_object_refs = [element.update_or_create_elements_with_id() for element in self.plan_objects]
         plan_orders_refs = [element.update_or_create_elements_with_id() for element in self.plan_orders]
