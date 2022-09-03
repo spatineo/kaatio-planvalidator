@@ -9,13 +9,15 @@ from kaatio_plan_validator.main import app
 URL_VALIDATE = "/v1/store"
 
 
-def test_route_validate_with_broken_xml(broken_xml: Path):
+def test_route_validate_with_broken_xml(
+    file_xml_broken: Path,
+):
 
     with TestClient(app) as client:
         files = {
             "file": (
-                broken_xml.name,
-                broken_xml.open(mode="rb").read(),
+                file_xml_broken.name,
+                file_xml_broken.open(mode="rb").read(),
                 "application/xml",
             )
         }
@@ -32,13 +34,15 @@ def test_route_validate_with_broken_xml(broken_xml: Path):
         }
 
 
-def test_route_validate_with_invalid_xml(invalid_xml: Path):
+def test_route_validate_with_invalid_xml(
+    file_xml_invalid: Path,
+):
 
     with TestClient(app) as client:
         files = {
             "file": (
-                invalid_xml.name,
-                invalid_xml.open(mode="rb").read(),
+                file_xml_invalid.name,
+                file_xml_invalid.open(mode="rb").read(),
                 "application/xml",
             )
         }
@@ -48,13 +52,15 @@ def test_route_validate_with_invalid_xml(invalid_xml: Path):
         assert response.json()["detail"][0]["type"] == "schema_error"
 
 
-def test_route_validate_with_valid_xml_1(valid_xml_1: Path):
+def test_route_validate_with_valid_xml_1(
+    file_xml_valid_1: Path,
+):
 
     with TestClient(app) as client:
         files = {
             "file": (
-                valid_xml_1.name,
-                valid_xml_1.open(mode="rb").read(),
+                file_xml_valid_1.name,
+                file_xml_valid_1.open(mode="rb").read(),
                 "application/xml",
             )
         }
@@ -64,13 +70,15 @@ def test_route_validate_with_valid_xml_1(valid_xml_1: Path):
 
 
 @pytest.mark.skip(reason="Debug stuff")
-def test_route_validate_with_valid_xml_1_gen(valid_xml_1_gen: Path):
+def test_route_validate_with_valid_xml_1_gen(
+    file_xml_valid_1_gen: Path,
+):
 
     with TestClient(app) as client:
         files = {
             "file": (
-                valid_xml_1_gen.name,
-                valid_xml_1_gen.open(mode="rb").read(),
+                file_xml_valid_1_gen.name,
+                file_xml_valid_1_gen.open(mode="rb").read(),
                 "application/xml",
             )
         }
@@ -79,13 +87,15 @@ def test_route_validate_with_valid_xml_1_gen(valid_xml_1_gen: Path):
         assert response.headers["content-type"] == "application/xml"
 
 
-def test_route_validate_with_valid_xml_2(valid_xml_2: Path):
+def test_route_validate_with_valid_xml_2(
+    file_xml_valid_2: Path,
+):
 
     with TestClient(app) as client:
         files = {
             "file": (
-                valid_xml_2.name,
-                valid_xml_2.open(mode="rb").read(),
+                file_xml_valid_2.name,
+                file_xml_valid_2.open(mode="rb").read(),
                 "application/xml",
             )
         }
@@ -95,13 +105,15 @@ def test_route_validate_with_valid_xml_2(valid_xml_2: Path):
 
 
 @pytest.mark.skip(reason="Debug stuff")
-def test_route_validate_with_valid_xml_2_gen(valid_xml_2_gen: Path):
+def test_route_validate_with_valid_xml_2_gen(
+    file_xml_valid_2_gen: Path,
+):
 
     with TestClient(app) as client:
         files = {
             "file": (
-                valid_xml_2_gen.name,
-                valid_xml_2_gen.open(mode="rb").read(),
+                file_xml_valid_2_gen.name,
+                file_xml_valid_2_gen.open(mode="rb").read(),
                 "application/xml",
             )
         }
