@@ -49,6 +49,11 @@ def file_xml_valid_2_gen_result():
 
 
 @pytest.fixture
+def file_xml_valid_example():
+    return TEST_DATA_DIR / "spatialPlan-collection-simple.xml"
+
+
+@pytest.fixture
 def xml_element_plan_object(xml_valid_1: ET._ElementTree):
     return xml_valid_1.xpath("lud-core:featureMember/splan:PlanObject", **constants.NAMESPACES)[0]
 

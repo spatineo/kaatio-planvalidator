@@ -60,6 +60,7 @@ def test_route_validate_with_invalid_xml(
         "file_xml_valid_1_gen",
         "file_xml_valid_2",
         "file_xml_valid_2_gen",
+        "file_xml_valid_example",
     ],
 )
 def test_route_validate_with_valid_xml(
