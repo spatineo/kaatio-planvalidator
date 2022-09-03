@@ -26,6 +26,11 @@ async def store(file: UploadFile):
             content=feature_collection.to_string(),
             status_code=status.HTTP_200_OK,
         )
+    except ValidationError as err:
+        raise RequestValidationError(
+            errors=err.raw_errors,
+            body=err.model.__name__,
+        )
     except (exceptions.ParserException, exceptions.SchemaException) as err:
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
@@ -37,10 +42,16 @@ async def store(file: UploadFile):
                 }
             ],
         )
-    except ValidationError as err:
-        raise RequestValidationError(
-            errors=err.raw_errors,
-            body=err.model.__name__,
+    except exceptions.VerifyException as err:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=[
+                {
+                    "loc": ["XML"],
+                    "msg": str(err),
+                    "type": err.type,
+                }
+            ],
         )
     except Exception:
         raise HTTPException(

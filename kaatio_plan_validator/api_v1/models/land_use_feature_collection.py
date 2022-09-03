@@ -14,6 +14,13 @@ from .spatial_plan import SpatialPlan
 
 warnings.simplefilter(action="ignore", category=xmlschema.XMLSchemaImportWarning)
 
+xsd = xmlschema.XMLSchema(
+    constants.SCHEMA_FILES,
+    allow="sandbox",
+    base_url=str(constants.SCHEMA_DIR),
+    defuse="always",
+)
+
 
 class LandUseFeatureCollection(BaseModel):
     """Represents model definition of LandUseFeatureCollection."""
@@ -33,7 +40,7 @@ class LandUseFeatureCollection(BaseModel):
         arbitrary_types_allowed = True
 
     @classmethod
-    def from_xml_source(cls, source: Any, skip_schema_validation: bool = False):
+    def from_xml_source(cls, source: Any):
         """Create instance from source XML."""
 
         def get_feature_members_by_tag(root: ET._Element, tag: str) -> list[ET._Element]:
@@ -48,19 +55,8 @@ class LandUseFeatureCollection(BaseModel):
         try:
             # Parse XML.
             xml: ET._ElementTree = ET.parse(source)
-
-            # For testing purpose more control when to run schema validation.
-            if not skip_schema_validation:
-
-                # Execute schema validation.
-                xsd = xmlschema.XMLSchema(
-                    constants.SCHEMA_FILES,
-                    allow="sandbox",
-                    base_url=str(constants.SCHEMA_DIR),
-                    defuse="always",
-                )
-
-                xsd.validate(xml)
+            # Execute XML schema validation.
+            xsd.validate(xml)
 
             root = xml.getroot()
 
@@ -115,6 +111,11 @@ class LandUseFeatureCollection(BaseModel):
 
     def to_string(self) -> str:
         """Returns XML in string representation."""
+        try:
+            xsd.validate(self.xml)
+        except xmlschema.XMLSchemaException as err:
+            raise exceptions.VerifyException(f"Failed to validate XML against schema! Reason: {err}")
+
         return ET.tostring(
             self.xml,
             encoding="unicode",

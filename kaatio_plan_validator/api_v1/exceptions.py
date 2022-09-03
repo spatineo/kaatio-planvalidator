@@ -4,3 +4,7 @@ class ParserException(Exception):
 
 class SchemaException(Exception):
     type = "schema_error"
+
+
+class VerifyException(Exception):
+    type = "verify_error"
