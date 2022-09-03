@@ -1,8 +1,10 @@
+import uuid
 from pathlib import Path
 
 import lxml.etree as ET
 import pytest
 from pydantic.error_wrappers import ValidationError
+from pytest import FixtureRequest
 
 from kaatio_plan_validator.api_v1 import constants, exceptions, models
 
@@ -27,71 +29,87 @@ def test_model_land_use_feature_collection_from_xml_source_with_invalid_xml(
         )
 
 
-def test_model_land_use_feature_collection_from_xml_source_with_valid_xml_1(
-    file_xml_valid_1: Path,
-    file_xml_valid_1_gen: Path,
+@pytest.mark.parametrize(
+    "input,output,gml_id_reset",
+    [
+        ("file_xml_valid_1", "file_xml_valid_1_gen", True),
+        ("file_xml_valid_1_gen", "file_xml_valid_1_gen_result", False),
+        ("file_xml_valid_2", "file_xml_valid_2_gen", True),
+        ("file_xml_valid_2_gen", "file_xml_valid_2_gen_result", False),
+    ],
+)
+def test_model_land_use_feature_collection_from_xml_source_with_valid_xml(
+    request: FixtureRequest,
+    input: str,
+    output: str,
+    gml_id_reset: bool,
 ):
+    file_xml_input: Path = request.getfixturevalue(input)
+    file_xml_output: Path = request.getfixturevalue(output)
+
+    assert file_xml_input.exists()
 
     model = models.LandUseFeatureCollection.from_xml_source(
-        source=file_xml_valid_1,
-        skip_schema_validation=True,
+        source=file_xml_input,
     )
     assert model
-    model.update_ids_and_refs()
-
-    with open(file_xml_valid_1_gen, "w") as output:
-        output.write(model.to_string())
-
-
-@pytest.mark.skip(reason="Debug stuff")
-def test_model_land_use_feature_collection_from_xml_source_with_valid_xml_1_gen(
-    file_xml_valid_1_gen: Path,
-    file_xml_valid_1_gen_result: Path,
-):
-
-    if file_xml_valid_1_gen.exists():
-
-        model = models.LandUseFeatureCollection.from_xml_source(
-            source=file_xml_valid_1_gen,
-        )
-        assert model
-        model.update_ids_and_refs()
-
-    with open(file_xml_valid_1_gen_result, "w") as output:
-        output.write(model.to_string())
-
-
-def test_model_land_use_feature_collection_from_xml_source_with_valid_xml_2(
-    file_xml_valid_2: Path,
-    file_xml_valid_2_gen: Path,
-):
-
-    model = models.LandUseFeatureCollection.from_xml_source(
-        source=file_xml_valid_2,
-        skip_schema_validation=True,
+    before_spatial_plan_gml_id = str(
+        model.spatial_plan.xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
+    before_pe_plan_gml_id = str(model.pe_plans[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]).split(
+        "."
     )
-    assert model
+    before_plan_object_gml_id = str(
+        model.plan_objects[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
+    before_plan_order_gml_id = str(
+        model.plan_orders[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
+    before_planner_gml_id = str(model.planners[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]).split(
+        "."
+    )
     model.update_ids_and_refs()
+    after_spatial_plan_gml_id = str(
+        model.spatial_plan.xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
+    after_pe_plan_gml_id = str(model.pe_plans[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]).split(
+        "."
+    )
+    after_plan_object_gml_id = str(
+        model.plan_objects[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
+    after_plan_order_gml_id = str(
+        model.plan_orders[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
+    after_planner_gml_id = str(model.planners[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]).split(
+        "."
+    )
+    if gml_id_reset:
+        # Received gml:id values did not follow format: 'id-uuid.uuid' - new gml:id created
+        assert uuid.UUID(after_spatial_plan_gml_id[0].removeprefix("id-"))
+        assert uuid.UUID(after_spatial_plan_gml_id[1])
+        assert uuid.UUID(after_pe_plan_gml_id[0].removeprefix("id-"))
+        assert uuid.UUID(after_pe_plan_gml_id[1])
+        assert uuid.UUID(after_plan_object_gml_id[0].removeprefix("id-"))
+        assert uuid.UUID(after_plan_object_gml_id[1])
+        assert uuid.UUID(after_plan_order_gml_id[0].removeprefix("id-"))
+        assert uuid.UUID(after_plan_order_gml_id[1])
+        assert uuid.UUID(after_planner_gml_id[0].removeprefix("id-"))
+        assert uuid.UUID(after_planner_gml_id[1])
+    else:
+        # Received gml:id values did follow format: 'id-uuid.uuid' - latter uuid updated
+        assert before_spatial_plan_gml_id[0] == after_spatial_plan_gml_id[0]
+        assert before_spatial_plan_gml_id[1] != after_spatial_plan_gml_id[1]
+        assert before_pe_plan_gml_id[0] == after_pe_plan_gml_id[0]
+        assert before_pe_plan_gml_id[1] != after_pe_plan_gml_id[1]
+        assert before_plan_object_gml_id[0] == after_plan_object_gml_id[0]
+        assert before_plan_object_gml_id[1] != after_plan_object_gml_id[1]
+        assert before_plan_order_gml_id[0] == after_plan_order_gml_id[0]
+        assert before_plan_order_gml_id[1] != after_plan_order_gml_id[1]
+        assert before_planner_gml_id[0] == after_planner_gml_id[0]
+        assert before_planner_gml_id[1] != after_planner_gml_id[1]
 
-    with open(file_xml_valid_2_gen, "w") as output:
-        output.write(model.to_string())
-
-
-@pytest.mark.skip(reason="Debug stuff")
-def test_model_land_use_feature_collection_from_xml_source_with_valid_xml_2_gen(
-    file_xml_valid_2_gen: Path,
-    file_xml_valid_2_gen_result: Path,
-):
-
-    if file_xml_valid_2_gen.exists():
-
-        model = models.LandUseFeatureCollection.from_xml_source(
-            source=file_xml_valid_2_gen,
-        )
-        assert model
-        model.update_ids_and_refs()
-
-    with open(file_xml_valid_2_gen_result, "w") as output:
+    with open(file_xml_output, "w") as output:
         output.write(model.to_string())
 
 
