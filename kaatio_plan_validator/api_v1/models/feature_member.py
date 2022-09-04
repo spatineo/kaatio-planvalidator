@@ -8,7 +8,7 @@ from pydantic import BaseModel
 from pydantic.utils import GetterDict
 from shapely.geometry import shape
 
-from .. import constants, utils
+from .. import constants
 
 
 class XMLGetterDict(GetterDict):
@@ -53,6 +53,20 @@ class FeatureMember(BaseModel):
         getter_dict = XMLGetterDict
         orm_mode = True
 
+    def _child_tag_names(self, xml: ET._Element) -> list[str]:
+        return [
+            e.xpath(
+                constants.XPATH_LOCAL_NAME,
+                **constants.NAMESPACES,
+            )
+            for e in list(xml)
+            if isinstance(e, ET._Element)
+        ]
+
+    def _ns_key_to_clark_notation(self, ns_key: str) -> str:
+        ns, key = ns_key.split(":")
+        return f"{{{constants.NSMAP.get(ns)}}}{key}"
+
     def update_or_create_elements_with_id(self) -> tuple[str]:
         """Update or create elements to feature member"""
 
@@ -75,7 +89,7 @@ class FeatureMember(BaseModel):
                 id_new = f"id-{uuid.uuid4()}.{uuid.uuid4()}"
 
         # Find key for attribute
-        attrib = utils.ns_key_to_clark_notation(constants.XPATH_GML_ID.removeprefix("./@"))
+        attrib = self._ns_key_to_clark_notation(constants.XPATH_GML_ID.removeprefix("./@"))
         # Update attribute with key and new id
         self.xml.attrib[attrib] = id_new
 
@@ -86,7 +100,7 @@ class FeatureMember(BaseModel):
         except IndexError:
             # Element not found - lets create it.
             identifier_element: ET._Element = ET.Element(
-                utils.ns_key_to_clark_notation(constants.XPATH_IDENTIFIER),
+                self._ns_key_to_clark_notation(constants.XPATH_IDENTIFIER),
                 codeSpace="http://uri.suomi.fi/object/rytj/kaava",
             )
             self.xml.insert(
@@ -103,7 +117,7 @@ class FeatureMember(BaseModel):
         except IndexError:
             # Element not found - lets create it.
             object_identifier_element: ET._Element = ET.Element(
-                utils.ns_key_to_clark_notation(constants.XPATH_OBJECT_IDENTIFIER),
+                self._ns_key_to_clark_notation(constants.XPATH_OBJECT_IDENTIFIER),
             )
             self.xml.insert(
                 index=self.xml.index(identifier_element) + 1,  # always after gml:identifier
@@ -130,18 +144,18 @@ class FeatureMember(BaseModel):
                 storage_time_position_ns_key,
             ) = constants.XPATH_STORAGE_TIME.split("/")
             storage_time_element: ET._Element = ET.Element(
-                utils.ns_key_to_clark_notation(storage_time_ns_key),
+                self._ns_key_to_clark_notation(storage_time_ns_key),
             )
             storage_time_instant_element: ET._Element = ET.Element(
-                utils.ns_key_to_clark_notation(storage_time_instant_ns_key),
+                self._ns_key_to_clark_notation(storage_time_instant_ns_key),
             )
             storage_time_position_element: ET._Element = ET.Element(
-                utils.ns_key_to_clark_notation(storage_time_position_ns_key),
+                self._ns_key_to_clark_notation(storage_time_position_ns_key),
             )
             storage_time_instant_element.append(storage_time_position_element)
             storage_time_element.append(storage_time_instant_element)
             # We need to find correct position for element
-            xml_child_tag_names = utils.child_tag_names(self.xml)
+            xml_child_tag_names = self._child_tag_names(self.xml)
             if "latestChange" in xml_child_tag_names:
                 pos_element = self.xml.xpath(constants.XPATH_LATEST_CHANGE, **constants.NAMESPACES)[0]
             elif "producerSpecificIdentifier" in xml_child_tag_names:
@@ -161,6 +175,6 @@ class FeatureMember(BaseModel):
         elements: list[ET._Element] = self.xml.xpath(xpath, **constants.NAMESPACES)
         for old, new in refs:
             for element in elements:
-                attrib = utils.ns_key_to_clark_notation(constants.XPATH_XLINK_HREF)
+                attrib = self._ns_key_to_clark_notation(constants.XPATH_XLINK_HREF)
                 if str(element.attrib[attrib]).removeprefix("#") == old:
                     element.attrib[attrib] = f"#{new}"
