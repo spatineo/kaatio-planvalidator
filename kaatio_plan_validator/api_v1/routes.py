@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import APIRouter, UploadFile, status
 from fastapi.exceptions import HTTPException, RequestValidationError
 from pydantic import ValidationError
@@ -5,6 +7,8 @@ from pydantic import ValidationError
 from . import exceptions, models, responses
 
 router = APIRouter()
+
+logger = logging.getLogger("uvicorn.access")
 
 
 @router.post(
@@ -53,7 +57,8 @@ async def store(file: UploadFile):
                 }
             ],
         )
-    except Exception:
+    except Exception as err:
+        logger.error(err)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=[
