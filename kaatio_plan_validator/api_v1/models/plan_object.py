@@ -6,7 +6,7 @@ from .feature_member import FeatureMember
 
 class PlanObject(FeatureMember):
     """Represents model definition of PlanObject."""
-
+    ref_errors: list = Field(default_factory=list, alias="splan:PlanObject")
     geometry: BaseGeometry = Field(alias="splan:PlanObject/splan:geometry")
 
     @validator("geometry")

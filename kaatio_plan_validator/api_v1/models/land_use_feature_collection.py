@@ -144,15 +144,18 @@ class LandUseFeatureCollection(BaseModel):
             refs=planner_refs,
         )
         self.spatial_plan.update_or_create_storage_time()
+        self.spatial_plan.post_validate()
 
         for pe_plan in self.pe_plans:
             pe_plan.update_or_create_storage_time()
+            pe_plan.post_validate()
         for plan_object in self.plan_objects:
             plan_object.update_feature_member_id_references(
                 xpath=constants.XPATH_SPATIAL_PLAN,
                 refs=spatial_plan_refs,
             )
             plan_object.update_or_create_storage_time()
+            plan_object.post_validate()
         for plan_order in self.plan_orders:
             plan_order.update_feature_member_id_references(
                 xpath=constants.XPATH_SPATIAL_PLAN,
@@ -163,5 +166,7 @@ class LandUseFeatureCollection(BaseModel):
                 refs=plan_object_refs,
             )
             plan_order.update_or_create_storage_time()
+            plan_order.post_validate()
         for planner in self.planners:
             planner.update_or_create_storage_time()
+            planner.post_validate()

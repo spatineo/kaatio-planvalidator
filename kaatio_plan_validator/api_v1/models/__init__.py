@@ -1,3 +1,4 @@
+from .feature_member import FeatureMember
 from .land_use_feature_collection import LandUseFeatureCollection
 from .participation_and_evaluation_plan import ParticipationAndEvaluationPlan
 from .plan_object import PlanObject
@@ -12,4 +13,5 @@ __all__ = [
     "PlanOrder",
     "Planner",
     "SpatialPlan",
+    "FeatureMember",
 ]
