@@ -53,37 +53,38 @@ def test_model_land_use_feature_collection_from_xml_source_with_valid_xml(
         source=file_xml_input,
     )
     assert model
+    feature_members = model.create_feature_members()
     before_spatial_plan_gml_id = str(
-        model.spatial_plan.xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+        feature_members.spatial_plan.xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
     ).split(".")
-    before_pe_plan_gml_id = str(model.pe_plans[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]).split(
-        "."
-    )
+    before_pe_plan_gml_id = str(
+        feature_members.pe_plans[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
     before_plan_object_gml_id = str(
-        model.plan_objects[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+        feature_members.plan_objects[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
     ).split(".")
     before_plan_order_gml_id = str(
-        model.plan_orders[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+        feature_members.plan_orders[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
     ).split(".")
-    before_planner_gml_id = str(model.planners[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]).split(
-        "."
-    )
-    model.update_ids_and_refs()
+    before_planner_gml_id = str(
+        feature_members.planners[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
+    feature_members = model.process_feature_members()
     after_spatial_plan_gml_id = str(
-        model.spatial_plan.xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+        feature_members.spatial_plan.xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
     ).split(".")
-    after_pe_plan_gml_id = str(model.pe_plans[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]).split(
-        "."
-    )
+    after_pe_plan_gml_id = str(
+        feature_members.pe_plans[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
     after_plan_object_gml_id = str(
-        model.plan_objects[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+        feature_members.plan_objects[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
     ).split(".")
     after_plan_order_gml_id = str(
-        model.plan_orders[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+        feature_members.plan_orders[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
     ).split(".")
-    after_planner_gml_id = str(model.planners[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]).split(
-        "."
-    )
+    after_planner_gml_id = str(
+        feature_members.planners[0].xml.xpath(constants.XPATH_GML_ID, **constants.NAMESPACES)[0]
+    ).split(".")
     if gml_id_reset:
         # Received gml:id values did not follow format: 'id-uuid.uuid' - new gml:id created
         assert uuid.UUID(after_spatial_plan_gml_id[0].removeprefix("id-"))
@@ -109,8 +110,8 @@ def test_model_land_use_feature_collection_from_xml_source_with_valid_xml(
         assert before_planner_gml_id[0] == after_planner_gml_id[0]
         assert before_planner_gml_id[1] != after_planner_gml_id[1]
 
-    with open(file_xml_output, "w") as output:
-        output.write(model.to_string())
+    with file_xml_output.open("w") as f:
+        f.write(model.to_string())
 
 
 def test_model_spatial_plan_raises_error_when_plan_identifier_element_is_missing(
