@@ -11,7 +11,7 @@ from shapely.geometry import shape
 from .. import constants
 
 
-class XMLGetterDict(GetterDict):
+class FeatureMemberGetterDict(GetterDict):
     """Represents getter dict for PlanOrder model."""
 
     _obj: ET._Element
@@ -52,7 +52,7 @@ class FeatureMember(BaseModel):
 
         allow_population_by_field_name = True
         arbitrary_types_allowed = True
-        getter_dict = XMLGetterDict
+        getter_dict = FeatureMemberGetterDict
         orm_mode = True
 
     @validator("ref_errors")
