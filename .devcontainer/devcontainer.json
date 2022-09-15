@@ -35,9 +35,5 @@
 		// Turn off user namespace within the container (SELINUX)
 		"--security-opt",
 		"label:disable"
-	],
-	// Overrides the default local mount point for the workspace when the container is created.
-	"workspaceMount": "source=${localWorkspaceFolder},target=${localWorkspaceFolder},type=bind,consistency=cached",
-	// Sets the default workspace path.
-	"workspaceFolder": "${localWorkspaceFolder}"
+	]
 }
