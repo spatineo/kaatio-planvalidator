@@ -30,12 +30,12 @@ async def store(file: UploadFile):
             content=feature_collection.to_string(),
             status_code=status.HTTP_200_OK,
         )
-    except ValidationError as err:
+    except ValidationError as err:  # pragma: no cover
         raise RequestValidationError(
             errors=err.raw_errors,
             body=err.model.__name__,
         )
-    except (exceptions.ParserException, exceptions.SchemaException) as err:
+    except (exceptions.ParserException, exceptions.SchemaException) as err:  # pragma: no cover
         raise HTTPException(
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
             detail=[
@@ -46,7 +46,7 @@ async def store(file: UploadFile):
                 }
             ],
         )
-    except exceptions.VerifyException as err:
+    except exceptions.VerifyException as err:  # pragma: no cover
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=[
@@ -57,7 +57,7 @@ async def store(file: UploadFile):
                 }
             ],
         )
-    except Exception as err:
+    except Exception as err:  # pragma: no cover
         logger.error(err)
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

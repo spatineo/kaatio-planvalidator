@@ -3,7 +3,7 @@ from typing import Any
 
 import lxml.etree as ET
 import xmlschema
-from pydantic import BaseModel, PrivateAttr, validator
+from pydantic import BaseModel, Field, PrivateAttr, validator
 from pydantic.dataclasses import dataclass
 
 from .. import constants, exceptions
@@ -37,7 +37,7 @@ class LandUseFeatureCollectionMembers:
 class LandUseFeatureCollection(BaseModel):
     """Represents model definition of LandUseFeatureCollection."""
 
-    xml: ET._ElementTree
+    xml: ET._ElementTree = Field(alias="lud-core:LandUseFeatureCollection")
 
     _feature_members: LandUseFeatureCollectionMembers = PrivateAttr(default=None)
 
@@ -60,9 +60,9 @@ class LandUseFeatureCollection(BaseModel):
             return cls(
                 xml=xml,
             )
-        except ET.ParseError as err:
+        except ET.ParseError as err:  # pragma: no cover
             raise exceptions.ParserException(f"Failed to parse XML! Reason: {err}")
-        except xmlschema.XMLSchemaException as err:
+        except xmlschema.XMLSchemaException as err:  # pragma: no cover
             raise exceptions.SchemaException(f"Failed to validate XML against schema! Reason: {err}")
 
     @staticmethod
@@ -196,7 +196,7 @@ class LandUseFeatureCollection(BaseModel):
         """Returns XML in string representation."""
         try:
             xsd.validate(self.xml)
-        except xmlschema.XMLSchemaException as err:
+        except xmlschema.XMLSchemaException as err:  # pragma: no cover
             raise exceptions.VerifyException(f"Failed to validate XML against schema! Reason: {err}")
 
         return ET.tostring(
