@@ -172,6 +172,94 @@ def test_model_spatial_plan_raises_error_when_plan_identifier_element_text_is_no
     ]
 
 
+@pytest.mark.parametrize(
+    "cls, xpath, response",
+    [
+        (
+            models.SpatialPlan,
+            constants.XPATH_GENERAL_ORDER,
+            [
+                {
+                    "loc": ("splan:SpatialPlan",),
+                    "msg": "unknown references: ['splan:generalOrder = KAAVA-kaava-sipoo-nevasgard-MAARAYS-1']",
+                    "type": "assertion_error",
+                }
+            ],
+        ),
+        (
+            models.SpatialPlan,
+            constants.XPATH_PLANNER,
+            [
+                {
+                    "loc": ("splan:SpatialPlan",),
+                    "msg": "unknown references: ['splan:planner = planner-mka']",
+                    "type": "assertion_error",
+                }
+            ],
+        ),
+        (
+            models.SpatialPlan,
+            constants.XPATH_PARTICIPATION_AND_EVALUTION_PLAN,
+            [
+                {
+                    "loc": ("splan:SpatialPlan",),
+                    "msg": "unknown references: ['splan:participationAndEvalutionPlan = KAAVA-kaava-sipoo-nevasgard-OAS']",
+                    "type": "assertion_error",
+                }
+            ],
+        ),
+        # (
+        #     models.PlanOrder,
+        #     constants.XPATH_SPATIAL_PLAN,
+        #     [
+        #         {
+        #             "loc": ("splan:PlanOrder",),
+        #             "msg": "unknown references: ['splan:spatialPlan = KAAVA-kaava-sipoo-nevasgard']",
+        #             "type": "assertion_error",
+        #         }
+        #     ],
+        # ),
+        # (
+        #     models.PlanOrder,
+        #     constants.XPATH_TARGET,
+        #     [
+        #         {
+        #             "loc": ("splan:PlanOrder",),
+        #             "msg": "unknown references: ['splan:target = KAAVAKOHDE-AJO-12']",
+        #             "type": "assertion_error",
+        #         }
+        #     ],
+        # ),
+        # (
+        #     models.PlanObject,
+        #     constants.XPATH_SPATIAL_PLAN,
+        #     [
+        #         {
+        #             "loc": ("splan:PlanObject",),
+        #             "msg": "unknown references: ['splan:spatialPlan = KAAVA-kaava-sipoo-nevasgard']",
+        #             "type": "assertion_error",
+        #         }
+        #     ],
+        # ),
+    ],
+)
+def test_models_raises_error_when_reference_is_unknown(
+    xml_element_spatial_plan: ET._Element,
+    cls: models.FeatureMember,
+    xpath: str,
+    response: list,
+):
+
+    with pytest.raises(ValidationError) as err:
+        model = cls.from_orm(xml_element_spatial_plan)
+        model.update_feature_member_id_references(
+            xpath=xpath,
+            refs=[("old", "new")],
+        )
+        model.post_validate()
+    assert err.value.errors() == response
+
+
 def test_model_plan_object_raises_error_when_geometry_is_not_valid(
     xml_element_plan_object: ET._Element,
     xml_element_polygon_invalid: ET._Element,
