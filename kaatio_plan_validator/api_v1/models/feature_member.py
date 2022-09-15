@@ -44,6 +44,7 @@ class XMLGetterDict(GetterDict):
 class FeatureMember(BaseModel):
 
     xml: ET._Element
+
     ref_errors: list = Field(default_factory=list)
 
     class Config:
@@ -179,17 +180,16 @@ class FeatureMember(BaseModel):
     def update_feature_member_id_references(self, xpath: str, refs: list[tuple[str]]):
 
         ref_map = dict(refs)
-        elements: list[ET._Element] = self.xml.xpath(xpath, **constants.NAMESPACES)
 
+        elements: list[ET._Element] = self.xml.xpath(xpath, **constants.NAMESPACES)
         for element in elements:
             attrib_key = self._ns_key_to_clark_notation(constants.XPATH_XLINK_HREF)
             attrib_val = str(element.attrib[attrib_key]).removeprefix("#")
             ref_val = ref_map.get(attrib_val, None)
-
             if ref_val:
                 element.attrib[attrib_key] = f"#{ref_val}"
             else:
-                self.ref_errors.append(f"{xpath} = {attrib_val}")
+                self.ref_errors.append(f"{xpath}={attrib_val}")
 
     def post_validate(self):
         *_, validation_error = validate_model(self.__class__, self.__dict__)
