@@ -114,16 +114,16 @@ def test_model_land_use_feature_collection_from_xml_source_with_valid_xml(
 
 
 def test_model_spatial_plan_raises_error_when_plan_identifier_element_is_missing(
-    xml_element_spatial_plan: ET._Element,
+    xml_element_feature_member_spatial_plan: ET._Element,
 ):
 
-    plan_identifier_element: ET._Element = xml_element_spatial_plan.xpath(
+    plan_identifier_element: ET._Element = xml_element_feature_member_spatial_plan.xpath(
         constants.XPATH_PLAN_IDENTIFIER, **constants.NAMESPACES
     )[0]
-    xml_element_spatial_plan.remove(plan_identifier_element)
+    xml_element_feature_member_spatial_plan.remove(plan_identifier_element)
 
     with pytest.raises(ValidationError) as err:
-        models.SpatialPlan.from_orm(xml_element_spatial_plan)
+        models.SpatialPlan.from_orm(xml_element_feature_member_spatial_plan)
     assert err.value.errors() == [
         {
             "loc": ("splan:SpatialPlan/splan:planIdentifier",),
@@ -134,15 +134,17 @@ def test_model_spatial_plan_raises_error_when_plan_identifier_element_is_missing
 
 
 def test_model_spatial_plan_raises_error_when_boundary_is_not_valid(
-    xml_element_spatial_plan: ET._Element,
+    xml_element_feature_member_spatial_plan: ET._Element,
     xml_element_polygon_invalid: ET._Element,
 ):
 
-    boundary_element: ET._Element = xml_element_spatial_plan.xpath(constants.XPATH_BOUNDARY, **constants.NAMESPACES)[0]
+    boundary_element: ET._Element = xml_element_feature_member_spatial_plan.xpath(
+        constants.XPATH_BOUNDARY, **constants.NAMESPACES
+    )[0]
     geometry_element_child = list(boundary_element)[0]
     boundary_element.replace(geometry_element_child, xml_element_polygon_invalid)
     with pytest.raises(ValidationError) as err:
-        models.SpatialPlan.from_orm(xml_element_spatial_plan)
+        models.SpatialPlan.from_orm(xml_element_feature_member_spatial_plan)
     assert err.value.errors() == [
         {
             "loc": ("splan:SpatialPlan/lud-core:boundary",),
@@ -153,16 +155,16 @@ def test_model_spatial_plan_raises_error_when_boundary_is_not_valid(
 
 
 def test_model_spatial_plan_raises_error_when_plan_identifier_element_text_is_none(
-    xml_element_spatial_plan: ET._Element,
+    xml_element_feature_member_spatial_plan: ET._Element,
 ):
 
-    plan_identifier_element: ET._Element = xml_element_spatial_plan.xpath(
+    plan_identifier_element: ET._Element = xml_element_feature_member_spatial_plan.xpath(
         constants.XPATH_PLAN_IDENTIFIER, **constants.NAMESPACES
     )[0]
     plan_identifier_element.text = None
 
     with pytest.raises(ValidationError) as err:
-        models.SpatialPlan.from_orm(xml_element_spatial_plan)
+        models.SpatialPlan.from_orm(xml_element_feature_member_spatial_plan)
     assert err.value.errors() == [
         {
             "loc": ("splan:SpatialPlan/splan:planIdentifier",),
@@ -173,85 +175,93 @@ def test_model_spatial_plan_raises_error_when_plan_identifier_element_text_is_no
 
 
 @pytest.mark.parametrize(
-    "cls, xpath, response",
+    "xml_element_feature_member_name,cls, xpath, response",
     [
         (
+            "xml_element_feature_member_plan_object",
+            models.PlanObject,
+            constants.XPATH_SPATIAL_PLAN,
+            [
+                {
+                    "loc": ("splan:PlanObject",),
+                    "msg": "unknown references: ['splan:spatialPlan=KAAVA-kaava-sipoo-nevasgard']",
+                    "type": "assertion_error",
+                }
+            ],
+        ),
+        (
+            "xml_element_feature_member_plan_order",
+            models.PlanOrder,
+            constants.XPATH_SPATIAL_PLAN,
+            [
+                {
+                    "loc": ("splan:PlanOrder",),
+                    "msg": "unknown references: ['splan:spatialPlan=KAAVA-kaava-sipoo-nevasgard']",
+                    "type": "assertion_error",
+                }
+            ],
+        ),
+        (
+            "xml_element_feature_member_plan_order",
+            models.PlanOrder,
+            constants.XPATH_TARGET,
+            [
+                {
+                    "loc": ("splan:PlanOrder",),
+                    "msg": "unknown references: ['splan:target=KAAVAKOHDE-AJO-12']",
+                    "type": "assertion_error",
+                }
+            ],
+        ),
+        (
+            "xml_element_feature_member_spatial_plan",
             models.SpatialPlan,
             constants.XPATH_GENERAL_ORDER,
             [
                 {
                     "loc": ("splan:SpatialPlan",),
-                    "msg": "unknown references: ['splan:generalOrder = KAAVA-kaava-sipoo-nevasgard-MAARAYS-1']",
+                    "msg": "unknown references: ['splan:generalOrder=KAAVA-kaava-sipoo-nevasgard-MAARAYS-1']",
                     "type": "assertion_error",
                 }
             ],
         ),
         (
+            "xml_element_feature_member_spatial_plan",
             models.SpatialPlan,
             constants.XPATH_PLANNER,
             [
                 {
                     "loc": ("splan:SpatialPlan",),
-                    "msg": "unknown references: ['splan:planner = planner-mka']",
+                    "msg": "unknown references: ['splan:planner=planner-mka']",
                     "type": "assertion_error",
                 }
             ],
         ),
         (
+            "xml_element_feature_member_spatial_plan",
             models.SpatialPlan,
             constants.XPATH_PARTICIPATION_AND_EVALUTION_PLAN,
             [
                 {
                     "loc": ("splan:SpatialPlan",),
-                    "msg": "unknown references: ['splan:participationAndEvalutionPlan = KAAVA-kaava-sipoo-nevasgard-OAS']",
+                    "msg": "unknown references: ['splan:participationAndEvalutionPlan=KAAVA-kaava-sipoo-nevasgard-OAS']",
                     "type": "assertion_error",
                 }
             ],
         ),
-        # (
-        #     models.PlanOrder,
-        #     constants.XPATH_SPATIAL_PLAN,
-        #     [
-        #         {
-        #             "loc": ("splan:PlanOrder",),
-        #             "msg": "unknown references: ['splan:spatialPlan = KAAVA-kaava-sipoo-nevasgard']",
-        #             "type": "assertion_error",
-        #         }
-        #     ],
-        # ),
-        # (
-        #     models.PlanOrder,
-        #     constants.XPATH_TARGET,
-        #     [
-        #         {
-        #             "loc": ("splan:PlanOrder",),
-        #             "msg": "unknown references: ['splan:target = KAAVAKOHDE-AJO-12']",
-        #             "type": "assertion_error",
-        #         }
-        #     ],
-        # ),
-        # (
-        #     models.PlanObject,
-        #     constants.XPATH_SPATIAL_PLAN,
-        #     [
-        #         {
-        #             "loc": ("splan:PlanObject",),
-        #             "msg": "unknown references: ['splan:spatialPlan = KAAVA-kaava-sipoo-nevasgard']",
-        #             "type": "assertion_error",
-        #         }
-        #     ],
-        # ),
     ],
 )
 def test_models_raises_error_when_reference_is_unknown(
-    xml_element_spatial_plan: ET._Element,
+    request: FixtureRequest,
+    xml_element_feature_member_name: str,
     cls: models.FeatureMember,
     xpath: str,
     response: list,
 ):
 
+    xml_element_feature_member: ET._Element = request.getfixturevalue(xml_element_feature_member_name)
     with pytest.raises(ValidationError) as err:
-        model = cls.from_orm(xml_element_spatial_plan)
+        model = cls.from_orm(xml_element_feature_member)
         model.update_feature_member_id_references(
             xpath=xpath,
             refs=[("old", "new")],
@@ -261,15 +271,17 @@ def test_models_raises_error_when_reference_is_unknown(
 
 
 def test_model_plan_object_raises_error_when_geometry_is_not_valid(
-    xml_element_plan_object: ET._Element,
+    xml_element_feature_member_plan_object: ET._Element,
     xml_element_polygon_invalid: ET._Element,
 ):
 
-    geometry_element: ET._Element = xml_element_plan_object.xpath(constants.XPATH_GEOMETRY, **constants.NAMESPACES)[0]
+    geometry_element: ET._Element = xml_element_feature_member_plan_object.xpath(
+        constants.XPATH_GEOMETRY, **constants.NAMESPACES
+    )[0]
     geometry_element_child = list(geometry_element)[0]
     geometry_element.replace(geometry_element_child, xml_element_polygon_invalid)
     with pytest.raises(ValidationError) as err:
-        models.PlanObject.from_orm(xml_element_plan_object)
+        models.PlanObject.from_orm(xml_element_feature_member_plan_object)
     assert err.value.errors() == [
         {
             "loc": ("splan:PlanObject/splan:geometry",),

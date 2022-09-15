@@ -54,8 +54,28 @@ def file_xml_valid_example():
 
 
 @pytest.fixture
-def xml_element_plan_object(xml_valid_1: ET._ElementTree):
+def xml_element_feature_member_pe_plan(xml_valid_1: ET._ElementTree):
+    return xml_valid_1.xpath("lud-core:featureMember/splan:ParticipationAndEvaluationPlan", **constants.NAMESPACES)[0]
+
+
+@pytest.fixture
+def xml_element_feature_member_plan_object(xml_valid_1: ET._ElementTree):
     return xml_valid_1.xpath("lud-core:featureMember/splan:PlanObject", **constants.NAMESPACES)[0]
+
+
+@pytest.fixture
+def xml_element_feature_member_plan_order(xml_valid_1: ET._ElementTree):
+    return xml_valid_1.xpath("lud-core:featureMember/splan:PlanOrder", **constants.NAMESPACES)[0]
+
+
+@pytest.fixture
+def xml_element_feature_member_planner(xml_valid_1: ET._ElementTree):
+    return xml_valid_1.xpath("lud-core:featureMember/splan:Planner", **constants.NAMESPACES)[0]
+
+
+@pytest.fixture
+def xml_element_feature_member_spatial_plan(xml_valid_1: ET._ElementTree):
+    return xml_valid_1.xpath("lud-core:featureMember/splan:SpatialPlan", **constants.NAMESPACES)[0]
 
 
 @pytest.fixture
@@ -71,11 +91,6 @@ def xml_element_polygon_invalid():
         </gml:Polygon>
         """
     )
-
-
-@pytest.fixture
-def xml_element_spatial_plan(xml_valid_1: ET._ElementTree):
-    return xml_valid_1.xpath("lud-core:featureMember/splan:SpatialPlan", **constants.NAMESPACES)[0]
 
 
 @pytest.fixture
