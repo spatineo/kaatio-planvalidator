@@ -23,7 +23,7 @@ async def store(file: UploadFile):
             source=file.file,
         )
 
-        feature_collection.update_ids_and_refs()
+        feature_collection.process_feature_members()
 
         # All good - return xml
         return responses.XMLResponse(
