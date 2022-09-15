@@ -58,16 +58,25 @@ class LandUseFeatureCollection(BaseModel):
             # Execute XML schema validation.
             xsd.validate(xml)
 
-            root = xml.getroot()
+            root: ET._Element = xml.getroot()
+
+            if root.xpath(constants.XPATH_LOCAL_NAME) != "LandUseFeatureCollection":
+                raise exceptions.ParserException(
+                    "Failed to parse XML - root element is not lud-core:LandUseFeatureCollection!"
+                )
+
+            spatial_plans = [
+                SpatialPlan.from_orm(feature_member_element)
+                for feature_member_element in get_feature_members_by_tag(
+                    root=root,
+                    tag="SpatialPlan",
+                )
+            ]
+            if not spatial_plans:
+                raise exceptions.ParserException("Failed to parse XML - no splan:SpatialPlan present!")
 
             return cls(
-                spatial_plan=[
-                    SpatialPlan.from_orm(feature_member_element)
-                    for feature_member_element in get_feature_members_by_tag(
-                        root=root,
-                        tag="SpatialPlan",
-                    )
-                ][0],
+                spatial_plan=spatial_plans[0],
                 pe_plans=[
                     ParticipationAndEvaluationPlan.from_orm(feature_member_element)
                     for feature_member_element in get_feature_members_by_tag(
