@@ -136,12 +136,12 @@ class LandUseFeatureCollection(BaseModel):
             refs=plan_orders_refs,
         )
         self.spatial_plan.update_feature_member_id_references(
-            xpath=constants.XPATH_PARTICIPATION_AND_EVALUTION_PLAN,
-            refs=pe_plan_refs,
-        )
-        self.spatial_plan.update_feature_member_id_references(
             xpath=constants.XPATH_PLANNER,
             refs=planner_refs,
+        )
+        self.spatial_plan.update_feature_member_id_references(
+            xpath=constants.XPATH_PARTICIPATION_AND_EVALUTION_PLAN,
+            refs=pe_plan_refs,
         )
         self.spatial_plan.update_or_create_storage_time()
         self.spatial_plan.post_validate()
@@ -149,6 +149,7 @@ class LandUseFeatureCollection(BaseModel):
         for pe_plan in self.pe_plans:
             pe_plan.update_or_create_storage_time()
             pe_plan.post_validate()
+
         for plan_object in self.plan_objects:
             plan_object.update_feature_member_id_references(
                 xpath=constants.XPATH_SPATIAL_PLAN,
@@ -156,6 +157,7 @@ class LandUseFeatureCollection(BaseModel):
             )
             plan_object.update_or_create_storage_time()
             plan_object.post_validate()
+
         for plan_order in self.plan_orders:
             plan_order.update_feature_member_id_references(
                 xpath=constants.XPATH_SPATIAL_PLAN,
@@ -167,6 +169,7 @@ class LandUseFeatureCollection(BaseModel):
             )
             plan_order.update_or_create_storage_time()
             plan_order.post_validate()
+
         for planner in self.planners:
             planner.update_or_create_storage_time()
             planner.post_validate()
