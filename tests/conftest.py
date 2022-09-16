@@ -79,6 +79,21 @@ def xml_element_feature_member_spatial_plan(xml_valid_1: ET._ElementTree):
 
 
 @pytest.fixture
+def xml_element_curve_valid():
+    return ET.fromstring(
+        """
+        <gml:Curve srsName="urn:ogc:def:crs:EPSG::4326" xmlns:gml="http://www.opengis.net/gml/3.2">
+            <gml:segments>
+                <gml:LineStringSegment>
+                    <gml:posList>60.2893418 25.430357 60.2894259 25.4304633 60.2894444 25.4303376 60.2895416 25.4298993 60.2895686 25.4298493 60.2894865 25.4297044 60.2893418 25.430357</gml:posList>
+                </gml:LineStringSegment>
+            </gml:segments>
+        </gml:Curve>
+        """
+    )
+
+
+@pytest.fixture
 def xml_element_polygon_invalid():
     return ET.fromstring(
         """
