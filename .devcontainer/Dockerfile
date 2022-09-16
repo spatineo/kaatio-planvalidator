@@ -24,6 +24,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     curl \
     fzf \
     gdal-bin \
+    libgdal-dev \
     libxml2-utils \
     software-properties-common \
     tar \
