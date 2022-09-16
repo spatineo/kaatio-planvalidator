@@ -7,6 +7,7 @@
 	},
 	// A set of name-value pairs that sets or overrides environment variables for the container.
 	"containerEnv": {
+		"DOCKER_BUILDKIT": "true",
 		// Enforce Poetry to use project folder when creating virtual environment.
 		"POETRY_VIRTUALENVS_IN_PROJECT": "true"
 	},
