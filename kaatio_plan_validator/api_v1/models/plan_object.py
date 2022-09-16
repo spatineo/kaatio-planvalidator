@@ -1,4 +1,3 @@
-import lxml.etree as ET
 from osgeo import ogr
 from pydantic import Field, validator
 
