@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field, validate_model, validator
 from pydantic.utils import GetterDict
 from shapely.geometry import shape
 
-from .. import constants
+from .. import constants, exceptions
 
 
 class FeatureMemberGetterDict(GetterDict):
@@ -21,13 +21,23 @@ class FeatureMemberGetterDict(GetterDict):
 
         try:
             if key == "boundary":
-                element = list(self._obj.xpath(constants.XPATH_BOUNDARY, **constants.NAMESPACES)[0])[0]
-                geometry = pygml.parse(element)
-                return shape(geometry)
+                try:
+                    element = list(self._obj.xpath(constants.XPATH_BOUNDARY, **constants.NAMESPACES)[0])[0]
+                    geometry = pygml.parse(element)
+                    return shape(geometry)
+                except ValueError as err:
+                    raise exceptions.ParserException(
+                        f"Failed to parse {constants.XPATH_BOUNDARY} element! Reason: {err}"
+                    )
             if key == "geometry":
-                element = list(self._obj.xpath(constants.XPATH_GEOMETRY, **constants.NAMESPACES)[0])[0]
-                geometry = pygml.parse(element)
-                return shape(geometry)
+                try:
+                    element = list(self._obj.xpath(constants.XPATH_GEOMETRY, **constants.NAMESPACES)[0])[0]
+                    geometry = pygml.parse(element)
+                    return shape(geometry)
+                except ValueError as err:
+                    raise exceptions.ParserException(
+                        f"Failed to parse {constants.XPATH_GEOMETRY} element! Reason: {err}"
+                    )
             if key == "plan_identifier":
                 return self._obj.xpath(constants.XPATH_PLAN_IDENTIFIER_TEXT, **constants.NAMESPACES)[0]
             if key == "producer_specific_identifier":
