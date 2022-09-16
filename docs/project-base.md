@@ -54,3 +54,36 @@ Build locally `poetry build`
 
 Build container `docker-compose build`
 
+## Deploy to AWS
+
+Configure profile (example)
+```
+$ aws configure sso
+SSO start URL [None]: [FILLME]
+SSO Region [None]: eu-west-1
+Attempting to automatically open the SSO authorization page in your default browser.
+If the browser does not open or you wish to use a different device to authorize this request, open the following URL:
+
+https://device.sso.eu-west-1.amazonaws.com/
+
+Then enter the code:
+
+****-****
+There are X AWS accounts available to you.
+Using the account ID 123456789000
+The only role available to you is: AdministratorAccess
+Using the role name "AdministratorAccess"
+CLI default client Region [None]: eu-west-1
+CLI default output format [None]: json
+CLI profile name [AdministratorAccess-123456789000]: example
+
+To use this profile, specify the profile name using --profile, as shown:
+
+aws s3 ls --profile example
+```
+
+```
+$ AWS_PROFILE=example cdk2 list
+Stack KaatioPlanValidatorStack
+$ AWS_PROFILE=example cdk2 deploy KaatioPlanValidatorStack
+```
