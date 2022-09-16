@@ -271,29 +271,6 @@ def test_models_raises_error_when_reference_is_unknown(
     assert err.value.errors() == response
 
 
-@pytest.mark.parametrize(
-    "xml_element_name",
-    [
-        "xml_element_curve_valid",
-    ],
-)
-def test_model_plan_object_rejects_xml_geometry_types_which_do_not_have_geojson_counterpart(
-    request: FixtureRequest,
-    xml_element_feature_member_plan_object: ET._Element,
-    xml_element_name: str,
-):
-
-    xml_element: ET._Element = request.getfixturevalue(xml_element_name)
-
-    geometry_element: ET._Element = xml_element_feature_member_plan_object.xpath(
-        constants.XPATH_GEOMETRY, **constants.NAMESPACES
-    )[0]
-    geometry_element_child = list(geometry_element)[0]
-    geometry_element.replace(geometry_element_child, xml_element)
-    with pytest.raises(exceptions.ParserException):
-        models.PlanObject.from_orm(xml_element_feature_member_plan_object)
-
-
 def test_model_plan_object_raises_error_when_geometry_is_not_valid(
     xml_element_feature_member_plan_object: ET._Element,
     xml_element_polygon_invalid: ET._Element,

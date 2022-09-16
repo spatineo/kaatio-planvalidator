@@ -54,6 +54,133 @@ def file_xml_valid_example():
 
 
 @pytest.fixture
+def gml_curve_with_arc():
+    return """
+        <gml:Curve srsName="urn:ogc:def:crs:EPSG::4326" xmlns:gml="http://www.opengis.net/gml/3.2">
+          <gml:segments>
+            <gml:Arc numArc="1">
+              <gml:posList>60.2893418 25.430357 60.2894259 25.4304633 60.2894444 25.4303376</gml:posList>
+            </gml:Arc>
+          </gml:segments>
+        </gml:Curve>
+    """
+
+
+@pytest.fixture
+def gml_curve_with_arc_by_center_point():
+    return """
+        <gml:Curve srsName="urn:ogc:def:crs:EPSG::4326" xmlns:gml="http://www.opengis.net/gml/3.2">
+          <gml:segments>
+            <gml:ArcByCenterPoint numArc="1">
+              <gml:posList>60.2893418 25.430357</gml:posList>
+              <gml:radius uom="m">12</gml:radius>
+              <gml:startAngle uom="deg">45</gml:startAngle>
+              <gml:endAngle uom="deg">90</gml:endAngle>
+            </gml:ArcByCenterPoint>
+          </gml:segments>
+        </gml:Curve>
+    """
+
+
+@pytest.fixture
+def gml_curve_with_arc_string():
+    return """
+        <gml:Curve srsName="urn:ogc:def:crs:EPSG::4326" xmlns:gml="http://www.opengis.net/gml/3.2">
+          <gml:segments>
+            <gml:ArcString numArc="2">
+              <gml:posList>60.2893418 25.430357 60.2894259 25.4304633 60.2894444 25.4303376 60.2895416 25.4298993 60.2895686 25.4298493</gml:posList>
+            </gml:ArcString>
+          </gml:segments>
+        </gml:Curve>
+    """
+
+
+@pytest.fixture
+def gml_curve_with_linestring():
+    return """
+        <gml:Curve srsName="urn:ogc:def:crs:EPSG::4326" xmlns:gml="http://www.opengis.net/gml/3.2">
+            <gml:segments>
+                <gml:LineStringSegment>
+                    <gml:posList>60.2893418 25.430357 60.2894259 25.4304633 60.2894444 25.4303376 60.2895416 25.4298993 60.2895686 25.4298493 60.2894865 25.4297044 60.2893418 25.430357</gml:posList>
+                </gml:LineStringSegment>
+            </gml:segments>
+        </gml:Curve>
+        """
+
+
+@pytest.fixture
+def gml_solid_with_polygon():
+    return """
+        <gml:Solid srsName="urn:ogc:def:crs:EPSG::9518" gml:id="AK_SIPOO_5_lainvoimainen_kaava_sipoo_nevasgard.geom.8" srsDimension="3" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr">
+          <gml:exterior>
+            <gml:Shell>
+              <gml:surfaceMember>
+                <!-- bottom -->
+                <gml:Polygon>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>60 25 10 60 24 10 59 24 10 59 25 10 60 25 10</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+              <gml:surfaceMember>
+                <!-- top -->
+                <gml:Polygon>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>60 25 20 60 24 20 59 24 20 59 25 20 60 25 20</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+              <gml:surfaceMember>
+                <!-- side 1 -->
+                <gml:Polygon>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>60 24 20 59 24 20 59 24 10 60 24 10 60 24 20</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+              <gml:surfaceMember>
+                <!-- side 2 -->
+                <gml:Polygon>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>59 24 20 59 25 20 59 25 10 59 24 10 59 24 20</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+              <gml:surfaceMember>
+                <!-- side 3 -->
+                <gml:Polygon>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>60 25 20 59 25 20 59 25 10 60 25 10 60 25 20</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+              <gml:surfaceMember>
+                <!-- side 4 -->
+                <gml:Polygon>
+                  <gml:exterior>
+                    <gml:LinearRing>
+                      <gml:posList>60 24 20 60 25 20 60 25 10 60 24 10 60 24 20</gml:posList>
+                    </gml:LinearRing>
+                  </gml:exterior>
+                </gml:Polygon>
+              </gml:surfaceMember>
+            </gml:Shell>
+          </gml:exterior>
+        </gml:Solid>
+    """
+
+
+@pytest.fixture
 def xml_element_feature_member_pe_plan(xml_valid_1: ET._ElementTree):
     return xml_valid_1.xpath("lud-core:featureMember/splan:ParticipationAndEvaluationPlan", **constants.NAMESPACES)[0]
 
@@ -76,21 +203,6 @@ def xml_element_feature_member_planner(xml_valid_1: ET._ElementTree):
 @pytest.fixture
 def xml_element_feature_member_spatial_plan(xml_valid_1: ET._ElementTree):
     return xml_valid_1.xpath("lud-core:featureMember/splan:SpatialPlan", **constants.NAMESPACES)[0]
-
-
-@pytest.fixture
-def xml_element_curve_valid():
-    return ET.fromstring(
-        """
-        <gml:Curve srsName="urn:ogc:def:crs:EPSG::4326" xmlns:gml="http://www.opengis.net/gml/3.2">
-            <gml:segments>
-                <gml:LineStringSegment>
-                    <gml:posList>60.2893418 25.430357 60.2894259 25.4304633 60.2894444 25.4303376 60.2895416 25.4298993 60.2895686 25.4298493 60.2894865 25.4297044 60.2893418 25.430357</gml:posList>
-                </gml:LineStringSegment>
-            </gml:segments>
-        </gml:Curve>
-        """
-    )
 
 
 @pytest.fixture
