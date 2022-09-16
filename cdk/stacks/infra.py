@@ -26,6 +26,7 @@ class KaatioPlanValidatorStack(Stack):
             directory=str(PROJECT_DIR),
             file="docker/gunicorn/Dockerfile",
             network_mode=aws_ecr_assets.NetworkMode.HOST,
+            platform=aws_ecr_assets.Platform.LINUX_AMD64,
         )
 
         docker_image_asset_nginx = aws_ecr_assets.DockerImageAsset(
@@ -34,6 +35,7 @@ class KaatioPlanValidatorStack(Stack):
             directory=str(PROJECT_DIR),
             file="docker/nginx/Dockerfile",
             network_mode=aws_ecr_assets.NetworkMode.HOST,
+            platform=aws_ecr_assets.Platform.LINUX_AMD64,
         )
 
         vpc = aws_ec2.Vpc.from_lookup(
