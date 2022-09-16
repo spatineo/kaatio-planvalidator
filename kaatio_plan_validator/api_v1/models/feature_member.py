@@ -3,10 +3,9 @@ from datetime import datetime, timezone
 from typing import Any
 
 import lxml.etree as ET
-import pygml
+from osgeo import ogr
 from pydantic import BaseModel, Field, validate_model, validator
 from pydantic.utils import GetterDict
-from shapely.geometry import shape
 
 from .. import constants, exceptions
 
@@ -21,19 +20,22 @@ class FeatureMemberGetterDict(GetterDict):
 
         try:
             if key == "boundary":
-                try:
-                    element = list(self._obj.xpath(constants.XPATH_BOUNDARY, **constants.NAMESPACES)[0])[0]
-                    geometry = pygml.parse(element)
-                    return shape(geometry)
-                except ValueError as err:
-                    raise exceptions.ParserException(
-                        f"Failed to parse {constants.XPATH_BOUNDARY} element! Reason: {err}"
+                element = list(self._obj.xpath(constants.XPATH_BOUNDARY, **constants.NAMESPACES)[0])[0]
+                return ogr.CreateGeometryFromGML(
+                    ET.tostring(
+                        element,
+                        encoding="unicode",
                     )
+                )
             if key == "geometry":
                 try:
                     element = list(self._obj.xpath(constants.XPATH_GEOMETRY, **constants.NAMESPACES)[0])[0]
-                    geometry = pygml.parse(element)
-                    return shape(geometry)
+                    return ogr.CreateGeometryFromGML(
+                        ET.tostring(
+                            element,
+                            encoding="unicode",
+                        )
+                    )
                 except ValueError as err:
                     raise exceptions.ParserException(
                         f"Failed to parse {constants.XPATH_GEOMETRY} element! Reason: {err}"
