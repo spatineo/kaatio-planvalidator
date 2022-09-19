@@ -86,7 +86,7 @@
                 <gml:Polygon>
                   <gml:exterior>
                     <gml:LinearRing>
-                      <gml:posList>60 25 10 60 24 10 59 24 10 59 25 10 60 25 10</gml:posList>
+                      <gml:posList>60 24 10 60 25 10 59 25 10 60 25 10 60 24 10</gml:posList>
                     </gml:LinearRing>
                   </gml:exterior>
                 </gml:Polygon>
@@ -106,7 +106,7 @@
                 <gml:Polygon>
                   <gml:exterior>
                     <gml:LinearRing>
-                      <gml:posList>60 24 20 59 24 20 59 24 10 60 24 10 60 24 20</gml:posList>
+                      <gml:posList>59 24 20 60 24 20 60 24 10 59 24 10 59 24 20</gml:posList>
                     </gml:LinearRing>
                   </gml:exterior>
                 </gml:Polygon>
@@ -116,7 +116,7 @@
                 <gml:Polygon>
                   <gml:exterior>
                     <gml:LinearRing>
-                      <gml:posList>59 24 20 59 25 20 59 25 10 59 24 10 59 24 20</gml:posList>
+                      <gml:posList>59 25 20 59 24 20 59 24 10 59 25 10 59 25 20</gml:posList>
                     </gml:LinearRing>
                   </gml:exterior>
                 </gml:Polygon>
