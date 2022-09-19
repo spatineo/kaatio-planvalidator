@@ -14,7 +14,4 @@ class PlanObject(FeatureMember):
     def geometry_is_valid(cls, geometry: ogr.Geometry | None):
         if geometry:
             assert geometry.IsValid(), "geometry is not valid"
-        else:
-            # OGR failed to read geometry from GML!
-            assert True is False, "geometry type is not supported yet."
         return geometry
