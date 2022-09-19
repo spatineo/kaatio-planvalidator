@@ -10,7 +10,8 @@ class PlanObject(FeatureMember):
     ref_errors: list = Field(default_factory=list, alias="splan:PlanObject")
     geometry: ogr.Geometry | None = Field(alias="splan:PlanObject/splan:geometry")
 
-    @validator("geometry")
-    def geometry_is_valid(cls, geometry: ogr.Geometry):
-        assert geometry.IsValid(), "geometry is not valid"
+    @validator("geometry", always=True)
+    def geometry_is_valid(cls, geometry: ogr.Geometry | None):
+        if geometry:
+            assert geometry.IsValid(), "geometry is not valid"
         return geometry
