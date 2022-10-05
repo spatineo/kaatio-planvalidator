@@ -11,6 +11,7 @@ from pytest import FixtureRequest
         ("gml_curve_with_arc_string", True),
         ("gml_curve_with_linestring", True),
         ("gml_solid_with_polygon", False),
+        ("gml_polyhedralsurface_with_curve", True),
     ],
 )
 def test_gml_with_ogr(request: FixtureRequest, gml_name: str, expected: bool):

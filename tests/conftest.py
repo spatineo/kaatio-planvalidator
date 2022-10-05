@@ -181,6 +181,44 @@ def gml_solid_with_polygon():
 
 
 @pytest.fixture
+def gml_polyhedralsurface_with_curve():
+    return """
+        <gml:PolyhedralSurface srsName="urn:ogc:def:crs:EPSG:3880" gml:id="Kaava.geom.1" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlexr="http://www.opengis.net/gml/3.3/exr">
+          <gml:polygonPatches>
+            <gml:PolygonPatch>
+              <gml:exterior>
+                <gml:Ring>
+                  <gml:curveMember>
+                    <gml:Curve>
+                      <gml:segments>
+                        <gml:LineStringSegment>
+                          <gml:pos>26478290.00000 7028885.00000</gml:pos>
+                          <gml:pos>26478202.50000 7029070.00000</gml:pos>
+                          <gml:pos>26478187.80894 7029242.14612</gml:pos>
+                          <gml:pos>26478222.84164 7029240.15927</gml:pos>
+                        </gml:LineStringSegment>
+                        <gml:Arc>
+                          <gml:pos>26478222.84164 7029240.15927</gml:pos>
+                          <gml:pos>26478218.97206 7029160.01411</gml:pos>
+                          <gml:pos>26478251.90124 7029086.84383</gml:pos>
+                        </gml:Arc>
+                        <gml:LineStringSegment>
+                          <gml:pos>26478251.90124 7029086.84383</gml:pos>
+                          <gml:pos>26478347.21675 7028891.71508</gml:pos>
+                          <gml:pos>26478290.00000 7028885.00000</gml:pos>
+                        </gml:LineStringSegment>
+                      </gml:segments>
+                    </gml:Curve>
+                  </gml:curveMember>
+                </gml:Ring>
+              </gml:exterior>
+            </gml:PolygonPatch>
+          </gml:polygonPatches>
+        </gml:PolyhedralSurface>
+        """
+
+
+@pytest.fixture
 def xml_element_feature_member_pe_plan(xml_valid_1: ET._ElementTree):
     return xml_valid_1.xpath("lud-core:featureMember/splan:ParticipationAndEvaluationPlan", **constants.NAMESPACES)[0]
 
