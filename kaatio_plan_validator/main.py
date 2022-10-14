@@ -3,9 +3,9 @@ from fastapi import FastAPI
 from .api_v1 import routes
 
 description = """
-Tässä kuvattu rajapinta simuloi [KAATIO-projektissa](https://spatineo.github.io/ry-tietomallit/kehitys/kaatio/) määritellyn XML-muotoisen kaavatiedon tallennusrajapintaa. Rajapinta on laadittu KAATIO-hankkeen aikaista ohjelmistojen testausta varten, eikä se ole tarkoitettu operatiiviseen käyttöön.
+Tässä kuvattu rajapinta simuloi [KAATIO-projektissa](https://tietomallit.ymparisto.fi/kehitys/kaatio/) määritellyn XML-muotoisen kaavatiedon tallennusrajapintaa. Rajapinta on laadittu KAATIO-hankkeen aikaista ohjelmistojen testausta varten, eikä se ole tarkoitettu operatiiviseen käyttöön.
 
-Rajapinta ottaa vastaan XML-muotoisen kaavan paketoituna `LandUseFeatureCollection`-juurielementin sisään, kuten kuvattu [Esimerkit](https://spatineo.github.io/ry-tietomallit/kehitys/kaatio/xml/esimerkit/)-sivulla. Lähetettäviä tiedostoja ei tallenneta mihinkään.
+Rajapinta ottaa vastaan XML-muotoisen kaavan paketoituna `LandUseFeatureCollection`-juurielementin sisään, kuten kuvattu [Esimerkit](https://tietomallit.ymparisto.fi/kehitys/kaatio/xml/esimerkit/)-sivulla. Lähetettäviä tiedostoja ei tallenneta mihinkään.
 """
 
 app = FastAPI(
