@@ -14,7 +14,7 @@ lxml = "^4.9.1"
 python-multipart = "^0.0.5"
 uvicorn = {extras = ["standard"], version = "^0.18.3"}
 xmlschema = "^2.0.3"
-GDAL = "3.5.2"
+GDAL = "3.2.2.1"
 
 [tool.poetry.dev-dependencies]
 aws-cdk-lib = "^2.46.0"
