@@ -53,7 +53,7 @@
       <!--  Kaikki feature-assosiaatiot viittauksina, joko 
                 * paikallisiin GML-ID-kenttiin (#id, tallennuspalveluun lähetettäessä) tai
                 * kokonaisina, pysyvinä HTTP URI -tunnuksina (tallenuspalvelusta palautettaessa)  -->
-      <splan:generalOrder xlink:href="#KAAVA-kaava-sipoo-nevasgard-MAARAYS-1"/>
+      <!-- splan:generalOrder xlink:href="#KAAVA-kaava-sipoo-nevasgard-MAARAYS-1"/-->
       <splan:planner xlink:href="#planner-mka"/>
       <splan:participationAndEvalutionPlan xlink:href="#KAAVA-kaava-sipoo-nevasgard-OAS"/>
     </splan:SpatialPlan>
@@ -69,6 +69,25 @@
             </gml:LinearRing>
           </gml:exterior>
         </gml:Polygon>
+      </splan:geometry>
+      <splan:spatialPlan xlink:href="#KAAVA-kaava-sipoo-nevasgard"/>
+      <splan:bindingnessOfLocation xlink:href="http://uri.suomi.fi/codelist/rytj/RY_Sitovuuslaji/code/02" xlink:title="Ohjeellinen"/>
+    </splan:PlanObject>
+  </lud-core:featureMember>
+  <lud-core:featureMember>
+    <splan:PlanObject gml:id="KAAVAKOHDE-AJO-13">
+      <lud-core:producerSpecificIdentifier>AK_SIPOO_5_lainvoimainen_kaava_sipoo_nevasgard.7</lud-core:producerSpecificIdentifier>
+      <splan:geometry>
+        <gml:Curve>
+          <gml:segments>
+            <gml:ArcByCenterPoint numArc="1">
+              <gml:posList>60.2893418 25.430357</gml:posList>
+              <gml:radius uom="m">12</gml:radius>
+              <gml:startAngle uom="deg">45</gml:startAngle>
+              <gml:endAngle uom="deg">90</gml:endAngle>
+            </gml:ArcByCenterPoint>
+          </gml:segments>
+        </gml:Curve>
       </splan:geometry>
       <splan:spatialPlan xlink:href="#KAAVA-kaava-sipoo-nevasgard"/>
       <splan:bindingnessOfLocation xlink:href="http://uri.suomi.fi/codelist/rytj/RY_Sitovuuslaji/code/02" xlink:title="Ohjeellinen"/>

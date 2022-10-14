@@ -1,0 +1,32 @@
+#------------------------------------------------------------------------------
+# Compose file for running app locally
+#------------------------------------------------------------------------------
+version: "3.9"
+#------------------------------------------------------------------------------
+# Services to run
+#------------------------------------------------------------------------------
+services:
+  #----------------------------------------------------------------------------
+  # FastAPI
+  #----------------------------------------------------------------------------
+  gunicorn:
+    build:
+      context: .
+      dockerfile: docker/gunicorn/Dockerfile
+    image: kaatio_plan_validator_gunicorn:latest
+    ports:
+      - 8000:8000
+  #----------------------------------------------------------------------------
+  # Nginx
+  #----------------------------------------------------------------------------
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    depends_on:
+      - gunicorn
+    environment:
+      - GUNICORN_HOST=${GUNICORN_HOST:-gunicorn}
+    image: kaatio_plan_validator_nginx:latest
+    ports:
+      - 80:80

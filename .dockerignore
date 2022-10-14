@@ -1,0 +1,10 @@
+.devcontainer
+.git
+.pytest_cache
+.venv
+.vscode
+cdk.out
+dist
+docs
+__pycache__
+
