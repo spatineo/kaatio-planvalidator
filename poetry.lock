@@ -380,12 +380,12 @@ python-versions = ">=3.7"
 flake8 = ">=3.6"
 
 [[package]]
-name = "GDAL"
-version = "3.2.2.1"
+name = "gdal"
+version = "3.5.2"
 description = "GDAL: Geospatial Data Abstraction Library"
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.6.0"
 
 [package.extras]
 numpy = ["numpy (>1.0.0)"]
@@ -876,7 +876,7 @@ docs = ["Sphinx", "elementpath (>=3.0.0,<4.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10.6"
-content-hash = "32999e60a15794420505a1d8e121a37463af5befb77e355e795ed66f5fcf0b1c"
+content-hash = "33cbb5558b3a44cdeca3005d91460ba75f135fbde883c70d14b1afe445eb1e07"
 
 [metadata.files]
 anyio = [
@@ -1070,8 +1070,8 @@ flake8-use-pathlib = [
     {file = "flake8-use-pathlib-0.3.0.tar.gz", hash = "sha256:0ef19f255a51601bcf04ff54f25ef8a466dff68210cd95b4f1db36a78ace5223"},
     {file = "flake8_use_pathlib-0.3.0-py3-none-any.whl", hash = "sha256:c7b6d71575b575f7d70ebf3f1d7f2dd6685e401d3280208f1db9dbb6bfa32608"},
 ]
-GDAL = [
-    {file = "GDAL-3.2.2.1.tar.gz", hash = "sha256:d2d75bfe832e80890681a1a906f6e73be00cf076adc4f1e7ded69f7610f31e08"},
+gdal = [
+    {file = "GDAL-3.5.2.tar.gz", hash = "sha256:5168c1f47ce55d7f1a8e78fe679d6b3feed7b4b0eb778dde25b83bea95cbbd15"},
 ]
 gunicorn = [
     {file = "gunicorn-20.1.0-py3-none-any.whl", hash = "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e"},
