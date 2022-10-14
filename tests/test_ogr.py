@@ -23,7 +23,7 @@ def test_gml_with_ogr(request: FixtureRequest, gml_name: str, expected: bool):
     if expected:
         try:
             assert geometry.IsValid()
-        except Exception:
+        except AssertionError:
             if gdal_err.err_msg != "SFCGAL support not enabled.":
                 raise
 

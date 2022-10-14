@@ -17,7 +17,7 @@ class PlanObject(FeatureMember):
         if geometry:
             try:
                 assert geometry.IsValid(), "geometry is not valid"
-            except Exception:
+            except AssertionError:
                 if gdal_err.err_msg != "SFCGAL support not enabled.":
                     raise
 
