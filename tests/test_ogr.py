@@ -2,6 +2,8 @@ import pytest
 from osgeo import ogr
 from pytest import FixtureRequest
 
+from kaatio_plan_validator.api_v1.ogc import gdal_err
+
 
 @pytest.mark.parametrize(
     "gml_name,expected",
@@ -19,6 +21,11 @@ def test_gml_with_ogr(request: FixtureRequest, gml_name: str, expected: bool):
 
     geometry: ogr.Geometry = ogr.CreateGeometryFromGML(gml)
     if expected:
-        assert geometry.IsValid()
+        try:
+            assert geometry.IsValid()
+        except Exception:
+            if gdal_err.err_msg != "SFCGAL support not enabled.":
+                raise
+
     else:
         assert not geometry

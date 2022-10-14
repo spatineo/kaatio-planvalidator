@@ -1,6 +1,8 @@
 from osgeo import ogr
 from pydantic import Field, validator
 
+from kaatio_plan_validator.api_v1.ogc import gdal_err
+
 from .feature_member import FeatureMember
 
 
@@ -13,5 +15,10 @@ class PlanObject(FeatureMember):
     @validator("geometry", always=True)
     def geometry_is_valid(cls, geometry: ogr.Geometry | None):
         if geometry:
-            assert geometry.IsValid(), "geometry is not valid"
+            try:
+                assert geometry.IsValid(), "geometry is not valid"
+            except Exception:
+                if gdal_err.err_msg != "SFCGAL support not enabled.":
+                    raise
+
         return geometry
