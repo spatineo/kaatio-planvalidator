@@ -39,7 +39,7 @@ tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy 
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.46.0"
+version = "2.47.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 category = "dev"
 optional = false
@@ -876,7 +876,7 @@ docs = ["Sphinx", "elementpath (>=3.0.0,<4.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10.6"
-content-hash = "0607fb937f09286b1e0e3a84aa9aa970629bdd23f2f516b3581c9c7187a806a7"
+content-hash = "eb823d40f6149cf3721d4bb49226d733c37328d4b21c205b28c562cf6efc6c40"
 
 [metadata.files]
 anyio = [
@@ -892,8 +892,8 @@ attrs = [
     {file = "attrs-22.1.0.tar.gz", hash = "sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6"},
 ]
 aws-cdk-lib = [
-    {file = "aws-cdk-lib-2.46.0.tar.gz", hash = "sha256:ec2c6055d64a0574533fcbcdc2006ee32a23d38a5755bc4b99fd1796124b1de5"},
-    {file = "aws_cdk_lib-2.46.0-py3-none-any.whl", hash = "sha256:28d76161acf834d97ab5f9a6b2003bb81345e14197474d706de7ee30847b87bd"},
+    {file = "aws-cdk-lib-2.47.0.tar.gz", hash = "sha256:c9b1626c7afc42ceaee547558efe88439dd1447b18c7837db153e03fb8186167"},
+    {file = "aws_cdk_lib-2.47.0-py3-none-any.whl", hash = "sha256:1f1a2e2309625d304a14b388ee0fedb0dffc15eef14dac65e33b10f6c73bf75c"},
 ]
 black = [
     {file = "black-22.10.0-1fixedarch-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:5cc42ca67989e9c3cf859e84c2bf014f6633db63d1cbdf8fdb666dcd9e77e3fa"},
