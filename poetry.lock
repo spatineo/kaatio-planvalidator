@@ -198,7 +198,7 @@ python-versions = "*"
 
 [[package]]
 name = "exceptiongroup"
-version = "1.0.0rc9"
+version = "1.0.1"
 description = "Backport of PEP 654 (exception groups)"
 category = "dev"
 optional = false
@@ -868,7 +868,7 @@ docs = ["Sphinx", "elementpath (>=3.0.0,<4.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10.6"
-content-hash = "c3d9c8960c0a52a599fb3f9e75198014b9c61da296d4bb5b404ec3cc9b633da3"
+content-hash = "cb980d116e6ef678d3e3e61e0201cea06bba2491e3e2f7734d494900c4a2e08c"
 
 [metadata.files]
 anyio = [
@@ -1003,8 +1003,8 @@ eradicate = [
     {file = "eradicate-2.1.0.tar.gz", hash = "sha256:aac7384ab25b1bf21c4c012de9b4bf8398945a14c98c911545b2ea50ab558014"},
 ]
 exceptiongroup = [
-    {file = "exceptiongroup-1.0.0rc9-py3-none-any.whl", hash = "sha256:2e3c3fc1538a094aab74fad52d6c33fc94de3dfee3ee01f187c0e0c72aec5337"},
-    {file = "exceptiongroup-1.0.0rc9.tar.gz", hash = "sha256:9086a4a21ef9b31c72181c77c040a074ba0889ee56a7b289ff0afb0d97655f96"},
+    {file = "exceptiongroup-1.0.1-py3-none-any.whl", hash = "sha256:4d6c0aa6dd825810941c792f53d7b8d71da26f5e5f84f20f9508e8f2d33b140a"},
+    {file = "exceptiongroup-1.0.1.tar.gz", hash = "sha256:73866f7f842ede6cb1daa42c4af078e2035e5f7607f0e2c762cc51bb31bbe7b2"},
 ]
 fastapi = [
     {file = "fastapi-0.85.1-py3-none-any.whl", hash = "sha256:de3166b6b1163dc22da4dc4ebdc3192fcbac7700dd1870a1afa44de636a636b5"},
