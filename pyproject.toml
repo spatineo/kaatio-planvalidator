@@ -17,7 +17,7 @@ xmlschema = "^2.0.3"
 GDAL = "3.2.2.1"
 
 [tool.poetry.dev-dependencies]
-aws-cdk-lib = "^2.50.0"
+aws-cdk-lib = "^2.51.1"
 black = "^22.6.0"
 constructs = ">=10.0.0, <11.0.0"
 exceptiongroup = "^1.0.1"
