@@ -78,7 +78,7 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.52.0"
+version = "2.53.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 category = "dev"
 optional = false
@@ -106,6 +106,7 @@ click = ">=8.0.0"
 mypy-extensions = ">=0.4.3"
 pathspec = ">=0.9.0"
 platformdirs = ">=2"
+tomli = {version = ">=1.1.0", markers = "python_full_version < \"3.11.0a7\""}
 
 [package.extras]
 colorama = ["colorama (>=0.4.3)"]
@@ -123,6 +124,7 @@ python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
 attrs = ">=20"
+exceptiongroup = {version = "*", markers = "python_version <= \"3.10\""}
 
 [[package]]
 name = "certifi"
@@ -182,6 +184,9 @@ description = "Code coverage measurement for Python"
 category = "dev"
 optional = false
 python-versions = ">=3.7"
+
+[package.dependencies]
+tomli = {version = "*", optional = true, markers = "python_full_version <= \"3.11.0a6\" and extra == \"toml\""}
 
 [package.extras]
 toml = ["tomli"]
@@ -660,9 +665,11 @@ python-versions = ">=3.7"
 [package.dependencies]
 attrs = ">=19.2.0"
 colorama = {version = "*", markers = "sys_platform == \"win32\""}
+exceptiongroup = {version = ">=1.0.0rc8", markers = "python_version < \"3.11\""}
 iniconfig = "*"
 packaging = "*"
 pluggy = ">=0.12,<2.0"
+tomli = {version = ">=1.0.0", markers = "python_version < \"3.11\""}
 
 [package.extras]
 testing = ["argcomplete", "hypothesis (>=3.56)", "mock", "nose", "pygments (>=2.7.2)", "requests", "xmlschema"]
@@ -905,8 +912,8 @@ docs = ["Sphinx", "elementpath (>=3.0.0,<4.0.0)", "jinja2", "sphinx-rtd-theme"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = "~3.11"
-content-hash = "02f6acc78117ca15d549d446cebdfcfde5da444a79f42949af75db320c1c5d3c"
+python-versions = "^3.10.6"
+content-hash = "350a1a4067ca8b72027fef27f15c28bdbab46493e8fb8b93df7ab56d791c477f"
 
 [metadata.files]
 anyio = [
@@ -934,8 +941,8 @@ aws-cdk-asset-node-proxy-agent-v5 = [
     {file = "aws_cdk.asset_node_proxy_agent_v5-2.0.27-py3-none-any.whl", hash = "sha256:fbbba3369a40d54dff5c368c6ef72232f627f13b539bf31ac1dab254f91e3418"},
 ]
 aws-cdk-lib = [
-    {file = "aws-cdk-lib-2.52.0.tar.gz", hash = "sha256:0771636d2b2176beaa3cea4bdeb9e74656bb44d8e1e750108ca3fbdf7bfc8258"},
-    {file = "aws_cdk_lib-2.52.0-py3-none-any.whl", hash = "sha256:5143cce1a8199efe0ed2d159fd0bdc28a924896a82e5a053170c6acc8c796f39"},
+    {file = "aws-cdk-lib-2.53.0.tar.gz", hash = "sha256:6c4df94b74176ffdb7072d2be383608567816c918978f006f984299c04beb141"},
+    {file = "aws_cdk_lib-2.53.0-py3-none-any.whl", hash = "sha256:7fafb2ef55a66467e77dd44f03d533e8abde3729b247916dfdc5cf4ce1fe516d"},
 ]
 black = [
     {file = "black-22.10.0-1fixedarch-cp310-cp310-macosx_11_0_x86_64.whl", hash = "sha256:5cc42ca67989e9c3cf859e84c2bf014f6633db63d1cbdf8fdb666dcd9e77e3fa"},
