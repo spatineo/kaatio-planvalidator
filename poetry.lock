@@ -39,14 +39,14 @@ tests-no-zope = ["cloudpickle", "coverage[toml] (>=5.0.2)", "hypothesis", "mypy 
 
 [[package]]
 name = "aws-cdk-asset-awscli-v1"
-version = "2.2.21"
+version = "2.2.34"
 description = "A library that contains the AWS CLI for use in Lambda Layers"
 category = "dev"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-jsii = ">=1.71.0,<2.0.0"
+jsii = ">=1.72.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -65,31 +65,31 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-asset-node-proxy-agent-v5"
-version = "2.0.27"
+version = "2.0.38"
 description = "@aws-cdk/asset-node-proxy-agent-v5"
 category = "dev"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-jsii = ">=1.71.0,<2.0.0"
+jsii = ">=1.72.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.52.0"
+version = "2.55.1"
 description = "Version 2 of the AWS Cloud Development Kit library"
 category = "dev"
 optional = false
 python-versions = "~=3.7"
 
 [package.dependencies]
-"aws-cdk.asset-awscli-v1" = ">=2.2.9,<3.0.0"
+"aws-cdk.asset-awscli-v1" = ">=2.2.30,<3.0.0"
 "aws-cdk.asset-kubectl-v20" = ">=2.1.1,<3.0.0"
-"aws-cdk.asset-node-proxy-agent-v5" = ">=2.0.15,<3.0.0"
+"aws-cdk.asset-node-proxy-agent-v5" = ">=2.0.38,<3.0.0"
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.71.0,<2.0.0"
+jsii = ">=1.72.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -913,7 +913,7 @@ docs = ["Sphinx", "elementpath (>=3.0.0,<4.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10.6"
-content-hash = "fb8857212aeab301df26048c8317106c684dfd0a4082313c79dd208dcd7c7796"
+content-hash = "bbab1c85703470202e5e9832b0756e1d8bfc0173686be919fd060599a3e3d5dc"
 
 [metadata.files]
 anyio = [
@@ -929,20 +929,20 @@ attrs = [
     {file = "attrs-22.1.0.tar.gz", hash = "sha256:29adc2665447e5191d0e7c568fde78b21f9672d344281d0c6e1ab085429b22b6"},
 ]
 aws-cdk-asset-awscli-v1 = [
-    {file = "aws-cdk.asset-awscli-v1-2.2.21.tar.gz", hash = "sha256:9d2b35dd7add616d1bbab6f88b5880589018366e9ef29aeb92a094cb8a9c76a3"},
-    {file = "aws_cdk.asset_awscli_v1-2.2.21-py3-none-any.whl", hash = "sha256:98687add5ffde5229b75856f4ab35cf0423d537f8b2c0e52dddf1857ccb75b7a"},
+    {file = "aws-cdk.asset-awscli-v1-2.2.34.tar.gz", hash = "sha256:d2c284478259f47eae40722dc02d2de4fb5a7e17fc7ebb32467815895f24be5c"},
+    {file = "aws_cdk.asset_awscli_v1-2.2.34-py3-none-any.whl", hash = "sha256:ed0ca553dd1bb6be86c1e59c96527026d4f0beddc11ff1858724ed1777962760"},
 ]
 aws-cdk-asset-kubectl-v20 = [
     {file = "aws-cdk.asset-kubectl-v20-2.1.1.tar.gz", hash = "sha256:9834cdb150c5590aea4e5eba6de2a89b4c60617451181c524810c5a75154565c"},
     {file = "aws_cdk.asset_kubectl_v20-2.1.1-py3-none-any.whl", hash = "sha256:a2fad1a5a35a94a465efe60859f91e45dacc33261fb9bbf1cf9bbc6e2f70e9d6"},
 ]
 aws-cdk-asset-node-proxy-agent-v5 = [
-    {file = "aws-cdk.asset-node-proxy-agent-v5-2.0.27.tar.gz", hash = "sha256:71c31bc6d1a90b08194d6e1e01d712f1da85142a78f395bfd636bd18e00418b8"},
-    {file = "aws_cdk.asset_node_proxy_agent_v5-2.0.27-py3-none-any.whl", hash = "sha256:fbbba3369a40d54dff5c368c6ef72232f627f13b539bf31ac1dab254f91e3418"},
+    {file = "aws-cdk.asset-node-proxy-agent-v5-2.0.38.tar.gz", hash = "sha256:eb80e0098899bd29e4f0938c68802cc022a8e39af8c05de4053f9a209e63bb7c"},
+    {file = "aws_cdk.asset_node_proxy_agent_v5-2.0.38-py3-none-any.whl", hash = "sha256:0add1debe24e566b8d2cf713ca85eb5e82c42de00f737dfbf02e18e22220a41b"},
 ]
 aws-cdk-lib = [
-    {file = "aws-cdk-lib-2.52.0.tar.gz", hash = "sha256:0771636d2b2176beaa3cea4bdeb9e74656bb44d8e1e750108ca3fbdf7bfc8258"},
-    {file = "aws_cdk_lib-2.52.0-py3-none-any.whl", hash = "sha256:5143cce1a8199efe0ed2d159fd0bdc28a924896a82e5a053170c6acc8c796f39"},
+    {file = "aws-cdk-lib-2.55.1.tar.gz", hash = "sha256:b9a4d7696af52bd42209c16fe94b2721cbb339fae36de56a035d884178d59ce7"},
+    {file = "aws_cdk_lib-2.55.1-py3-none-any.whl", hash = "sha256:93c06ba840e580ff07ce9c15534f8161946b0cd90442f867c8bf0ea223710458"},
 ]
 black = [
     {file = "black-22.12.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9eedd20838bd5d75b80c9f5487dbcb06836a43833a37846cf1d8c1cc01cef59d"},
