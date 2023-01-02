@@ -78,7 +78,7 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.55.1"
+version = "2.58.1"
 description = "Version 2 of the AWS Cloud Development Kit library"
 category = "dev"
 optional = false
@@ -913,7 +913,7 @@ docs = ["Sphinx", "elementpath (>=3.0.0,<4.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10.6"
-content-hash = "16bce10e693bbd7db64bfce1c28d33ba9ea8efd00505c5f7ea96577fd232fdcc"
+content-hash = "2783f14175917ab93e40b81725a3dfa9c19f4d8b518a232d0aed17f6aa25527c"
 
 [metadata.files]
 anyio = [
@@ -941,8 +941,8 @@ aws-cdk-asset-node-proxy-agent-v5 = [
     {file = "aws_cdk.asset_node_proxy_agent_v5-2.0.38-py3-none-any.whl", hash = "sha256:0add1debe24e566b8d2cf713ca85eb5e82c42de00f737dfbf02e18e22220a41b"},
 ]
 aws-cdk-lib = [
-    {file = "aws-cdk-lib-2.55.1.tar.gz", hash = "sha256:b9a4d7696af52bd42209c16fe94b2721cbb339fae36de56a035d884178d59ce7"},
-    {file = "aws_cdk_lib-2.55.1-py3-none-any.whl", hash = "sha256:93c06ba840e580ff07ce9c15534f8161946b0cd90442f867c8bf0ea223710458"},
+    {file = "aws-cdk-lib-2.58.1.tar.gz", hash = "sha256:457e366a7d34bb391be19f2b51ee2cc1b16fd6f0cd5fa23aa0fbbd2c80a70eca"},
+    {file = "aws_cdk_lib-2.58.1-py3-none-any.whl", hash = "sha256:e53ae6590ca1f36f16780021ef260345a6e251b4195b0389d9d5f693b2fa187a"},
 ]
 black = [
     {file = "black-22.12.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:9eedd20838bd5d75b80c9f5487dbcb06836a43833a37846cf1d8c1cc01cef59d"},
