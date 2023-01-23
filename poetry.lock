@@ -348,14 +348,14 @@ dev = ["Sphinx", "coverage", "flake8", "lxml", "lxml-stubs", "memory-profiler", 
 
 [[package]]
 name = "email-validator"
-version = "1.3.0"
+version = "1.3.1"
 description = "A robust email address syntax and deliverability validation library."
 category = "main"
 optional = false
-python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
+python-versions = ">=3.5"
 files = [
-    {file = "email_validator-1.3.0-py2.py3-none-any.whl", hash = "sha256:816073f2a7cffef786b29928f58ec16cdac42710a53bb18aa94317e3e145ec5c"},
-    {file = "email_validator-1.3.0.tar.gz", hash = "sha256:553a66f8be2ec2dea641ae1d3f29017ab89e9d603d4a25cdaac39eefa283d769"},
+    {file = "email_validator-1.3.1-py2.py3-none-any.whl", hash = "sha256:49a72f5fa6ed26be1c964f0567d931d10bf3fdeeacdf97bc26ef1cd2a44e0bda"},
+    {file = "email_validator-1.3.1.tar.gz", hash = "sha256:d178c5c6fa6c6824e9b04f199cf23e79ac15756786573c190d2ad13089411ad2"},
 ]
 
 [package.dependencies]
@@ -1572,4 +1572,4 @@ docs = ["Sphinx", "elementpath (>=3.0.0,<4.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "4a7a0b72b676910e46a8ef84a78a14c5b2f9fe642b9b894a8140dc1701617694"
+content-hash = "7f74cfb9a6237133fab9568a8e5ad2ea7a55f66ef780c6c79493f1e57ef8e76f"
