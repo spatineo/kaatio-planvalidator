@@ -230,18 +230,18 @@ files = [
 
 [[package]]
 name = "constructs"
-version = "10.1.228"
+version = "10.1.235"
 description = "A programming model for software-defined state"
 category = "dev"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "constructs-10.1.228-py3-none-any.whl", hash = "sha256:1cd0a442b21cc077d9d09766122e5e2d3f76d098903a692b4b2b33b01d279d0f"},
-    {file = "constructs-10.1.228.tar.gz", hash = "sha256:67ac644719eda6ed8a4076695c45963fb4dbbfab539ac56fb97a653dc5a7b7a5"},
+    {file = "constructs-10.1.235-py3-none-any.whl", hash = "sha256:7e7d56dbb75cb51b859e2e7418e4adc71da2669df53f95cd60cff4e728375563"},
+    {file = "constructs-10.1.235.tar.gz", hash = "sha256:9f64f57871743722f26dad556fdc8f196d26fb5b07f36b0e4a1f4e4bf73fdcf8"},
 ]
 
 [package.dependencies]
-jsii = ">=1.73.0,<2.0.0"
+jsii = ">=1.74.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -765,14 +765,14 @@ requirements-deprecated-finder = ["pip-api", "pipreqs"]
 
 [[package]]
 name = "jsii"
-version = "1.73.0"
+version = "1.74.0"
 description = "Python client for jsii runtime"
 category = "dev"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "jsii-1.73.0-py3-none-any.whl", hash = "sha256:13e8496c3afee70d85401ad1eef2ddedbdb88e7e7abb3e68302dd6e61527191e"},
-    {file = "jsii-1.73.0.tar.gz", hash = "sha256:be6458236e787be0b02c2fe869b6f4ed906398b6cc537190d61a60d2b5c9dfbb"},
+    {file = "jsii-1.74.0-py3-none-any.whl", hash = "sha256:ee76781fe66106c367fbb3bb383db4f5e9b8ff3d3c4c0f34624c050211f040be"},
+    {file = "jsii-1.74.0.tar.gz", hash = "sha256:575131396ad34f8f6e9f2604953ecbf4f3368625656a828b13089e4abb81b443"},
 ]
 
 [package.dependencies]
