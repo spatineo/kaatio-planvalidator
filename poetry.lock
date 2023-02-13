@@ -347,18 +347,18 @@ wmi = ["wmi (>=1.5.1,<2.0.0)"]
 
 [[package]]
 name = "elementpath"
-version = "3.0.2"
-description = "XPath 1.0/2.0/3.0 parsers and selectors for ElementTree and lxml"
+version = "4.0.1"
+description = "XPath 1.0/2.0/3.0/3.1 parsers and selectors for ElementTree and lxml"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "elementpath-3.0.2-py3-none-any.whl", hash = "sha256:6122419481a4c73101918714274b2cec907feecd04a44b623b4bae4292853328"},
-    {file = "elementpath-3.0.2.tar.gz", hash = "sha256:cca18742dc0f354f79874c41a906e6ce4cc15230b7858d22a861e1ec5946940f"},
+    {file = "elementpath-4.0.1-py3-none-any.whl", hash = "sha256:9eb7bf5e70bb3624b3f85c93a98b01b6fa9b01e0f2181f9cf9a2deede0f345e5"},
+    {file = "elementpath-4.0.1.tar.gz", hash = "sha256:1162e4c8e5501bd36291b668f4449b8125fea5ef64a26da8d71da31126725aa5"},
 ]
 
 [package.extras]
-dev = ["Sphinx", "coverage", "flake8", "lxml", "lxml-stubs", "memory-profiler", "memray", "mypy (==0.971)", "tox", "xmlschema (>=2.0.0)"]
+dev = ["Sphinx", "coverage", "flake8", "lxml", "lxml-stubs", "memory-profiler", "memray", "mypy", "tox", "xmlschema (>=2.0.0)"]
 
 [[package]]
 name = "email-validator"
@@ -1547,25 +1547,25 @@ files = [
 
 [[package]]
 name = "xmlschema"
-version = "2.1.1"
+version = "2.2.1"
 description = "An XML Schema validator and decoder"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "xmlschema-2.1.1-py3-none-any.whl", hash = "sha256:5717a8a239637a9ad7d7563ce676dddf0a8989644c833f96bfc6d157c3cb3750"},
-    {file = "xmlschema-2.1.1.tar.gz", hash = "sha256:5ca34ff15dd3276cfb2e3e7b4c8dde4b7d4d27080f333a93b6c3f817e90abddf"},
+    {file = "xmlschema-2.2.1-py3-none-any.whl", hash = "sha256:def8aea208d4a00829beca93d3c8bdec7f28d375ea0cc3b173d8417f55c9cf56"},
+    {file = "xmlschema-2.2.1.tar.gz", hash = "sha256:035939104bacd0ccefcd591220cce90d160d71f17189ee332a011c3fd05c086d"},
 ]
 
 [package.dependencies]
-elementpath = ">=3.0.0,<4.0.0"
+elementpath = ">=4.0.0,<5.0.0"
 
 [package.extras]
-codegen = ["elementpath (>=3.0.0,<4.0.0)", "jinja2"]
-dev = ["Sphinx", "coverage", "elementpath (>=3.0.0,<4.0.0)", "flake8", "jinja2", "lxml", "lxml-stubs", "memory-profiler", "mypy", "sphinx-rtd-theme", "tox"]
-docs = ["Sphinx", "elementpath (>=3.0.0,<4.0.0)", "jinja2", "sphinx-rtd-theme"]
+codegen = ["elementpath (>=4.0.0,<5.0.0)", "jinja2"]
+dev = ["Sphinx", "coverage", "elementpath (>=4.0.0,<5.0.0)", "flake8", "jinja2", "lxml", "lxml-stubs", "memory-profiler", "mypy", "sphinx-rtd-theme", "tox"]
+docs = ["Sphinx", "elementpath (>=4.0.0,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "bf979c6a9b5932f62dd17027578af5ce932cc8c8d576a4c61604c1bec872ae6b"
+content-hash = "3cadb529b89dc4eff577ffbf86da12a154d63611bea6fbeb32d7567316e1cb6b"
