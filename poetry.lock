@@ -1564,14 +1564,14 @@ files = [
 
 [[package]]
 name = "xmlschema"
-version = "2.2.2"
+version = "2.2.3"
 description = "An XML Schema validator and decoder"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "xmlschema-2.2.2-py3-none-any.whl", hash = "sha256:557f3632b54b6ff10576736bba62e43db84eb60f6465a83818576cd9ffcc1799"},
-    {file = "xmlschema-2.2.2.tar.gz", hash = "sha256:0caa96668807b4b51c42a0fe2b6610752bc59f069615df3e34dcfffb962973fd"},
+    {file = "xmlschema-2.2.3-py3-none-any.whl", hash = "sha256:7d971045eeeb8de183b56bc7530eb8f3d8276072d08017a962c2c34e93bfdd26"},
+    {file = "xmlschema-2.2.3.tar.gz", hash = "sha256:d21ba86af4432720231fb4b40f1205fa75fd718d6856ec3b8118984de31c225b"},
 ]
 
 [package.dependencies]
@@ -1585,4 +1585,4 @@ docs = ["Sphinx", "elementpath (>=4.0.0,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "5e2f7de77534004746012d231edc1453c4e0eeb8d6c9fe2eecc7f1b014044f2b"
+content-hash = "660b36986484313aafe05719f339ae0115634690938bd5a31bc107fee86d66f4"
