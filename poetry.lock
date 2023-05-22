@@ -347,14 +347,14 @@ wmi = ["wmi (>=1.5.1,<2.0.0)"]
 
 [[package]]
 name = "elementpath"
-version = "4.0.1"
+version = "4.1.2"
 description = "XPath 1.0/2.0/3.0/3.1 parsers and selectors for ElementTree and lxml"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "elementpath-4.0.1-py3-none-any.whl", hash = "sha256:9eb7bf5e70bb3624b3f85c93a98b01b6fa9b01e0f2181f9cf9a2deede0f345e5"},
-    {file = "elementpath-4.0.1.tar.gz", hash = "sha256:1162e4c8e5501bd36291b668f4449b8125fea5ef64a26da8d71da31126725aa5"},
+    {file = "elementpath-4.1.2-py3-none-any.whl", hash = "sha256:e8a6c5685e1843c620f426c85ad21ff25cfc7554790116b1046adae7dc252458"},
+    {file = "elementpath-4.1.2.tar.gz", hash = "sha256:0bd0ef5bad559b677ba499e9c7342ca1f2ae2bace90808ee52528ec8d9f6e12b"},
 ]
 
 [package.extras]
@@ -1564,25 +1564,25 @@ files = [
 
 [[package]]
 name = "xmlschema"
-version = "2.2.3"
+version = "2.3.0"
 description = "An XML Schema validator and decoder"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "xmlschema-2.2.3-py3-none-any.whl", hash = "sha256:7d971045eeeb8de183b56bc7530eb8f3d8276072d08017a962c2c34e93bfdd26"},
-    {file = "xmlschema-2.2.3.tar.gz", hash = "sha256:d21ba86af4432720231fb4b40f1205fa75fd718d6856ec3b8118984de31c225b"},
+    {file = "xmlschema-2.3.0-py3-none-any.whl", hash = "sha256:e4c275c8a9ad9c5d4e92f0bac2b68103b688a0df1fb72c6feabaa5f5a2994836"},
+    {file = "xmlschema-2.3.0.tar.gz", hash = "sha256:c2d583f7d07c6bac157d075889d15c128f34afdc79e4f70b4fb3c6adedc59bfe"},
 ]
 
 [package.dependencies]
-elementpath = ">=4.0.0,<5.0.0"
+elementpath = ">=4.1.2,<5.0.0"
 
 [package.extras]
-codegen = ["elementpath (>=4.0.0,<5.0.0)", "jinja2"]
-dev = ["Sphinx", "coverage", "elementpath (>=4.0.0,<5.0.0)", "flake8", "jinja2", "lxml", "lxml-stubs", "memory-profiler", "mypy", "sphinx-rtd-theme", "tox"]
-docs = ["Sphinx", "elementpath (>=4.0.0,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
+codegen = ["elementpath (>=4.1.2,<5.0.0)", "jinja2"]
+dev = ["Sphinx", "coverage", "elementpath (>=4.1.2,<5.0.0)", "flake8", "jinja2", "lxml", "lxml-stubs", "memory-profiler", "mypy", "sphinx-rtd-theme", "tox"]
+docs = ["Sphinx", "elementpath (>=4.1.2,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "f8b64c4b9b3b6eee4c74b1c4c16253740c98d250840db241bc0a96457d9a6d39"
+content-hash = "511b39bb3a3aef819af02c798c4eade5ad32212993c45ee27161fcfa67786990"
