@@ -168,6 +168,7 @@
                 </gml:TimeInstant>
             </lud-core:latestChange>
             <splan:spatialPlan xlink:href="#KAAVA-kaava-sipoo-nevasgard" />
+            <splan:target xlink:href="#KAAVAKOHDE-AJO-12" />
             <splan:type xlink:href="http://uri.suomi.fi/codelist/rytj/RY_KaavamaaraysLaji_AK/code/020302" xlink:title="Ajoyhteys"/>
             <splan:lifecycleStatus xlink:href="http://uri.suomi.fi/codelist/rytj/RY_KaavanElinkaaritila/code/10" xlink:title="Voimassa"/>
             <splan:theme xlink:href="http://uri.suomi.fi/codelist/rytj/RY_Kaavoitusteema_AK/code/06" xlink:title="Kadut"/>
