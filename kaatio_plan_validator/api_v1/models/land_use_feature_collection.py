@@ -10,6 +10,8 @@ from .. import constants, exceptions
 from .participation_and_evaluation_plan import ParticipationAndEvaluationPlan
 from .plan_object import PlanObject
 from .plan_order import PlanOrder
+from .plan_order_group import PlanOrderGroup
+from .plan_recommendation import PlanRecommendation
 from .planner import Planner
 from .spatial_plan import SpatialPlan
 
@@ -31,6 +33,8 @@ class LandUseFeatureCollectionMembers:
     pe_plans: list[ParticipationAndEvaluationPlan]
     plan_objects: list[PlanObject]
     plan_orders: list[PlanOrder]
+    plan_recommendations: list[PlanRecommendation]
+    plan_order_groups: list[PlanOrderGroup]
     planners: list[Planner]
 
 
@@ -67,6 +71,8 @@ class LandUseFeatureCollection(BaseModel):
 
     @staticmethod
     def find_feature_members_by_tag(xml: ET._ElementTree, tag: str) -> list[ET._Element]:
+        if tag == "PlanOrder" or tag == "PlanRecommendation":
+            return xml.xpath("//splan:" + tag, **constants.NAMESPACES)
         return [
             feature_member
             for feature_members in list(xml.getroot())
@@ -96,6 +102,10 @@ class LandUseFeatureCollection(BaseModel):
         pe_plan_refs = [instance.update_or_create_elements_with_id() for instance in feature_members.pe_plans]
         plan_object_refs = [instance.update_or_create_elements_with_id() for instance in feature_members.plan_objects]
         plan_orders_refs = [instance.update_or_create_elements_with_id() for instance in feature_members.plan_orders]
+        for instance in feature_members.plan_recommendations:
+            instance.update_or_create_elements_with_id()
+        for instance in feature_members.plan_order_groups:
+            instance.update_or_create_elements_with_id()
         planner_refs = [instance.update_or_create_elements_with_id() for instance in feature_members.planners]
 
         feature_members.spatial_plan.update_feature_member_id_references(
@@ -137,6 +147,26 @@ class LandUseFeatureCollection(BaseModel):
             plan_order.update_or_create_storage_time()
             plan_order.post_validate()
 
+        for plan_recommendation in feature_members.plan_recommendations:
+            plan_recommendation.update_feature_member_id_references(
+                xpath=constants.XPATH_SPATIAL_PLAN,
+                refs=spatial_plan_refs,
+            )
+            plan_recommendation.update_or_create_storage_time()
+            plan_recommendation.post_validate()
+
+        for plan_order_group in feature_members.plan_order_groups:
+            plan_order_group.update_feature_member_id_references(
+                xpath=constants.XPATH_SPATIAL_PLAN,
+                refs=spatial_plan_refs,
+            )
+            plan_order_group.update_feature_member_id_references(
+                xpath=constants.XPATH_TARGET,
+                refs=plan_object_refs,
+            )
+            plan_order_group.update_or_create_storage_time()
+            plan_order_group.post_validate()
+
         for planner in feature_members.planners:
             planner.update_or_create_storage_time()
             planner.post_validate()
@@ -171,6 +201,20 @@ class LandUseFeatureCollection(BaseModel):
                     for element in self.find_feature_members_by_tag(
                         xml=self.xml,
                         tag="PlanOrder",
+                    )
+                ],
+                plan_recommendations=[
+                    PlanRecommendation.from_orm(element)
+                    for element in self.find_feature_members_by_tag(
+                        xml=self.xml,
+                        tag="PlanRecommendation",
+                    )
+                ],
+                plan_order_groups=[
+                    PlanOrderGroup.from_orm(element)
+                    for element in self.find_feature_members_by_tag(
+                        xml=self.xml,
+                        tag="PlanOrderGroup",
                     )
                 ],
                 planners=[
