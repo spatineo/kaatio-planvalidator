@@ -54,6 +54,16 @@ def file_xml_valid_example():
 
 
 @pytest.fixture
+def file_xml_valid_with_group():
+    return TEST_DATA_DIR / "spatialPlan-collection-with-group.xml"
+
+
+@pytest.fixture
+def file_xml_valid_with_group_inlined():
+    return TEST_DATA_DIR / "spatialPlan-collection-with-group-inlined.xml"
+
+
+@pytest.fixture
 def gml_curve_with_arc():
     return """
         <gml:Curve srsName="urn:ogc:def:crs:EPSG::4326" xmlns:gml="http://www.opengis.net/gml/3.2">
