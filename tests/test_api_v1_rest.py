@@ -13,7 +13,6 @@ URL_VALIDATE = "/v1/store"
 def test_route_validate_with_broken_xml(
     file_xml_broken: Path,
 ):
-
     with TestClient(app) as client:
         files = {
             "file": (
@@ -38,7 +37,6 @@ def test_route_validate_with_broken_xml(
 def test_route_validate_with_invalid_xml(
     file_xml_invalid: Path,
 ):
-
     with TestClient(app) as client:
         files = {
             "file": (
@@ -61,13 +59,14 @@ def test_route_validate_with_invalid_xml(
         "file_xml_valid_2",
         "file_xml_valid_2_gen",
         "file_xml_valid_example",
+        "file_xml_valid_with_group",
+        "file_xml_valid_with_group_inlined",
     ],
 )
 def test_route_validate_with_valid_xml(
     request: FixtureRequest,
     input: str,
 ):
-
     file_xml_input: Path = request.getfixturevalue(input)
 
     assert file_xml_input.exists()
