@@ -42,8 +42,7 @@ ENV PATH=$LOCAL_BIN:$PATH
 
 # Local binaries.
 RUN mkdir -p $LOCAL_BIN \
-    && echo "npx --yes aws-cdk@1.x \$@" > $LOCAL_BIN/cdk1 \
-    && echo "npx --yes aws-cdk@2.x \$@" > $LOCAL_BIN/cdk2 \
+    && echo "npx --yes aws-cdk@2.x \$@" > $LOCAL_BIN/cdk \
     && chmod +x $LOCAL_BIN/*
 
 # Modify PROMPT_DIRTRIM in .bashrc

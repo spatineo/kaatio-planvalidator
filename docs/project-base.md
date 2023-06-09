@@ -83,7 +83,7 @@ aws s3 ls --profile example
 ```
 
 ```
-$ AWS_PROFILE=example cdk2 list
+$ AWS_PROFILE=example cdk list
 Stack KaatioPlanValidatorStack
-$ AWS_PROFILE=example cdk2 deploy KaatioPlanValidatorStack
+$ AWS_PROFILE=example cdk deploy KaatioPlanValidatorStack
 ```
