@@ -13,7 +13,7 @@ gunicorn = "^20.1.0"
 lxml = "^4.9.2"
 python-multipart = "^0.0.6"
 uvicorn = {extras = ["standard"], version = "^0.22.0"}
-xmlschema = "^2.3.0"
+xmlschema = "^2.3.1"
 GDAL = "3.2.2.1"
 
 [tool.poetry.dev-dependencies]
