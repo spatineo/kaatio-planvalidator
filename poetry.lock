@@ -303,17 +303,17 @@ files = [
 
 [[package]]
 name = "constructs"
-version = "10.2.52"
+version = "10.2.60"
 description = "A programming model for software-defined state"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "constructs-10.2.52-py3-none-any.whl", hash = "sha256:2689938060479d91961533688a7ad8a9d6e3c41b9ddb5ba940a81645452bc6cb"},
-    {file = "constructs-10.2.52.tar.gz", hash = "sha256:88f8cd202f0a2b088ba43122ce306915b7deda52be785388bf3d31608e274d6a"},
+    {file = "constructs-10.2.60-py3-none-any.whl", hash = "sha256:1c7338d1aea67fc594012639d3cb7953554522991d4f703e1d378dc2f2b8b0ca"},
+    {file = "constructs-10.2.60.tar.gz", hash = "sha256:1199a94f22e78b21078116d87d2f67d95b54d6c15a6614578674026e1c8b9566"},
 ]
 
 [package.dependencies]
-jsii = ">=1.83.0,<2.0.0"
+jsii = ">=1.84.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -914,18 +914,18 @@ i18n = ["Babel (>=2.7)"]
 
 [[package]]
 name = "jsii"
-version = "1.83.0"
+version = "1.84.0"
 description = "Python client for jsii runtime"
 optional = false
 python-versions = "~=3.7"
 files = [
-    {file = "jsii-1.83.0-py3-none-any.whl", hash = "sha256:7c9790843d09ef92d8fec7955ff37419435127bc42a72cd83745ebaab8545f03"},
-    {file = "jsii-1.83.0.tar.gz", hash = "sha256:ed5af7f656bfe652543668e2fb8667c527391b09d02a0fec1deca1e1aa0118ad"},
+    {file = "jsii-1.84.0-py3-none-any.whl", hash = "sha256:7748205665d079112721d6eb23a37fa084722ab675f65e8a6514ec908660bd57"},
+    {file = "jsii-1.84.0.tar.gz", hash = "sha256:29f8352525e980e126d5d0fd3510fff9a81a8dbc36249f99d922907f2e6bf4c3"},
 ]
 
 [package.dependencies]
 attrs = ">=21.2,<24.0"
-cattrs = ">=1.8,<22.3"
+cattrs = ">=1.8,<23.2"
 importlib-resources = ">=5.2.0"
 publication = ">=0.0.3"
 python-dateutil = "*"
