@@ -10,7 +10,7 @@ python = "^3.10.6"
 email-validator = "^2.0.0"
 fastapi = {extras = ["all"], version = "^0.100.0"}
 gunicorn = "^20.1.0"
-lxml = "^4.9.2"
+lxml = "^4.9.3"
 python-multipart = "^0.0.6"
 uvicorn = {extras = ["standard"], version = "^0.22.0"}
 xmlschema = "^2.3.1"
