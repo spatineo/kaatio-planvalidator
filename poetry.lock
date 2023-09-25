@@ -617,13 +617,12 @@ files = [
 
 [[package]]
 name = "flake8-isort"
-version = "6.0.0"
+version = "6.1.0"
 description = "flake8 plugin that integrates isort ."
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "flake8-isort-6.0.0.tar.gz", hash = "sha256:537f453a660d7e903f602ecfa36136b140de279df58d02eb1b6a0c84e83c528c"},
-    {file = "flake8_isort-6.0.0-py3-none-any.whl", hash = "sha256:aa0cac02a62c7739e370ce6b9c31743edac904bae4b157274511fc8a19c75bbc"},
+    {file = "flake8-isort-6.1.0.tar.gz", hash = "sha256:d4639343bac540194c59fb1618ac2c285b3e27609f353bef6f50904d40c1643e"},
 ]
 
 [package.dependencies]
@@ -1999,4 +1998,4 @@ docs = ["Sphinx", "elementpath (>=4.1.5,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "68652fcc647767615e26a0417ee5de96fda2f7ebb9da38d7be7d850b9361ad6b"
+content-hash = "86bcc7e4246d48944adb746e76d733d714c07d2650e806d70d468e82dac1b081"
