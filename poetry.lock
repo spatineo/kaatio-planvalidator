@@ -539,13 +539,13 @@ develop = ["build", "twine"]
 
 [[package]]
 name = "flake8-bugbear"
-version = "23.9.16"
+version = "23.11.26"
 description = "A plugin for flake8 finding likely bugs and design problems in your program. Contains warnings that don't belong in pyflakes and pycodestyle."
 optional = false
 python-versions = ">=3.8.1"
 files = [
-    {file = "flake8-bugbear-23.9.16.tar.gz", hash = "sha256:90cf04b19ca02a682feb5aac67cae8de742af70538590509941ab10ae8351f71"},
-    {file = "flake8_bugbear-23.9.16-py3-none-any.whl", hash = "sha256:b182cf96ea8f7a8595b2f87321d7d9b28728f4d9c3318012d896543d19742cb5"},
+    {file = "flake8-bugbear-23.11.26.tar.gz", hash = "sha256:8e36119071bab626b6dab834fadd6d03c06090e9b189e67b4905821df8212fee"},
+    {file = "flake8_bugbear-23.11.26-py3-none-any.whl", hash = "sha256:55d00c8a3c48c995c1f0ec0df54f8c9cf530c06035ce53975a03517d2e7f53e5"},
 ]
 
 [package.dependencies]
@@ -1995,4 +1995,4 @@ docs = ["Sphinx", "elementpath (>=4.1.5,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "958ea979147f84ec80eecd3fd428c673e9b3ed352dd8c37e7a815e3080bd415a"
+content-hash = "1684483500455f10e7f63ec2f3013a135d47bced498ddeb1ba78350e12c58b86"
