@@ -111,13 +111,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.116.1"
+version = "2.118.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws-cdk-lib-2.116.1.tar.gz", hash = "sha256:7e8cfc0fc258b0652c1fbdab03f195a5b53942226cbe9f0664deab35f5c68631"},
-    {file = "aws_cdk_lib-2.116.1-py3-none-any.whl", hash = "sha256:f22a8ee46bd5f5578862e237177c29d54ea60509366eb75a8ed5268b582eef1b"},
+    {file = "aws-cdk-lib-2.118.0.tar.gz", hash = "sha256:8889e25aa0de3c674f31fe9a8666858c3f6a3024b9db0fbddcdb3775897d972d"},
+    {file = "aws_cdk_lib-2.118.0-py3-none-any.whl", hash = "sha256:a9a015bc05ca46cca00e96442b9547d2cd4ffde79941381b864daf7115139944"},
 ]
 
 [package.dependencies]
@@ -1991,4 +1991,4 @@ docs = ["Sphinx", "elementpath (>=4.1.5,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "7a6cc49a145d63824f18d2bd6344de297277e832d71b8f666f5eaac70942cdf8"
+content-hash = "168a759dcb0ca1fac01194c0a68535d4e41d33ff34322347fc307f58a0e9589a"
