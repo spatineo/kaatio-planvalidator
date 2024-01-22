@@ -111,13 +111,13 @@ typeguard = ">=2.13.3,<2.14.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.118.0"
+version = "2.122.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws-cdk-lib-2.118.0.tar.gz", hash = "sha256:8889e25aa0de3c674f31fe9a8666858c3f6a3024b9db0fbddcdb3775897d972d"},
-    {file = "aws_cdk_lib-2.118.0-py3-none-any.whl", hash = "sha256:a9a015bc05ca46cca00e96442b9547d2cd4ffde79941381b864daf7115139944"},
+    {file = "aws-cdk-lib-2.122.0.tar.gz", hash = "sha256:562eb5cb0f2a5111a71a4a3b727d5d077c0eaaa55dc1748922ccdb3f25ef49cd"},
+    {file = "aws_cdk_lib-2.122.0-py3-none-any.whl", hash = "sha256:322a230864076738da8d138b0dbf2050a31c0caa7f27d8da128d8174150aaebe"},
 ]
 
 [package.dependencies]
@@ -125,7 +125,7 @@ files = [
 "aws-cdk.asset-kubectl-v20" = ">=2.1.2,<3.0.0"
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.0.1,<3.0.0"
 constructs = ">=10.0.0,<11.0.0"
-jsii = ">=1.93.0,<2.0.0"
+jsii = ">=1.94.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<2.14.0"
 
@@ -923,13 +923,13 @@ i18n = ["Babel (>=2.7)"]
 
 [[package]]
 name = "jsii"
-version = "1.93.0"
+version = "1.94.0"
 description = "Python client for jsii runtime"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "jsii-1.93.0-py3-none-any.whl", hash = "sha256:d3cba8c18f2bb4eb94aa41a202b4eb14a561a3a347ed086294a6c9d5d17c90d6"},
-    {file = "jsii-1.93.0.tar.gz", hash = "sha256:15349b329b79699c88a6041c8987a4470e6cfa544e5c1e4a126bc5be9f48a623"},
+    {file = "jsii-1.94.0-py3-none-any.whl", hash = "sha256:1105bae271ae47c27cf31c1565c5157306efed5ad9323c9a27336f962f465716"},
+    {file = "jsii-1.94.0.tar.gz", hash = "sha256:175abc356603d98f18ab6f6aa74bfeae253e4e56340aef9dc40bbb1a6a59868b"},
 ]
 
 [package.dependencies]
@@ -1981,4 +1981,4 @@ docs = ["Sphinx", "elementpath (>=4.1.5,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "775a8bc1496abe4386d6884afe67530aad4db7862042824bb2dd69c6ba07a6a2"
+content-hash = "b8732d419567164883e7f83aab62328af8b9f9bc7d61297ca42d4dff7dade348"
