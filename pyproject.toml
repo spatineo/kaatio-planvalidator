@@ -9,7 +9,7 @@ license = "MIT"
 python = "^3.10.6"
 email-validator = "^2.1.1"
 fastapi = {extras = ["all"], version = "^0.110.2"}
-gunicorn = "^21.2.0"
+gunicorn = "^22.0.0"
 lxml = "^5.2.1"
 python-multipart = "^0.0.9"
 uvicorn = {extras = ["standard"], version = "^0.29.0"}
