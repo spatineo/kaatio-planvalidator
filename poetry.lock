@@ -111,13 +111,13 @@ typeguard = ">=2.13.3,<5.0.0"
 
 [[package]]
 name = "aws-cdk-cloud-assembly-schema"
-version = "36.3.0"
+version = "38.0.1"
 description = "Cloud Assembly Schema"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws_cdk.cloud_assembly_schema-36.3.0-py3-none-any.whl", hash = "sha256:00fc03aa7a0f57a94c390971cc354741e4db026ed8e17ad9425422da321599a2"},
-    {file = "aws_cdk_cloud_assembly_schema-36.3.0.tar.gz", hash = "sha256:8e9e5bd7a9750af3a9e5eef0a6dcfc86332b607c64cafbcfa9a15f13e04dcfd1"},
+    {file = "aws_cdk.cloud_assembly_schema-38.0.1-py3-none-any.whl", hash = "sha256:92613b46213b460681e9424f09b77f06ff059eb1c773092540364ef82fcecf55"},
+    {file = "aws_cdk_cloud_assembly_schema-38.0.1.tar.gz", hash = "sha256:7c75861adc41f7b959910d4b3b191ea242815402e599dbfa31934892838ae25e"},
 ]
 
 [package.dependencies]
@@ -127,20 +127,20 @@ typeguard = ">=2.13.3,<5.0.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.159.1"
+version = "2.160.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws_cdk_lib-2.159.1-py3-none-any.whl", hash = "sha256:485b28b3416a1a3f25dd6df6a94c6ce88b73ab1c263d99e844e6caa54efac914"},
-    {file = "aws_cdk_lib-2.159.1.tar.gz", hash = "sha256:b13d628a9f9847dbe00369831aa5438807bee7945a2e55267fdbcafa154a8f6c"},
+    {file = "aws_cdk_lib-2.160.0-py3-none-any.whl", hash = "sha256:c6775a7c5d02e4272147692a0560071f1bd232c1dc1bf74e84a69f7bdb418362"},
+    {file = "aws_cdk_lib-2.160.0.tar.gz", hash = "sha256:df6142440f9e2754344d9a8f240e0a467d9102261c46b9e133cd16fbdbcd8796"},
 ]
 
 [package.dependencies]
 "aws-cdk.asset-awscli-v1" = ">=2.2.202,<3.0.0"
 "aws-cdk.asset-kubectl-v20" = ">=2.1.2,<3.0.0"
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.1.0,<3.0.0"
-"aws-cdk.cloud-assembly-schema" = ">=36.0.24,<37.0.0"
+"aws-cdk.cloud-assembly-schema" = ">=38.0.0,<39.0.0"
 constructs = ">=10.0.0,<11.0.0"
 jsii = ">=1.103.1,<2.0.0"
 publication = ">=0.0.3"
@@ -2172,4 +2172,4 @@ docs = ["Sphinx", "elementpath (>=4.4.0,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "4b46bce532c70e5cbdaca6daf95790d624cfd96e7e711b20734f10ced447c14f"
+content-hash = "eabd1a270cfb53fb5b189f662cb35ffbae1080dbc4005b0eab37262059efac4b"
