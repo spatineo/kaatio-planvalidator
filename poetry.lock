@@ -78,22 +78,6 @@ publication = ">=0.0.3"
 typeguard = ">=2.13.3,<4.3.0"
 
 [[package]]
-name = "aws-cdk-asset-kubectl-v20"
-version = "2.1.3"
-description = "A Lambda Layer that contains kubectl v1.20"
-optional = false
-python-versions = "~=3.8"
-files = [
-    {file = "aws_cdk.asset_kubectl_v20-2.1.3-py3-none-any.whl", hash = "sha256:d5612e5bd03c215a28ce53193b1144ecf4e93b3b6779563c046a8a74d83a3979"},
-    {file = "aws_cdk_asset_kubectl_v20-2.1.3.tar.gz", hash = "sha256:237cd8530d9e8be0bbc7159af927dbb6b7f91bf3f4099c8ef4d9a213b34264be"},
-]
-
-[package.dependencies]
-jsii = ">=1.103.1,<2.0.0"
-publication = ">=0.0.3"
-typeguard = ">=2.13.3,<5.0.0"
-
-[[package]]
 name = "aws-cdk-asset-node-proxy-agent-v6"
 version = "2.1.0"
 description = "@aws-cdk/asset-node-proxy-agent-v6"
@@ -127,18 +111,17 @@ typeguard = ">=2.13.3,<4.3.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.177.0"
+version = "2.180.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.8"
 files = [
-    {file = "aws_cdk_lib-2.177.0-py3-none-any.whl", hash = "sha256:acdf06aaf52367a64b4bf88381e8272cb7b5961c242020ace822c79749e53cac"},
-    {file = "aws_cdk_lib-2.177.0.tar.gz", hash = "sha256:5e51c48da31555beb38243bb2882e98ee9fe1796466ba9f8d3088701b47965e5"},
+    {file = "aws_cdk_lib-2.180.0-py3-none-any.whl", hash = "sha256:5700a84dc4c2c6d323e596119fb4100e66aef6265a4d984bbe2e9341174d048b"},
+    {file = "aws_cdk_lib-2.180.0.tar.gz", hash = "sha256:28ba2c75bd55886eb5e686c58be656c9ab29b895f774f9129eaa3255ffcd6b42"},
 ]
 
 [package.dependencies]
 "aws-cdk.asset-awscli-v1" = ">=2.2.208,<3.0.0"
-"aws-cdk.asset-kubectl-v20" = ">=2.1.3,<3.0.0"
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.1.0,<3.0.0"
 "aws-cdk.cloud-assembly-schema" = ">=39.2.0,<40.0.0"
 constructs = ">=10.0.0,<11.0.0"
@@ -2177,4 +2160,4 @@ docs = ["Sphinx", "elementpath (>=4.4.0,<5.0.0)", "jinja2", "sphinx-rtd-theme"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10.6"
-content-hash = "419dbd9a6cd794938b0ba12cb5d0cd7c918416c570e0e91f78b79f61759b49e6"
+content-hash = "6132844ecf528b44b785a25630bd8b27c19d6bd1ee86c0e4af45fa91fabca6eb"
