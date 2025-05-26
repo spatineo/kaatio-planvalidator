@@ -67,18 +67,18 @@ tests-no-zope = ["cloudpickle ; platform_python_implementation == \"CPython\"", 
 
 [[package]]
 name = "aws-cdk-asset-awscli-v1"
-version = "2.2.236"
+version = "2.2.237"
 description = "A library that contains the AWS CLI for use in Lambda Layers"
 optional = false
 python-versions = "~=3.9"
 groups = ["dev"]
 files = [
-    {file = "aws_cdk_asset_awscli_v1-2.2.236-py3-none-any.whl", hash = "sha256:c14e64538af61d99cf37e01e65f8ba549949536052fe5a5fc8b56eaf1a0c714e"},
-    {file = "aws_cdk_asset_awscli_v1-2.2.236.tar.gz", hash = "sha256:5e1c907cfc81f09c2af229ac2af3e9cbbbe8c476a50481b4097d6aa7d3e5330d"},
+    {file = "aws_cdk_asset_awscli_v1-2.2.237-py3-none-any.whl", hash = "sha256:642805ba143b35d11d5b5e80ab728db2ec8b894b2837b629ad95601e7e189e4c"},
+    {file = "aws_cdk_asset_awscli_v1-2.2.237.tar.gz", hash = "sha256:e1dd0086af180c381d3ee81eb963a1f469627763e0507982b6f2d4075446bdf4"},
 ]
 
 [package.dependencies]
-jsii = ">=1.111.0,<2.0.0"
+jsii = ">=1.112.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = ">=2.13.3,<4.3.0"
 
@@ -118,18 +118,18 @@ typeguard = ">=2.13.3,<4.3.0"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.196.0"
+version = "2.198.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.9"
 groups = ["dev"]
 files = [
-    {file = "aws_cdk_lib-2.196.0-py3-none-any.whl", hash = "sha256:8327a594cd5f29a4ee161f44d24ad7a13aaa325f662c837c6c8b4749de0a670d"},
-    {file = "aws_cdk_lib-2.196.0.tar.gz", hash = "sha256:9e950946c7d55d387850eb5858e35b7735c376151431fcb9c6042481ec16882d"},
+    {file = "aws_cdk_lib-2.198.0-py3-none-any.whl", hash = "sha256:f1ae98cb6fa9376e33f3e508281e136f3a2b955cbfa6fe6856418b6e0f471756"},
+    {file = "aws_cdk_lib-2.198.0.tar.gz", hash = "sha256:2e8df7898ec67846c822095b5be5292dadb17f1b8f5e0df143c6be97624a1ee4"},
 ]
 
 [package.dependencies]
-"aws-cdk.asset-awscli-v1" = "2.2.236"
+"aws-cdk.asset-awscli-v1" = "2.2.237"
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.1.0,<3.0.0"
 "aws-cdk.cloud-assembly-schema" = ">=41.2.0,<42.0.0"
 constructs = ">=10.0.0,<11.0.0"
@@ -2253,4 +2253,4 @@ docs = ["jinja2", "sphinx", "sphinx_rtd_theme"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10.6"
-content-hash = "ea8e5573f4400af56d8fe0e27ae54350549645ac3a4d8f5a2f7015ad22739159"
+content-hash = "71d2878abeccbbf96945af113819b61189c71533d0d82ed59d8e18bfb039a398"
