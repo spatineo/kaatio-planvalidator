@@ -12,7 +12,7 @@ fastapi = {extras = ["all"], version = "^0.116.1"}
 gunicorn = "^23.0.0"
 lxml = "^6.0.1"
 python-multipart = "^0.0.20"
-uvicorn = {extras = ["standard"], version = "^0.35.0"}
+uvicorn = {extras = ["standard"], version = "^0.37.0"}
 xmlschema = "^4.1.0"
 GDAL = "3.2.2.1"
 
