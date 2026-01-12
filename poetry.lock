@@ -475,18 +475,18 @@ wmi = ["wmi (>=1.5.1,<2.0.0)"]
 
 [[package]]
 name = "elementpath"
-version = "5.0.1"
+version = "5.1.0"
 description = "XPath 1.0/2.0/3.0/3.1 parsers and selectors for ElementTree and lxml"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "elementpath-5.0.1-py3-none-any.whl", hash = "sha256:334f796578d1d273e99838b6a731d265985ea9ab399e22b74ea1c3a3faa73c83"},
-    {file = "elementpath-5.0.1.tar.gz", hash = "sha256:d3e4807b7e38e190e382eefef93f35ce6f71adf63b33e3f01d0e11f22e5d5cc7"},
+    {file = "elementpath-5.1.0-py3-none-any.whl", hash = "sha256:41aa6f08f1e7b02f3ae3f8ab56f84d0a564e9214a56e63fc34e6fd03f3c8f01d"},
+    {file = "elementpath-5.1.0.tar.gz", hash = "sha256:61618f64686ce73cf6f191b17298e2568e9a1763b125fc7f2cb796ad0eacfd1e"},
 ]
 
 [package.extras]
-dev = ["coverage", "flake8", "lxml", "lxml-stubs", "memray", "mypy", "psutil", "sphinx", "tox", "xmlschema (>=4.0.1)"]
+dev = ["coverage", "flake8", "lxml", "lxml-stubs", "memray ; platform_python_implementation != \"PyPy\"", "mypy", "psutil", "sphinx", "tox (>=4.0)", "xmlschema (>=4.0.1)"]
 docs = ["readthedocs-sphinx-search", "sphinx"]
 
 [[package]]
@@ -2559,25 +2559,26 @@ files = [
 
 [[package]]
 name = "xmlschema"
-version = "4.2.0"
+version = "4.3.0"
 description = "An XML Schema validator and decoder"
 optional = false
-python-versions = ">=3.9"
+python-versions = ">=3.10"
 groups = ["main"]
 files = [
-    {file = "xmlschema-4.2.0-py3-none-any.whl", hash = "sha256:82d24a50eea5e7f2d603312813848cd66fddf8fa2b6730839c6aa3d66312e3b6"},
-    {file = "xmlschema-4.2.0.tar.gz", hash = "sha256:b1f88c53493b2e75471977cbf218d939b872d0c7046bb63d48cc219fa7e241b9"},
+    {file = "xmlschema-4.3.0-py3-none-any.whl", hash = "sha256:2b97df551039519eed0eaf015f2ea523b958f64917a6ea4303d7025169fa423e"},
+    {file = "xmlschema-4.3.0.tar.gz", hash = "sha256:174c531dd869cd29bf2d1203603d9e619bddf168d6289725738914c96c80936e"},
 ]
 
 [package.dependencies]
-elementpath = ">=5.0.1,<6.0.0"
+elementpath = ">=5.1.0,<6.0.0"
 
 [package.extras]
 codegen = ["jinja2"]
 dev = ["coverage", "flake8", "lxml", "lxml-stubs", "mypy", "psutil", "tox", "xmlschema[docs]"]
 docs = ["jinja2", "sphinx", "sphinx_rtd_theme"]
+pydantic = ["pydantic"]
 
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10.6"
-content-hash = "4cf0b00a8b6a02e95a51cbda9a11c6959dc351d5287834fed87e91a999c8f6ff"
+content-hash = "2e3d0cc2990e4b83541759003806f8549fa7b2eb220d31a1ad37e7f339356849"
