@@ -11,7 +11,7 @@ email-validator = "^2.3.0"
 fastapi = {extras = ["all"], version = "^0.135.3"}
 gunicorn = "^25.3.0"
 lxml = "^6.0.2"
-python-multipart = "^0.0.22"
+python-multipart = "^0.0.24"
 uvicorn = {extras = ["standard"], version = "^0.42.0"}
 xmlschema = "^4.3.1"
 GDAL = "3.2.2.1"
