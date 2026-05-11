@@ -118,14 +118,14 @@ typeguard = "2.13.3"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.251.0"
+version = "2.253.1"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = "~=3.9"
 groups = ["dev"]
 files = [
-    {file = "aws_cdk_lib-2.251.0-py3-none-any.whl", hash = "sha256:a684f3461d096443ac688adbf559abe1af2d50dd5c8e0fa7dbf4a5f361702db8"},
-    {file = "aws_cdk_lib-2.251.0.tar.gz", hash = "sha256:ed69e7ea6896c62ac2ce01857083601baf541d5d875370bee6d213d641e8921e"},
+    {file = "aws_cdk_lib-2.253.1-py3-none-any.whl", hash = "sha256:03a6f5080978f9e3576f490d06fbd1f41f159280d34dbca50721de4a19694136"},
+    {file = "aws_cdk_lib-2.253.1.tar.gz", hash = "sha256:df03363cdaef4d2d7bac368b2d5d2bf4209921d21096cd5f8e5889347fee4793"},
 ]
 
 [package.dependencies]
@@ -133,7 +133,7 @@ files = [
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.1.1,<3.0.0"
 "aws-cdk.cloud-assembly-schema" = ">=53.18.0,<54.0.0"
 constructs = ">=10.5.0,<11.0.0"
-jsii = ">=1.127.0,<2.0.0"
+jsii = ">=1.128.0,<2.0.0"
 publication = ">=0.0.3"
 typeguard = "2.13.3"
 
@@ -2577,4 +2577,4 @@ docs = ["jinja2", "sphinx", "sphinx_rtd_theme"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10.6"
-content-hash = "b4552758ff996f2f6c831b337e583bbf9d51cf6de48af74bbf678e48746dfc65"
+content-hash = "04d2029a10a46dfb0f04ab686fcf9171fa51345dec6475ce59b5c52ab3270a53"
