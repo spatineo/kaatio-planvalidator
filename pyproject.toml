@@ -8,7 +8,7 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.10.6"
 email-validator = "^2.3.0"
-fastapi = {extras = ["all"], version = ">=0.135.3,<0.138.0"}
+fastapi = {extras = ["all"], version = ">=0.135.3,<0.139.0"}
 gunicorn = ">=25.3,<27.0"
 lxml = "^6.0.4"
 python-multipart = ">=0.0.26,<0.0.33"
