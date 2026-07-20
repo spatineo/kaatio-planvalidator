@@ -333,20 +333,19 @@ markers = {main = "platform_system == \"Windows\"", dev = "platform_system == \"
 
 [[package]]
 name = "constructs"
-version = "10.6.0"
+version = "10.7.0"
 description = "A programming model for software-defined state"
 optional = false
-python-versions = "~=3.9"
+python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "constructs-10.6.0-py3-none-any.whl", hash = "sha256:ad4ffabdb53c17cde00fb94e441a1ba9fddac57c92ad49d263f8dbd416cec513"},
-    {file = "constructs-10.6.0.tar.gz", hash = "sha256:bc55d1d390142424861e5ff5c6b8c243c4bae18fe7302e0939c2003f329ba365"},
+    {file = "constructs-10.7.0-py3-none-any.whl", hash = "sha256:4aaf04c6628fb9af71fd4bcd59d141c871eaa5aaf8f690a4b2dfd572f8bba053"},
+    {file = "constructs-10.7.0.tar.gz", hash = "sha256:e593ac6935f020e65f3a39ad73a6196cb30cb8080d80268471f06321e9317242"},
 ]
 
 [package.dependencies]
-jsii = ">=1.127.0,<2.0.0"
+jsii = ">=1.138.0,<2.0.0"
 publication = ">=0.0.3"
-typeguard = "2.13.3"
 
 [[package]]
 name = "coverage"
@@ -1051,14 +1050,14 @@ i18n = ["Babel (>=2.7)"]
 
 [[package]]
 name = "jsii"
-version = "1.135.0"
+version = "1.139.0"
 description = "Python client for jsii runtime"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "jsii-1.135.0-py3-none-any.whl", hash = "sha256:bfab0cc3f99bfbc13683af2afb8d62522af867fb826fc825ab6b27fe636bb087"},
-    {file = "jsii-1.135.0.tar.gz", hash = "sha256:3d860404e9e350beae0bdae48b473173653bd2be3a901c620feb656b690f9c2f"},
+    {file = "jsii-1.139.0-py3-none-any.whl", hash = "sha256:11468f767c6da698ed9888a04352850af33ccccfec7656475626caf36fca8bbb"},
+    {file = "jsii-1.139.0.tar.gz", hash = "sha256:163c5d3ec00fd4ec89a33b9097f20a6f27626dd69d6875a8f7cc7577b8021ad0"},
 ]
 
 [package.dependencies]
@@ -2602,4 +2601,4 @@ docs = ["jinja2", "sphinx", "sphinx_rtd_theme"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10.6"
-content-hash = "3055f41be3dec00a6bce1c5a4040547401c6dbcc50abb6aa3917b23b8411d8ac"
+content-hash = "bcd58e7dcc005233747cdd9a15a06bb6781832e72dcefd5614ca1bdbc2bb1eb3"
