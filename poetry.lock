@@ -101,41 +101,39 @@ typeguard = "2.13.3"
 
 [[package]]
 name = "aws-cdk-cloud-assembly-schema"
-version = "54.2.0"
+version = "54.17.0"
 description = "Schema for the protocol between CDK framework and CDK CLI"
 optional = false
-python-versions = "~=3.10"
+python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "aws_cdk_cloud_assembly_schema-54.2.0-py3-none-any.whl", hash = "sha256:a7038bffa1aaf3365b72147987396bcf0b9951c3b53b2eebfc181b7cb4227067"},
-    {file = "aws_cdk_cloud_assembly_schema-54.2.0.tar.gz", hash = "sha256:2e3a05fca6a28f49811b7b011fce12b03dd0adb15c37a0ad2d1b16d8d66fe95a"},
+    {file = "aws_cdk_cloud_assembly_schema-54.17.0-py3-none-any.whl", hash = "sha256:d727b55da80b44ec02c6eb74b3f7271656e3a47f761b4d6b41784303cbf94308"},
+    {file = "aws_cdk_cloud_assembly_schema-54.17.0.tar.gz", hash = "sha256:ecf54cbd656c8c85a8df47291be791e60c92e8aca193757667024e7805adf55d"},
 ]
 
 [package.dependencies]
-jsii = ">=1.132.0,<2.0.0"
+jsii = ">=1.139.0,<2.0.0"
 publication = ">=0.0.3"
-typeguard = "2.13.3"
 
 [[package]]
 name = "aws-cdk-lib"
-version = "2.261.0"
+version = "2.263.0"
 description = "Version 2 of the AWS Cloud Development Kit library"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "aws_cdk_lib-2.261.0-py3-none-any.whl", hash = "sha256:a90bea2a90e57eb4335609e64accc22defad1e3735a69cfc74f8122ce032970f"},
-    {file = "aws_cdk_lib-2.261.0.tar.gz", hash = "sha256:a48b24f09307b2fb7638b0c28cbdc8f722fab1bf0c3ed65b6319fffc9c48927d"},
+    {file = "aws_cdk_lib-2.263.0-py3-none-any.whl", hash = "sha256:a8d7928c7a01c25f6cb85c98e465df6ffd2b9e696bdb256257eeca2157c80609"},
+    {file = "aws_cdk_lib-2.263.0.tar.gz", hash = "sha256:fc87a36758c93c95845bb4889c21a899eb639b78e43d09d965d9d924233e60f6"},
 ]
 
 [package.dependencies]
 "aws-cdk.asset-awscli-v1" = "2.2.282"
 "aws-cdk.asset-node-proxy-agent-v6" = ">=2.1.2,<3.0.0"
-"aws-cdk.cloud-assembly-schema" = ">=54.0.0,<55.0.0"
+"aws-cdk.cloud-assembly-schema" = ">=54.11.0,<55.0.0"
 constructs = ">=10.5.0,<11.0.0"
-jsii = ">=1.133.0,<2.0.0"
+jsii = ">=1.138.0,<2.0.0"
 publication = ">=0.0.3"
-typeguard = "2.13.3"
 
 [[package]]
 name = "black"
@@ -2601,4 +2599,4 @@ docs = ["jinja2", "sphinx", "sphinx_rtd_theme"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10.6"
-content-hash = "edb1ea8b8f20c2d6c0e50e1aa132c94dde8b0dfe18addfa76058acdf3fabdd89"
+content-hash = "0cd00f128afb1701a0a5f21afa5a2c0abf531005602e8ae0947aee0abb7e0a26"
