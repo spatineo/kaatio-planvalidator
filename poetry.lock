@@ -331,18 +331,18 @@ markers = {main = "platform_system == \"Windows\"", dev = "platform_system == \"
 
 [[package]]
 name = "constructs"
-version = "10.7.1"
+version = "10.8.1"
 description = "A programming model for software-defined state"
 optional = false
 python-versions = ">=3.10"
 groups = ["dev"]
 files = [
-    {file = "constructs-10.7.1-py3-none-any.whl", hash = "sha256:f212c66b37249c45eca4638c6b33c68efddae50599d27062d71d0bf81c11431e"},
-    {file = "constructs-10.7.1.tar.gz", hash = "sha256:7b33d60851fc8c6d4c4a111dc342088e467c344b22d9a562a5e0b6fbbbaf4b2a"},
+    {file = "constructs-10.8.1-py3-none-any.whl", hash = "sha256:f71297db64723889147c82de46dcacaa76b120f856d5b5ac5f65abb22ea88355"},
+    {file = "constructs-10.8.1.tar.gz", hash = "sha256:9f6e4eb1f6b8b1ac8dcbc85457dcbb1e3f9bd93bbeef03154f6cc7fbbba74b06"},
 ]
 
 [package.dependencies]
-jsii = ">=1.138.0,<2.0.0"
+jsii = ">=1.139.0,<2.0.0"
 publication = ">=0.0.3"
 
 [[package]]
@@ -2601,4 +2601,4 @@ docs = ["jinja2", "sphinx", "sphinx_rtd_theme"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10.6"
-content-hash = "ee4fb016b78a810004e80c3eafa7f6e3ea9e8915a17b4402fc9b5b2c24c66f1c"
+content-hash = "2e332587a7b3d2274e24865392344233463a663326c09160eb7ef2c9dd56d26b"
